@@ -6,8 +6,8 @@
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
-      "description": "An Odisha-inspired accordion with a Konark wheel indicator and a primary accent.",
-      "dependencies": ["radix-ui"],
+      "description": "A Base UI accordion with card and flush variants, animated panels, and theme tokens.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
         {
           "path": "registry/new-york/accordion.tsx",

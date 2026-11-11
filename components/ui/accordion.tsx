@@ -1,109 +1,147 @@
+/**
+ * OdiaUI — Accordion (Base UI)
+ * Pure Tailwind + shadcn theme tokens. No custom CSS, no custom keyframes.
+ *
+ * Registry deps:  @base-ui/react, lucide-react
+ * Needs:          cn() from "@/lib/utils"
+ */
+
 "use client";
 
-import { Accordion as AccordionPrimitive } from "radix-ui";
+import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
+import { Plus } from "lucide-react";
+import * as React from "react";
 
-import type { FeedbackType } from "@/hooks/use-feedback";
-import { useFeedback } from "@/hooks/use-feedback";
 import { cn } from "@/lib/utils";
 
-const KonarkWheelIcon = ({
-  className,
-  ...props
-}: React.ComponentProps<"svg">) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-    className={cn("size-4", className)}
-    {...props}
-  >
-    <circle cx="12" cy="12" r="9" />
-    <circle cx="12" cy="12" r="2.5" />
-    <path d="M12 3v6.5M12 14.5V21M3 12h6.5M14.5 12H21M5.64 5.64l4.6 4.6M13.76 13.76l4.6 4.6M18.36 5.64l-4.6 4.6M10.24 13.76l-4.6 4.6" />
-  </svg>
-);
+type Variant = "card" | "flush";
+const VariantContext = React.createContext<Variant>("card");
+
+/* ---------------------------------- Root --------------------------------- */
+
+type AccordionProps = React.ComponentProps<typeof AccordionPrimitive.Root> & {
+  /** "card": separated rounded cards · "flush": clean divided list */
+  variant?: Variant;
+};
 
 const Accordion = ({
+  variant = "card",
+  className,
   ...props
-}: React.ComponentProps<typeof AccordionPrimitive.Root>) => (
-  <AccordionPrimitive.Root data-slot="accordion" {...props} />
+}: AccordionProps) => (
+  <VariantContext.Provider value={variant}>
+    <AccordionPrimitive.Root
+      data-slot="accordion"
+      className={cn(
+        "w-full",
+        variant === "card"
+          ? "flex flex-col gap-3"
+          : "divide-y divide-border border-y border-border",
+        className
+      )}
+      {...props}
+    />
+  </VariantContext.Provider>
 );
+
+/* ---------------------------------- Item --------------------------------- */
 
 const AccordionItem = ({
   className,
   ...props
-}: React.ComponentProps<typeof AccordionPrimitive.Item>) => (
-  <AccordionPrimitive.Item
-    data-slot="accordion-item"
-    className={cn(
-      "group relative border-b border-border/60 transition-colors before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:content-[''] before:transition-colors last:border-b-0 data-[state=open]:bg-primary/5 data-[state=open]:before:bg-primary",
-      className
-    )}
-    {...props}
-  />
-);
+}: React.ComponentProps<typeof AccordionPrimitive.Item>) => {
+  const variant = React.useContext(VariantContext);
+  return (
+    <AccordionPrimitive.Item
+      data-slot="accordion-item"
+      className={cn(
+        "relative transition-all duration-300",
+        variant === "card" &&
+          cn(
+            "overflow-hidden rounded-2xl border border-border bg-card text-card-foreground shadow-xs",
+            "hover:border-primary/40 hover:shadow-md",
+            "data-[open]:border-primary/50 data-[open]:shadow-lg data-[open]:shadow-primary/10",
+            // accent bar on the left edge, grows in when open
+            "before:absolute before:inset-y-0 before:left-0 before:w-[3px] before:origin-top",
+            "before:scale-y-0 before:bg-primary before:transition-transform before:duration-300",
+            "data-[open]:before:scale-y-100"
+          ),
+        className
+      )}
+      {...props}
+    />
+  );
+};
+
+/* -------------------------------- Trigger -------------------------------- */
 
 const AccordionTrigger = ({
   className,
   children,
-  onClick,
-  sound,
-  haptic,
   ...props
-}: React.ComponentProps<typeof AccordionPrimitive.Trigger> & {
-  sound?: FeedbackType;
-  haptic?: boolean;
-}) => {
-  const play = useFeedback({ haptic, sound });
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    play();
-    onClick?.(e);
-  };
-
+}: React.ComponentProps<typeof AccordionPrimitive.Trigger>) => {
+  const variant = React.useContext(VariantContext);
   return (
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md px-3 py-4 text-left text-sm font-medium transition-colors outline-none hover:text-primary focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-primary [&[data-state=open]>svg]:rotate-45 [&[data-state=open]>svg]:text-primary",
+          "group/trigger flex flex-1 items-center justify-between gap-4 text-left text-[15px] font-medium outline-none",
+          "transition-colors hover:text-primary data-[panel-open]:text-primary",
+          "focus-visible:ring-[3px] focus-visible:ring-ring/50",
+          "disabled:pointer-events-none disabled:opacity-50",
+          variant === "card" ? "rounded-2xl px-5 py-4" : "py-5",
           className
         )}
-        onClick={handleClick}
         {...props}
       >
-        {children}
-        <KonarkWheelIcon className="text-muted-foreground pointer-events-none size-4 shrink-0 transition-transform duration-300" />
+        <span>{children}</span>
+        <span
+          className={cn(
+            "grid size-7 shrink-0 place-items-center rounded-full bg-muted text-muted-foreground",
+            "transition-all duration-300 ease-out",
+            "group-hover/trigger:bg-primary/15 group-hover/trigger:text-primary",
+            "group-data-[panel-open]/trigger:rotate-[135deg]",
+            "group-data-[panel-open]/trigger:bg-primary group-data-[panel-open]/trigger:text-primary-foreground"
+          )}
+        >
+          <Plus className="size-4" strokeWidth={2.25} />
+        </span>
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
 };
 
+/* -------------------------------- Content -------------------------------- */
+
 const AccordionContent = ({
   className,
   children,
   ...props
-}: React.ComponentProps<typeof AccordionPrimitive.Content>) => (
-  <AccordionPrimitive.Content
-    data-slot="accordion-content"
-    className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm"
-    {...props}
-  >
-    <div className={cn("px-3 pt-0 pb-4 text-muted-foreground", className)}>
-      {children}
-    </div>
-  </AccordionPrimitive.Content>
-);
-
-export {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-  KonarkWheelIcon,
+}: React.ComponentProps<typeof AccordionPrimitive.Panel>) => {
+  const variant = React.useContext(VariantContext);
+  return (
+    <AccordionPrimitive.Panel
+      data-slot="accordion-content"
+      className={cn(
+        "h-[var(--accordion-panel-height)] overflow-hidden text-sm leading-relaxed text-muted-foreground",
+        "transition-[height,opacity] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]",
+        "data-[starting-style]:h-0 data-[starting-style]:opacity-0",
+        "data-[ending-style]:h-0 data-[ending-style]:opacity-0",
+        "motion-reduce:transition-none"
+      )}
+      {...props}
+    >
+      <div
+        className={cn(
+          variant === "card" ? "px-5 pb-5" : "pb-5 pr-10",
+          className
+        )}
+      >
+        {children}
+      </div>
+    </AccordionPrimitive.Panel>
+  );
 };
+
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };

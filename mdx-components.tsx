@@ -14,7 +14,7 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger as AccordionTriggerBase,
+  AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -27,9 +27,7 @@ export const mdxComponents = {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger: (
-    props: React.ComponentProps<typeof AccordionTriggerBase>
-  ) => <AccordionTriggerBase sound="click" {...props} />,
+  AccordionTrigger,
   Alert,
   AlertDescription,
   AlertTitle,

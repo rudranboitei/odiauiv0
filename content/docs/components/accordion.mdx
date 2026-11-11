@@ -1,6 +1,6 @@
 ---
 title: Accordion
-description: An Odisha-inspired accordion with a Konark wheel indicator and a primary accent.
+description: A Base UI accordion with card and flush variants, animated panels, and theme tokens.
 ---
 
 import {
@@ -11,7 +11,7 @@ import {
 } from "@/registry/new-york/accordion";
 
 <ComponentPreview name="accordion">
-  <Accordion type="single" collapsible className="w-full max-w-md">
+  <Accordion defaultValue={["konark"]} className="max-w-md">
     <AccordionItem value="konark">
       <AccordionTrigger>Konark Sun Temple</AccordionTrigger>
       <AccordionContent>
@@ -54,11 +54,18 @@ import {
 
 export function Example() {
   return (
-    <Accordion type="single" collapsible>
+    <Accordion defaultValue={["item-1"]}>
       <AccordionItem value="item-1">
         <AccordionTrigger>Is it accessible?</AccordionTrigger>
         <AccordionContent>
           Yes. It adheres to the WAI-ARIA design pattern.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Can I open more than one?</AccordionTrigger>
+        <AccordionContent>
+          Yes. Add the `multiple` prop to the root to allow several items to
+          stay open at once.
         </AccordionContent>
       </AccordionItem>
     </Accordion>
@@ -66,23 +73,40 @@ export function Example() {
 }
 ```
 
-## Odisha styling
+## Variants
 
-The trigger uses a Konark wheel indicator that rotates 45 degrees when the item
-opens. Expanded items get a primary-colored left accent and a subtle tint, so
-the component picks up the accent color from your theme in both light and dark
-mode.
+The default `card` variant renders each item as a separated rounded card with a
+soft shadow and a primary accent bar that grows in when the item opens.
+
+```tsx
+<Accordion variant="card">...</Accordion>
+```
+
+Use `flush` for a clean, divided list with no card chrome.
+
+```tsx
+<Accordion variant="flush">...</Accordion>
+```
+
+## Behavior
+
+The trigger swaps its indicator for a plus icon inside a circular button. When
+the panel opens, the icon rotates 135 degrees and fills with the primary color.
+Panel height and opacity animate with pure Tailwind transitions, and motion is
+disabled automatically for users who prefer reduced motion.
 
 ## Subcomponents
 
 - `Accordion` — the root container.
 - `AccordionItem` — a single collapsible section.
 - `AccordionTrigger` — the button that opens and closes an item.
-- `AccordionContent` — the content revealed when an item is open.
+- `AccordionContent` — the panel revealed when an item is open.
 
 ## Props
 
-- `type` — `single` or `multiple`.
-- `collapsible` — allow the open item to close in single mode.
-- `defaultValue` / `value` — control the open item or items.
+- `variant` — `card` or `flush`. Defaults to `card`.
+- `multiple` — allow several items to be open at the same time. Defaults to `false`.
+- `defaultValue` / `value` — the item value or values that are open.
+- `onValueChange` — called with the new value when an item opens or closes.
+- `keepMounted` — keep closed panels in the DOM.
 - `className` — additional classes merged with the default styles.
