@@ -14,7 +14,9 @@ export const ComponentPreview = ({
   children?: ReactNode;
 }) => (
   <>
-    {children}
+    <div className="not-prose my-6 flex min-h-64 w-full items-center justify-center rounded-xl border bg-muted/20 p-6 md:p-10">
+      <div className="flex w-full items-center justify-center">{children}</div>
+    </div>
     <ComponentSource name={name} src={src} title={title} />
   </>
 );

@@ -1,39 +1,17 @@
 ---
 title: Accordion
-description: A Base UI accordion with card, flush, and Odisha variants, animated panels, and theme tokens.
+description: A vertically stacked set of interactive headings that each reveal a section of content.
 ---
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/registry/new-york/accordion";
+import { AccordionDemo } from "@/examples/accordion";
+import { AccordionOdisha } from "@/examples/accordion-odisha";
+import { AccordionFlush } from "@/examples/accordion-flush";
+import { AccordionMultiple } from "@/examples/accordion-multiple";
+import { AccordionDisabled } from "@/examples/accordion-disabled";
+import { AccordionBorders } from "@/examples/accordion-borders";
 
 <ComponentPreview name="accordion">
-  <Accordion defaultValue={["konark"]} className="max-w-md">
-    <AccordionItem value="konark">
-      <AccordionTrigger>Konark Sun Temple</AccordionTrigger>
-      <AccordionContent>
-        The 13th-century Sun Temple at Konark is shaped like a giant stone
-        chariot dedicated to Surya, the sun god.
-      </AccordionContent>
-    </AccordionItem>
-    <AccordionItem value="chilika">
-      <AccordionTrigger>Chilika Lake</AccordionTrigger>
-      <AccordionContent>
-        Chilika is Asia&apos;s largest brackish water lagoon and a winter home
-        for thousands of migratory birds.
-      </AccordionContent>
-    </AccordionItem>
-    <AccordionItem value="odissi">
-      <AccordionTrigger>Odissi</AccordionTrigger>
-      <AccordionContent>
-        Odissi is one of India&apos;s oldest classical dance forms, known for
-        its sculpturesque poses and expressive storytelling.
-      </AccordionContent>
-    </AccordionItem>
-  </Accordion>
+  <AccordionDemo />
 </ComponentPreview>
 
 ## Installation
@@ -73,104 +51,98 @@ export function Example() {
 }
 ```
 
-## Variants
+## Composition
 
-### Card
+Use the following composition to build an accordion:
 
-The default `card` variant renders each item as a separated rounded card with a
-soft shadow and a primary accent bar that grows in when the item opens.
-
-```tsx
-<Accordion variant="card">...</Accordion>
+```txt
+Accordion
+├── AccordionItem
+│   ├── AccordionTrigger
+│   └── AccordionContent
+└── AccordionItem
+    ├── AccordionTrigger
+    └── AccordionContent
 ```
 
-### Flush
-
-Use `flush` for a clean, divided list with no card chrome.
-
-<ComponentPreview>
-  <Accordion variant="flush" multiple className="max-w-md">
-    <AccordionItem value="puri">
-      <AccordionTrigger>Jagannath Temple, Puri</AccordionTrigger>
-      <AccordionContent>
-        One of the Char Dham pilgrimage sites, known for its annual Rath Yatra.
-      </AccordionContent>
-    </AccordionItem>
-    <AccordionItem value="chilika">
-      <AccordionTrigger>Chilika Lake</AccordionTrigger>
-      <AccordionContent>
-        Asia&apos;s largest brackish water lagoon and a haven for migratory
-        birds.
-      </AccordionContent>
-    </AccordionItem>
-    <AccordionItem value="simlipal">
-      <AccordionTrigger>Simlipal National Park</AccordionTrigger>
-      <AccordionContent>
-        A tiger reserve in the Mayurbhanj district, famous for its waterfalls
-        and sal forests.
-      </AccordionContent>
-    </AccordionItem>
-  </Accordion>
-</ComponentPreview>
-
-```tsx
-<Accordion variant="flush">...</Accordion>
-```
+## Examples
 
 ### Odisha
 
-The `odisha` variant swaps the plain plus icon for a Konark wheel and warms the
-card up with a primary gradient and a fading temple-inspired accent bar.
+Use `variant="odisha"` for a Konark-inspired look. Expanded cards get a warm
+primary gradient, a fading temple accent bar, and a Konark wheel that rotates
+into place.
 
-<ComponentPreview>
-  <Accordion variant="odisha" defaultValue={["konark"]} className="max-w-md">
-    <AccordionItem value="konark">
-      <AccordionTrigger>Konark Sun Temple</AccordionTrigger>
-      <AccordionContent>
-        The 13th-century Sun Temple at Konark is shaped like a giant stone
-        chariot dedicated to Surya, the sun god.
-      </AccordionContent>
-    </AccordionItem>
-    <AccordionItem value="chilika">
-      <AccordionTrigger>Chilika Lake</AccordionTrigger>
-      <AccordionContent>
-        Chilika is Asia&apos;s largest brackish water lagoon and a winter home
-        for thousands of migratory birds.
-      </AccordionContent>
-    </AccordionItem>
-    <AccordionItem value="odissi">
-      <AccordionTrigger>Odissi</AccordionTrigger>
-      <AccordionContent>
-        Odissi is one of India&apos;s oldest classical dance forms, known for
-        its sculpturesque poses and expressive storytelling.
-      </AccordionContent>
-    </AccordionItem>
-  </Accordion>
+<ComponentPreview name="accordion-odisha">
+  <AccordionOdisha />
 </ComponentPreview>
 
-```tsx
-<Accordion variant="odisha">...</Accordion>
-```
+### Flush
 
-## Behavior
+Use `variant="flush"` for a clean divided list with no card chrome.
 
-The trigger swaps its indicator for a circular icon button. When the panel
-opens, the icon rotates and fills with the primary color. Panel height and
-opacity animate with pure Tailwind transitions, and motion is disabled
-automatically for users who prefer reduced motion.
+<ComponentPreview name="accordion-flush">
+  <AccordionFlush />
+</ComponentPreview>
 
-## Subcomponents
+### Multiple
 
-- `Accordion` — the root container.
-- `AccordionItem` — a single collapsible section.
-- `AccordionTrigger` — the button that opens and closes an item.
-- `AccordionContent` — the panel revealed when an item is open.
+Use the `multiple` prop to allow multiple items to be open at the same time.
 
-## Props
+<ComponentPreview name="accordion-multiple">
+  <AccordionMultiple />
+</ComponentPreview>
 
-- `variant` — `card`, `flush`, or `odisha`. Defaults to `card`.
-- `multiple` — allow several items to be open at the same time. Defaults to `false`.
-- `defaultValue` / `value` — the item value or values that are open.
-- `onValueChange` — called with the new value when an item opens or closes.
-- `keepMounted` — keep closed panels in the DOM.
-- `className` — additional classes merged with the default styles.
+### Disabled
+
+Use the `disabled` prop on `AccordionItem` to disable individual items.
+
+<ComponentPreview name="accordion-disabled">
+  <AccordionDisabled />
+</ComponentPreview>
+
+### Borders
+
+Add a border to the `Accordion` to wrap the items in a single bordered panel.
+
+<ComponentPreview name="accordion-borders">
+  <AccordionBorders />
+</ComponentPreview>
+
+## API Reference
+
+### Accordion
+
+| Prop            | Type                                  | Default  |
+| --------------- | ------------------------------------- | -------- |
+| `variant`       | `"card" \| "flush" \| "odisha"`       | `"card"` |
+| `multiple`      | `boolean`                             | `false`  |
+| `defaultValue`  | `unknown[]`                           | -        |
+| `value`         | `unknown[]`                           | -        |
+| `onValueChange` | `(value: unknown[], details) => void` | -        |
+| `keepMounted`   | `boolean`                             | `false`  |
+| `disabled`      | `boolean`                             | `false`  |
+| `className`     | `string`                              | -        |
+
+### AccordionItem
+
+| Prop           | Type                      | Default |
+| -------------- | ------------------------- | ------- |
+| `value`        | `unknown`                 | auto    |
+| `disabled`     | `boolean`                 | `false` |
+| `onOpenChange` | `(open: boolean) => void` | -       |
+| `className`    | `string`                  | -       |
+
+### AccordionTrigger
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### AccordionContent
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+See the [Base UI documentation](https://base-ui.com/react/components/accordion) for more information.
