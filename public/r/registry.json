@@ -6,7 +6,7 @@
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
-      "description": "A Base UI accordion with card and flush variants, animated panels, and theme tokens.",
+      "description": "A Base UI accordion with card, flush, and Odisha variants, animated panels, and theme tokens.",
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
         {

@@ -1,6 +1,6 @@
 ---
 title: Accordion
-description: A Base UI accordion with card and flush variants, animated panels, and theme tokens.
+description: A Base UI accordion with card, flush, and Odisha variants, animated panels, and theme tokens.
 ---
 
 import {
@@ -75,6 +75,8 @@ export function Example() {
 
 ## Variants
 
+### Card
+
 The default `card` variant renders each item as a separated rounded card with a
 soft shadow and a primary accent bar that grows in when the item opens.
 
@@ -82,18 +84,80 @@ soft shadow and a primary accent bar that grows in when the item opens.
 <Accordion variant="card">...</Accordion>
 ```
 
+### Flush
+
 Use `flush` for a clean, divided list with no card chrome.
+
+<ComponentPreview>
+  <Accordion variant="flush" multiple className="max-w-md">
+    <AccordionItem value="puri">
+      <AccordionTrigger>Jagannath Temple, Puri</AccordionTrigger>
+      <AccordionContent>
+        One of the Char Dham pilgrimage sites, known for its annual Rath Yatra.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="chilika">
+      <AccordionTrigger>Chilika Lake</AccordionTrigger>
+      <AccordionContent>
+        Asia&apos;s largest brackish water lagoon and a haven for migratory
+        birds.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="simlipal">
+      <AccordionTrigger>Simlipal National Park</AccordionTrigger>
+      <AccordionContent>
+        A tiger reserve in the Mayurbhanj district, famous for its waterfalls
+        and sal forests.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</ComponentPreview>
 
 ```tsx
 <Accordion variant="flush">...</Accordion>
 ```
 
+### Odisha
+
+The `odisha` variant swaps the plain plus icon for a Konark wheel and warms the
+card up with a primary gradient and a fading temple-inspired accent bar.
+
+<ComponentPreview>
+  <Accordion variant="odisha" defaultValue={["konark"]} className="max-w-md">
+    <AccordionItem value="konark">
+      <AccordionTrigger>Konark Sun Temple</AccordionTrigger>
+      <AccordionContent>
+        The 13th-century Sun Temple at Konark is shaped like a giant stone
+        chariot dedicated to Surya, the sun god.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="chilika">
+      <AccordionTrigger>Chilika Lake</AccordionTrigger>
+      <AccordionContent>
+        Chilika is Asia&apos;s largest brackish water lagoon and a winter home
+        for thousands of migratory birds.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="odissi">
+      <AccordionTrigger>Odissi</AccordionTrigger>
+      <AccordionContent>
+        Odissi is one of India&apos;s oldest classical dance forms, known for
+        its sculpturesque poses and expressive storytelling.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</ComponentPreview>
+
+```tsx
+<Accordion variant="odisha">...</Accordion>
+```
+
 ## Behavior
 
-The trigger swaps its indicator for a plus icon inside a circular button. When
-the panel opens, the icon rotates 135 degrees and fills with the primary color.
-Panel height and opacity animate with pure Tailwind transitions, and motion is
-disabled automatically for users who prefer reduced motion.
+The trigger swaps its indicator for a circular icon button. When the panel
+opens, the icon rotates and fills with the primary color. Panel height and
+opacity animate with pure Tailwind transitions, and motion is disabled
+automatically for users who prefer reduced motion.
 
 ## Subcomponents
 
@@ -104,7 +168,7 @@ disabled automatically for users who prefer reduced motion.
 
 ## Props
 
-- `variant` — `card` or `flush`. Defaults to `card`.
+- `variant` — `card`, `flush`, or `odisha`. Defaults to `card`.
 - `multiple` — allow several items to be open at the same time. Defaults to `false`.
 - `defaultValue` / `value` — the item value or values that are open.
 - `onValueChange` — called with the new value when an item opens or closes.
