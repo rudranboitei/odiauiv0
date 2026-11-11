@@ -3,6 +3,20 @@
   "homepage": "https://odiaui.vercel.app",
   "items": [
     {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "An Odisha-inspired accordion with a Konark wheel indicator and a primary accent.",
+      "dependencies": ["radix-ui"],
+      "files": [
+        {
+          "path": "registry/new-york/accordion.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/accordion.tsx"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Rolling Button",

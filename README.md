@@ -38,11 +38,12 @@ npx shadcn@latest add @odiaui/button
 
 ## Components
 
-| Component      | Install                                                         |
-| -------------- | --------------------------------------------------------------- |
-| Rolling Button | `npx shadcn@latest add https://odiaui.vercel.app/r/button.json` |
-| Badge          | `npx shadcn@latest add https://odiaui.vercel.app/r/badge.json`  |
-| Card           | `npx shadcn@latest add https://odiaui.vercel.app/r/card.json`   |
+| Component      | Install                                                            |
+| -------------- | ------------------------------------------------------------------ |
+| Accordion      | `npx shadcn@latest add https://odiaui.vercel.app/r/accordion.json` |
+| Rolling Button | `npx shadcn@latest add https://odiaui.vercel.app/r/button.json`    |
+| Badge          | `npx shadcn@latest add https://odiaui.vercel.app/r/badge.json`     |
+| Card           | `npx shadcn@latest add https://odiaui.vercel.app/r/card.json`      |
 
 ## Features
 

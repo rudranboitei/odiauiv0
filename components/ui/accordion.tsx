@@ -1,11 +1,32 @@
 "use client";
 
-import { ChevronDownIcon } from "lucide-react";
 import { Accordion as AccordionPrimitive } from "radix-ui";
 
 import type { FeedbackType } from "@/hooks/use-feedback";
 import { useFeedback } from "@/hooks/use-feedback";
 import { cn } from "@/lib/utils";
+
+const KonarkWheelIcon = ({
+  className,
+  ...props
+}: React.ComponentProps<"svg">) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    className={cn("size-4", className)}
+    {...props}
+  >
+    <circle cx="12" cy="12" r="9" />
+    <circle cx="12" cy="12" r="2.5" />
+    <path d="M12 3v6.5M12 14.5V21M3 12h6.5M14.5 12H21M5.64 5.64l4.6 4.6M13.76 13.76l4.6 4.6M18.36 5.64l-4.6 4.6M10.24 13.76l-4.6 4.6" />
+  </svg>
+);
 
 const Accordion = ({
   ...props
@@ -19,7 +40,10 @@ const AccordionItem = ({
 }: React.ComponentProps<typeof AccordionPrimitive.Item>) => (
   <AccordionPrimitive.Item
     data-slot="accordion-item"
-    className={cn("border-b last:border-b-0", className)}
+    className={cn(
+      "group relative border-b border-border/60 transition-colors before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:content-[''] before:transition-colors last:border-b-0 data-[state=open]:bg-primary/5 data-[state=open]:before:bg-primary",
+      className
+    )}
     {...props}
   />
 );
@@ -47,14 +71,14 @@ const AccordionTrigger = ({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180",
+          "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md px-3 py-4 text-left text-sm font-medium transition-colors outline-none hover:text-primary focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-primary [&[data-state=open]>svg]:rotate-45 [&[data-state=open]>svg]:text-primary",
           className
         )}
         onClick={handleClick}
         {...props}
       >
         {children}
-        <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" />
+        <KonarkWheelIcon className="text-muted-foreground pointer-events-none size-4 shrink-0 transition-transform duration-300" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
@@ -70,8 +94,16 @@ const AccordionContent = ({
     className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm"
     {...props}
   >
-    <div className={cn("pt-0 pb-4", className)}>{children}</div>
+    <div className={cn("px-3 pt-0 pb-4 text-muted-foreground", className)}>
+      {children}
+    </div>
   </AccordionPrimitive.Content>
 );
 
-export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };
+export {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  KonarkWheelIcon,
+};

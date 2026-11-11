@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion",
+  "title": "Accordion",
+  "description": "An Odisha-inspired accordion with a Konark wheel indicator and a primary accent.",
+  "dependencies": [
+    "radix-ui"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/accordion.tsx",
+      "content": "\"use client\";\n\nimport { Accordion as AccordionPrimitive } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst KonarkWheelIcon = ({\n  className,\n  ...props\n}: React.ComponentProps<\"svg\">) => (\n  <svg\n    xmlns=\"http://www.w3.org/2000/svg\"\n    viewBox=\"0 0 24 24\"\n    fill=\"none\"\n    stroke=\"currentColor\"\n    strokeWidth=\"1.5\"\n    strokeLinecap=\"round\"\n    strokeLinejoin=\"round\"\n    aria-hidden=\"true\"\n    className={cn(\"size-4\", className)}\n    {...props}\n  >\n    <circle cx=\"12\" cy=\"12\" r=\"9\" />\n    <circle cx=\"12\" cy=\"12\" r=\"2.5\" />\n    <path d=\"M12 3v6.5M12 14.5V21M3 12h6.5M14.5 12H21M5.64 5.64l4.6 4.6M13.76 13.76l4.6 4.6M18.36 5.64l-4.6 4.6M10.24 13.76l-4.6 4.6\" />\n  </svg>\n);\n\nconst Accordion = ({\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Root>) => (\n  <AccordionPrimitive.Root data-slot=\"accordion\" {...props} />\n);\n\nconst AccordionItem = ({\n  className,\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Item>) => (\n  <AccordionPrimitive.Item\n    data-slot=\"accordion-item\"\n    className={cn(\n      \"group relative border-b border-border/60 transition-colors before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-transparent before:content-[''] before:transition-colors last:border-b-0 data-[state=open]:bg-primary/5 data-[state=open]:before:bg-primary\",\n      className\n    )}\n    {...props}\n  />\n);\n\nconst AccordionTrigger = ({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Trigger>) => (\n  <AccordionPrimitive.Header className=\"flex\">\n    <AccordionPrimitive.Trigger\n      data-slot=\"accordion-trigger\"\n      className={cn(\n        \"focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md px-3 py-4 text-left text-sm font-medium transition-colors outline-none hover:text-primary focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-primary [&[data-state=open]>svg]:rotate-45 [&[data-state=open]>svg]:text-primary\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n      <KonarkWheelIcon className=\"text-muted-foreground pointer-events-none size-4 shrink-0 transition-transform duration-300\" />\n    </AccordionPrimitive.Trigger>\n  </AccordionPrimitive.Header>\n);\n\nconst AccordionContent = ({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Content>) => (\n  <AccordionPrimitive.Content\n    data-slot=\"accordion-content\"\n    className=\"data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm\"\n    {...props}\n  >\n    <div className={cn(\"px-3 pt-0 pb-4 text-muted-foreground\", className)}>\n      {children}\n    </div>\n  </AccordionPrimitive.Content>\n);\n\nexport {\n  Accordion,\n  AccordionContent,\n  AccordionItem,\n  AccordionTrigger,\n  KonarkWheelIcon,\n};\n",
+      "type": "registry:ui",
+      "target": "components/ui/accordion.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,88 @@
+---
+title: Accordion
+description: An Odisha-inspired accordion with a Konark wheel indicator and a primary accent.
+---
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/registry/new-york/accordion";
+
+<ComponentPreview name="accordion">
+  <Accordion type="single" collapsible className="w-full max-w-md">
+    <AccordionItem value="konark">
+      <AccordionTrigger>Konark Sun Temple</AccordionTrigger>
+      <AccordionContent>
+        The 13th-century Sun Temple at Konark is shaped like a giant stone
+        chariot dedicated to Surya, the sun god.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="chilika">
+      <AccordionTrigger>Chilika Lake</AccordionTrigger>
+      <AccordionContent>
+        Chilika is Asia&apos;s largest brackish water lagoon and a winter home
+        for thousands of migratory birds.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="odissi">
+      <AccordionTrigger>Odissi</AccordionTrigger>
+      <AccordionContent>
+        Odissi is one of India&apos;s oldest classical dance forms, known for
+        its sculpturesque poses and expressive storytelling.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</ComponentPreview>
+
+## Installation
+
+```bash
+npx shadcn@latest add https://odiaui.vercel.app/r/accordion.json
+```
+
+## Usage
+
+```tsx
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+export function Example() {
+  return (
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It adheres to the WAI-ARIA design pattern.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}
+```
+
+## Odisha styling
+
+The trigger uses a Konark wheel indicator that rotates 45 degrees when the item
+opens. Expanded items get a primary-colored left accent and a subtle tint, so
+the component picks up the accent color from your theme in both light and dark
+mode.
+
+## Subcomponents
+
+- `Accordion` — the root container.
+- `AccordionItem` — a single collapsible section.
+- `AccordionTrigger` — the button that opens and closes an item.
+- `AccordionContent` — the content revealed when an item is open.
+
+## Props
+
+- `type` — `single` or `multiple`.
+- `collapsible` — allow the open item to close in single mode.
+- `defaultValue` / `value` — control the open item or items.
+- `className` — additional classes merged with the default styles.
