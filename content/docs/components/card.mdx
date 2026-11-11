@@ -1,0 +1,68 @@
+---
+title: Card
+description: A composable card with header, content, footer, and action slots.
+---
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/registry/new-york/card";
+
+<ComponentPreview name="card">
+  <Card className="w-full max-w-sm">
+    <CardHeader>
+      <CardTitle>Konark</CardTitle>
+      <CardDescription>Sun Temple, Odisha</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <p className="text-sm text-muted-foreground">A card built with odiaui.</p>
+    </CardContent>
+    <CardFooter>
+      <p className="text-xs text-muted-foreground">Built for Odisha.</p>
+    </CardFooter>
+  </Card>
+</ComponentPreview>
+
+## Installation
+
+```bash
+npx shadcn@latest add https://odiaui.vercel.app/r/card.json
+```
+
+## Usage
+
+```tsx
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+export function Example() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Konark</CardTitle>
+        <CardDescription>Sun Temple, Odisha</CardDescription>
+      </CardHeader>
+      <CardContent>Built with odiaui.</CardContent>
+    </Card>
+  );
+}
+```
+
+## Subcomponents
+
+- `Card` — the outer container.
+- `CardHeader` — the header layout.
+- `CardTitle` — the card heading.
+- `CardDescription` — supporting text below the heading.
+- `CardAction` — an optional action aligned to the top-right of the header.
+- `CardContent` — the main content area.
+- `CardFooter` — the footer layout.

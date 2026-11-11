@@ -1,0 +1,47 @@
+{
+  "name": "odiaui",
+  "homepage": "https://odiaui.vercel.app",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Rolling Button",
+      "description": "A button whose letters roll up on hover with a staggered animation.",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "files": [
+        {
+          "path": "registry/new-york/button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "A compact label for status, categories, and metadata.",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "files": [
+        {
+          "path": "registry/new-york/badge.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/badge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "A composable card with header, content, footer, and action slots.",
+      "files": [
+        {
+          "path": "registry/new-york/card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/card.tsx"
+        }
+      ]
+    }
+  ]
+}

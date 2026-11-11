@@ -1,0 +1,51 @@
+---
+title: Rolling Button
+description: A button whose letters roll up on hover with a staggered animation.
+---
+
+import { RollingButton } from "@/registry/new-york/button";
+
+<ComponentPreview name="button">
+  <RollingButton>Get started</RollingButton>
+</ComponentPreview>
+
+## Installation
+
+```bash
+npx shadcn@latest add https://odiaui.vercel.app/r/button.json
+```
+
+## Usage
+
+```tsx
+import { RollingButton } from "@/components/ui/button";
+
+export function Example() {
+  return <RollingButton>Get started</RollingButton>;
+}
+```
+
+## Variants
+
+```tsx
+<RollingButton variant="default">Default</RollingButton>
+<RollingButton variant="secondary">Secondary</RollingButton>
+<RollingButton variant="outline">Outline</RollingButton>
+<RollingButton variant="ghost">Ghost</RollingButton>
+```
+
+## Sizes
+
+```tsx
+<RollingButton size="sm">Small</RollingButton>
+<RollingButton size="default">Default</RollingButton>
+<RollingButton size="lg">Large</RollingButton>
+```
+
+## Props
+
+- `children` — the button label. Must be a plain string, since it is split into letters.
+- `stagger` — delay between each letter animation, in milliseconds. Defaults to `20`.
+- `variant` — `default`, `secondary`, `outline`, or `ghost`.
+- `size` — `sm`, `default`, or `lg`.
+- `asChild` — render the button styles on a child element.

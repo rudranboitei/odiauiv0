@@ -1,0 +1,11 @@
+name: Setup and install
+description: Common setup steps for Actions
+
+runs:
+  using: composite
+  steps:
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: 1.4.4
+    - shell: bash
+      run: bun install --frozen-lockfile

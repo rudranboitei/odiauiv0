@@ -1,0 +1,148 @@
+---
+title: Installation
+description: How to install odiaui components and run the project locally.
+---
+
+## Requirements
+
+odiaui components are built for React projects that use:
+
+- React 19
+- Tailwind CSS 4
+- The shadcn `components.json` setup with a `cn` utility at `@/lib/utils`
+
+If your project is not set up for shadcn yet, follow the [shadcn installation guide](https://ui.shadcn.com/docs/installation) first.
+
+## Install a Component
+
+Run the shadcn CLI with the component URL:
+
+```bash
+npx shadcn@latest add https://odiaui.vercel.app/r/button.json
+```
+
+The CLI downloads the component source into `components/ui/button.tsx` and installs any dependencies it needs.
+
+Then import it:
+
+```tsx
+import { RollingButton } from "@/components/ui/button";
+
+export function Example() {
+  return <RollingButton>Namaskar</RollingButton>;
+}
+```
+
+If you install from this registry often, add it once and use the namespace:
+
+```bash
+npx shadcn@latest registry add "@odiaui=https://odiaui.vercel.app/r/{name}.json"
+npx shadcn@latest add @odiaui/button
+```
+
+## Browse Components
+
+Every component has its own documentation page with a preview, install command, usage examples, and props.
+
+- [Rolling Button](/docs/components/button)
+- [Badge](/docs/components/badge)
+- [Card](/docs/components/card)
+
+## Local Development
+
+To work on the library itself:
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/rudranboitei/odiaui.git
+cd odiaui
+```
+
+### 2. Install dependencies
+
+This project uses [Bun](https://bun.sh):
+
+```bash
+bun install
+```
+
+### 3. Start the dev server
+
+```bash
+bun dev
+```
+
+The site runs at [http://localhost:3000](http://localhost:3000).
+
+## Adding a Component
+
+### 1. Create the component
+
+Add a file under `registry/new-york/`:
+
+```tsx
+// registry/new-york/my-component.tsx
+import { cn } from "@/lib/utils";
+
+export const MyComponent = ({ className }: { className?: string }) => (
+  <div
+    className={cn(
+      "rounded-lg border bg-card p-4 text-card-foreground",
+      className
+    )}
+  />
+);
+```
+
+### 2. Register it in `registry.json`
+
+```json
+{
+  "name": "odiaui",
+  "homepage": "https://odiaui.vercel.app",
+  "items": [
+    {
+      "name": "my-component",
+      "type": "registry:ui",
+      "title": "My Component",
+      "description": "A short description of the component.",
+      "files": [
+        {
+          "path": "registry/new-york/my-component.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/my-component.tsx"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### 3. Build the registry
+
+```bash
+bun run registry:build
+```
+
+This writes the installable JSON to `public/r/`.
+
+### 4. Document it
+
+Create `content/docs/components/my-component.mdx` and add it to `content/docs/components/meta.json`.
+
+## Build & Deploy
+
+```bash
+bun run build
+```
+
+The build command generates the registry first, then builds the Next.js site. Deploy the result to Vercel, Cloudflare, or any platform that supports Next.js.
+
+## Installing From Another Registry
+
+The same pattern works for any shadcn-compatible registry:
+
+```bash
+npx shadcn@latest add https://example.com/r/my-button.json
+```
