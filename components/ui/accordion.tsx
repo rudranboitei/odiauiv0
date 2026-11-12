@@ -24,7 +24,10 @@ const Accordion = ({ className, ...props }: AccordionPrimitive.Root.Props) => (
   <AccordionPrimitive.Root
     data-slot="accordion"
     // px-4 leaves room for the diamond ornament that overhangs the bar edge
-    className={cn("flex w-full flex-col gap-3.5 px-4", className)}
+    className={cn(
+      "flex w-full flex-col gap-2 px-2 text-sm sm:gap-3.5 sm:px-4 sm:text-[0.9375rem]",
+      className
+    )}
     {...props}
   />
 );
@@ -49,7 +52,7 @@ const Diamond = ({ className }: { className?: string }) => (
   <span
     aria-hidden
     className={cn(
-      "size-4 shrink-0 rotate-45 border-2 border-[#e8b960] bg-[#c2481b]",
+      "size-2.5 shrink-0 rotate-45 border-[1.5px] border-[#e8b960] bg-[#c2481b] sm:size-4 sm:border-2",
       "shadow-[0_1px_3px_rgb(0_0_0/0.45)]",
       className
     )}
@@ -71,8 +74,8 @@ const AccordionTrigger = ({
     <AccordionPrimitive.Trigger
       data-slot="accordion-trigger"
       className={cn(
-        "group/trigger relative flex min-h-14 w-full items-center gap-3 rounded-xl border-2 py-1.5 pr-4 text-left outline-none",
-        icon ? "pl-3" : "pl-5",
+        "group/trigger relative flex min-h-11 w-full items-center gap-2 rounded-lg border py-1.5 pr-2 text-left outline-none sm:min-h-14 sm:gap-3 sm:rounded-xl sm:border-2 sm:pr-4",
+        icon ? "pl-2 sm:pl-3" : "pl-3 sm:pl-5",
         "transition-all duration-300",
         // inner hairline for the engraved, double-border look
         "before:pointer-events-none before:absolute before:inset-0.75 before:rounded-[7px] before:border before:border-[#fff2c4]/45",
@@ -92,20 +95,20 @@ const AccordionTrigger = ({
     >
       {icon && (
         <>
-          <Diamond className="absolute top-1/2 -left-3.5 -translate-y-1/2" />
-          <span className="relative flex shrink-0 items-center gap-2.5">
-            <span className="grid size-12 place-items-center rounded-full bg-[#1e1752] p-1.5 shadow-[0_2px_4px_rgb(0_0_0/0.4)] ring-2 ring-[#e8b960] ring-offset-1 ring-offset-[#1e1752]/0 [&_img]:size-full [&_img]:rounded-full [&_svg]:size-full">
+          <Diamond className="absolute top-1/2 -left-1.5 -translate-y-1/2 sm:-left-3.5" />
+          <span className="relative flex shrink-0 items-center gap-1 sm:gap-2.5">
+            <span className="grid size-7 place-items-center rounded-full bg-[#1e1752] p-0.5 shadow-[0_2px_4px_rgb(0_0_0/0.4)] ring-1 ring-[#e8b960] ring-offset-1 ring-offset-[#1e1752]/0 sm:size-12 sm:p-1.5 sm:ring-2 [&_img]:size-full [&_img]:rounded-full [&_svg]:size-full">
               {icon}
             </span>
-            <Diamond />
+            <Diamond className="hidden sm:block" />
           </span>
         </>
       )}
-      <span className="relative flex-1">{children}</span>
+      <span className="relative min-w-0 flex-1 break-words">{children}</span>
       <ChevronDown
         data-slot="accordion-trigger-icon"
         strokeWidth={2.5}
-        className="pointer-events-none relative size-5 shrink-0 transition-transform duration-300 group-aria-expanded/trigger:rotate-180"
+        className="pointer-events-none relative size-4 shrink-0 transition-transform duration-300 group-aria-expanded/trigger:rotate-180 sm:size-5"
       />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
@@ -131,7 +134,7 @@ const AccordionContent = ({
   >
     <div
       className={cn(
-        "mx-1 mt-2 rounded-xl border-2 border-[#c99b55] p-5",
+        "mx-0.5 mt-1.5 rounded-lg border border-[#c99b55] p-3.5 sm:mx-1 sm:mt-2 sm:rounded-xl sm:border-2 sm:p-5",
         "bg-linear-to-b from-[#f8e3ba] to-[#f1cb8d] text-[#2b1d10]",
         "shadow-[inset_0_2px_8px_rgb(150_100_30/0.2),0_2px_4px_rgb(60_30_0/0.15)]",
         "[&_a]:underline [&_a]:underline-offset-2 [&_p:not(:last-child)]:mb-3",
