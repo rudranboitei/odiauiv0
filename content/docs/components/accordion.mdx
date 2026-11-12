@@ -24,6 +24,8 @@ in `components/ui/odia-icons.tsx`.
 
 This component targets Tailwind CSS 4 and a shadcn/ui project. The heritage
 palette is intentionally fixed; pass `className` to override individual styles.
+Typography is inherited from your project, so the accordion matches the rest of
+your UI.
 
 ## Usage
 
@@ -72,13 +74,6 @@ import { KonarkWheelIcon } from "@/components/ui/odia-icons";
 
 The `icon` prop is optional. Omit it for a compact accordion without the
 medallion, as shown in the [Without icons](#without-icons) example.
-
-## Typography
-
-Triggers use `font-serif`. Load a display serif such as
-[Marcellus](https://fonts.google.com/specimen/Marcellus) or
-[Cinzel](https://fonts.google.com/specimen/Cinzel) for the exact heritage look.
-The component falls back to the browser's default serif stack.
 
 ## Composition
 

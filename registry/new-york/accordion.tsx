@@ -7,7 +7,6 @@
  * Registry deps:  @base-ui/react, lucide-react
  * Needs:          cn() from "@/lib/utils"  (change the import to match your registry alias)
  * Optional:       odia-icons.tsx for the SVG medallion icons
- * Font:           uses font-serif; load Marcellus / Cinzel for the exact look.
  *
  * Palette: gold #e8b960 / #d29b3d · indigo #2a2160 · parchment #f7e0b5 / #f1cb8d
  *          ink #2b1d10 · sindoor #c2481b
@@ -74,7 +73,7 @@ const AccordionTrigger = ({
       className={cn(
         "group/trigger relative flex min-h-14 w-full items-center gap-3 rounded-xl border-2 py-1.5 pr-4 text-left outline-none",
         icon ? "pl-3" : "pl-5",
-        "font-serif text-[1.3rem] font-semibold tracking-tight transition-all duration-300",
+        "transition-all duration-300",
         // inner hairline for the engraved, double-border look
         "before:pointer-events-none before:absolute before:inset-0.75 before:rounded-[7px] before:border before:border-[#fff2c4]/45",
         // closed: golden bar
@@ -133,7 +132,7 @@ const AccordionContent = ({
     <div
       className={cn(
         "mx-1 mt-2 rounded-xl border-2 border-[#c99b55] p-5",
-        "bg-linear-to-b from-[#f8e3ba] to-[#f1cb8d] font-sans text-base leading-relaxed text-[#2b1d10]",
+        "bg-linear-to-b from-[#f8e3ba] to-[#f1cb8d] text-[#2b1d10]",
         "shadow-[inset_0_2px_8px_rgb(150_100_30/0.2),0_2px_4px_rgb(60_30_0/0.15)]",
         "[&_a]:underline [&_a]:underline-offset-2 [&_p:not(:last-child)]:mb-3",
         className
