@@ -106,25 +106,18 @@ export const baseMetadata: Metadata = {
     },
     icon: [
       {
-        sizes: "32x32",
+        sizes: "48x48",
         url: "/favicon.ico",
       },
       {
-        sizes: "96x96",
+        sizes: "32x32",
         type: "image/png",
-        url: "/favicon-96x96.png",
+        url: "/favicon-32x32.png",
       },
       {
-        media: "(prefers-color-scheme: light)",
         sizes: "any",
         type: "image/svg+xml",
         url: "/favicon.svg",
-      },
-      {
-        media: "(prefers-color-scheme: dark)",
-        sizes: "any",
-        type: "image/svg+xml",
-        url: "/favicon-dark.svg",
       },
     ],
     shortcut: "/favicon-16x16.png",

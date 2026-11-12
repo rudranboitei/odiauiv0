@@ -2,7 +2,7 @@ import { CommandBox } from "@/components/command-box";
 import { HomeCtas } from "@/components/home-ctas";
 import { PageTransition } from "@/components/page-transition";
 import { ROUTES } from "@/constants/routes";
-import { RollingButton } from "@/registry/new-york/button";
+import { Button } from "@/registry/new-york/button";
 import { BreadcrumbJsonLd } from "@/seo/json-ld";
 
 export const dynamic = "force-static";
@@ -32,7 +32,7 @@ export default function IndexPage() {
 
         <section className="container-wrapper pb-8 lg:pb-12">
           <div className="container flex flex-col items-center gap-4">
-            <RollingButton size="lg">Namaskar</RollingButton>
+            <Button size="lg">Namaskar</Button>
             <p className="text-sm text-muted-foreground">
               Built for Odisha. Made with shadcn/ui.
             </p>

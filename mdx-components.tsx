@@ -369,7 +369,7 @@ export const mdxComponents = {
   td: ({ className, ...props }: React.ComponentProps<"td">) => (
     <td
       className={cn(
-        "px-4 py-2 text-left whitespace-nowrap [[align=center]]:text-center [[align=right]]:text-right",
+        "px-4 py-2 text-left align-top whitespace-normal [[align=center]]:text-center [[align=right]]:text-right",
         className
       )}
       {...props}

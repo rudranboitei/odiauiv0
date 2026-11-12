@@ -1,51 +1,152 @@
 ---
-title: Rolling Button
-description: A button whose letters roll up on hover with a staggered animation.
+title: Button
+description: Displays a button or a component that looks like a button.
+links:
+  doc: https://base-ui.com/react/components/button
+  api: https://base-ui.com/react/components/button#api-reference
 ---
 
-import { RollingButton } from "@/registry/new-york/button";
+import { ButtonAsLink } from "@/examples/button-as-link";
+import { ButtonDisabled } from "@/examples/button-disabled";
+import { ButtonHero } from "@/examples/button-hero";
+import { ButtonLoading } from "@/examples/button-loading";
+import { ButtonMedallionDemo } from "@/examples/button-medallion";
+import { ButtonSizes } from "@/examples/button-sizes";
+import { ButtonUsage } from "@/examples/button-usage";
+import { ButtonVariants } from "@/examples/button-variants";
+import { ButtonWithIcon } from "@/examples/button-with-icon";
 
-<ComponentPreview name="button">
-  <RollingButton>Get started</RollingButton>
+<ComponentPreview name="button-hero" previewClassName="min-h-80">
+  <ButtonHero />
 </ComponentPreview>
 
 ## Installation
 
+<Tabs defaultValue="cli">
+  <TabsList>
+    <TabsTrigger value="cli">CLI</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="cli">
+
 ```bash
-npx shadcn@latest add https://odiaui.vercel.app/r/button.json
+bunx --bun shadcn@latest add https://odiaui.vercel.app/r/button.json
 ```
+
+  </TabsContent>
+  <TabsContent value="manual">
+
+Install the following dependencies:
+
+```bash
+bun add @base-ui/react class-variance-authority lucide-react
+```
+
+Copy and paste the following code into your project.
+
+<ComponentSource
+  name="button"
+  title="components/ui/button.tsx"
+  collapsible={false}
+/>
+
+Update the import paths to match your project setup.
+
+  </TabsContent>
+</Tabs>
 
 ## Usage
 
 ```tsx
-import { RollingButton } from "@/components/ui/button";
-
-export function Example() {
-  return <RollingButton>Get started</RollingButton>;
-}
+import { Button } from "@/components/ui/button";
 ```
-
-## Variants
 
 ```tsx
-<RollingButton variant="default">Default</RollingButton>
-<RollingButton variant="secondary">Secondary</RollingButton>
-<RollingButton variant="outline">Outline</RollingButton>
-<RollingButton variant="ghost">Ghost</RollingButton>
+<Button>Click me</Button>
 ```
 
-## Sizes
+## Examples
 
-```tsx
-<RollingButton size="sm">Small</RollingButton>
-<RollingButton size="default">Default</RollingButton>
-<RollingButton size="lg">Large</RollingButton>
-```
+### Variants
 
-## Props
+Use the `variant` prop to change the look of the button. `default` is the solid
+brand action, `gold` is the high-contrast inverse, and `secondary` uses a soft
+neutral surface for quieter actions. The palette is intentionally monochrome to
+match the OdiaUI brand, with semantic red reserved for `destructive`.
 
-- `children` — the button label. Must be a plain string, since it is split into letters.
-- `stagger` — delay between each letter animation, in milliseconds. Defaults to `20`.
-- `variant` — `default`, `secondary`, `outline`, or `ghost`.
-- `size` — `sm`, `default`, or `lg`.
-- `asChild` — render the button styles on a child element.
+<ComponentPreview name="button-variants">
+  <ButtonVariants />
+</ComponentPreview>
+
+### Sizes
+
+Use the `size` prop to change the size of the button. Icon sizes render a
+square button and expect a single icon as their child.
+
+<ComponentPreview name="button-sizes">
+  <ButtonSizes />
+</ComponentPreview>
+
+### With Icon
+
+`ButtonChakra` adds the Konark wheel medallion to the start of a button. For
+plain icons, add `data-icon="inline-start"` or `data-icon="inline-end"` so the
+spacing matches the button size.
+
+<ComponentPreview name="button-with-icon">
+  <ButtonWithIcon />
+</ComponentPreview>
+
+### Medallion
+
+`ButtonMedallion` renders the round brand badge on its own. Drop any lucide icon
+inside it.
+
+<ComponentPreview name="button-medallion">
+  <ButtonMedallionDemo />
+</ComponentPreview>
+
+### Disabled
+
+Add the `disabled` prop to fade the button into the disabled neutral state and
+prevent interaction.
+
+<ComponentPreview name="button-disabled">
+  <ButtonDisabled />
+</ComponentPreview>
+
+### Loading
+
+Render a spinning `Loader2` icon inside a disabled button to show a loading
+state. The `data-icon="inline-start"` attribute keeps the spacing consistent.
+
+<ComponentPreview name="button-loading">
+  <ButtonLoading />
+</ComponentPreview>
+
+### As Link
+
+Use Base UI's `render` prop with `nativeButton={false}` to render the button
+styles on an anchor element.
+
+<ComponentPreview name="button-as-link">
+  <ButtonAsLink />
+</ComponentPreview>
+
+## API Reference
+
+### Button
+
+The `Button` component is a wrapper around the Base UI button element that adds
+the OdiaUI heritage styling and a variety of sizes and variants.
+
+| Prop        | Type                                                                                    | Default     | Description                                                     |
+| ----------- | --------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------------------- |
+| `variant`   | `"default" \| "gold" \| "secondary" \| "outline" \| "ghost" \| "destructive" \| "link"` | `"default"` | The visual style of the button.                                 |
+| `size`      | `"xs" \| "sm" \| "default" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"`    | `"default"` | The size of the button. Icon sizes render a square button.      |
+| `disabled`  | `boolean`                                                                               | `false`     | Prevents interaction and fades the button.                      |
+| `render`    | `React.ReactElement`                                                                    | -           | Replaces the rendered element, for example to render an anchor. |
+| `className` | `string`                                                                                | -           | Additional classes merged onto the button.                      |
+
+See the [Base UI documentation](https://base-ui.com/react/components/button) for
+more information.

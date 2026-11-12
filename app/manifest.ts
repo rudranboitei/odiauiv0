@@ -19,10 +19,16 @@ export default function manifest(): MetadataRoute.Manifest {
         src: "/android-chrome-512x512.png",
         type: "image/png",
       },
+      {
+        purpose: "maskable",
+        sizes: "512x512",
+        src: "/maskable-512x512.png",
+        type: "image/png",
+      },
     ],
     name: SITE.NAME,
     short_name: SITE.NAME,
     start_url: ROUTES.HOME,
-    theme_color: META_THEME_COLORS.light,
+    theme_color: META_THEME_COLORS.dark,
   };
 }
