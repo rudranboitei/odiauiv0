@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { BrandContextMenu } from "@/components/brand-context-menu";
 import { CommandMenu } from "@/components/command-menu";
-import { LogoMark } from "@/components/logo";
+import { Logo } from "@/components/logo";
 import { MainNav } from "@/components/main-nav";
 import { MobileNav } from "@/components/mobile-nav";
 import { ModeSwitcher } from "@/components/mode-switcher";
@@ -32,14 +32,9 @@ export const SiteHeader = () => (
           className="flex lg:hidden"
         />
         <BrandContextMenu>
-          <Button
-            asChild
-            variant="ghost"
-            size="icon"
-            className="hidden size-8 lg:flex"
-          >
+          <Button asChild variant="ghost" className="hidden h-8 px-2.5 lg:flex">
             <Link href={ROUTES.HOME} transitionTypes={["nav-back"]}>
-              <LogoMark className="size-5" />
+              <Logo className="h-5! w-auto!" />
               <span className="sr-only">{SITE.NAME}</span>
             </Link>
           </Button>
