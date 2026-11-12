@@ -6,13 +6,18 @@
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
-      "description": "A Base UI accordion with card, flush, and Odisha variants, animated panels, and theme tokens.",
+      "description": "A heritage-style Base UI accordion with gold and indigo bars, animated panels, and optional Odisha medallion icons.",
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
         {
           "path": "registry/new-york/accordion.tsx",
           "type": "registry:ui",
           "target": "components/ui/accordion.tsx"
+        },
+        {
+          "path": "registry/new-york/odia-icons.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/odia-icons.tsx"
         }
       ]
     },

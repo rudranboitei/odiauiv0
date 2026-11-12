@@ -4,11 +4,10 @@ description: A vertically stacked set of interactive headings that each reveal a
 ---
 
 import { AccordionDemo } from "@/examples/accordion";
-import { AccordionOdisha } from "@/examples/accordion-odisha";
-import { AccordionFlush } from "@/examples/accordion-flush";
+import { AccordionPlain } from "@/examples/accordion-plain";
 import { AccordionMultiple } from "@/examples/accordion-multiple";
 import { AccordionDisabled } from "@/examples/accordion-disabled";
-import { AccordionBorders } from "@/examples/accordion-borders";
+import { AccordionCard } from "@/examples/accordion-card";
 
 <ComponentPreview name="accordion">
   <AccordionDemo />
@@ -19,6 +18,12 @@ import { AccordionBorders } from "@/examples/accordion-borders";
 ```bash
 npx shadcn@latest add https://odiaui.vercel.app/r/accordion.json
 ```
+
+The install adds `components/ui/accordion.tsx` and the optional medallion icons
+in `components/ui/odia-icons.tsx`.
+
+This component targets Tailwind CSS 4 and a shadcn/ui project. The heritage
+palette is intentionally fixed; pass `className` to override individual styles.
 
 ## Usage
 
@@ -51,6 +56,30 @@ export function Example() {
 }
 ```
 
+## Icons
+
+Pass any React node to the `icon` prop to render it inside the round indigo
+medallion. The included `odia-icons.tsx` exports four ready-made SVG icons:
+`KonarkWheelIcon`, `JagannathIcon`, `SambalpuriIcon`, and `OdissiDancerIcon`.
+
+```tsx
+import { KonarkWheelIcon } from "@/components/ui/odia-icons";
+
+<AccordionTrigger icon={<KonarkWheelIcon />}>
+  Konark Sun Temple
+</AccordionTrigger>;
+```
+
+The `icon` prop is optional. Omit it for a compact accordion without the
+medallion, as shown in the [Without icons](#without-icons) example.
+
+## Typography
+
+Triggers use `font-serif`. Load a display serif such as
+[Marcellus](https://fonts.google.com/specimen/Marcellus) or
+[Cinzel](https://fonts.google.com/specimen/Cinzel) for the exact heritage look.
+The component falls back to the browser's default serif stack.
+
 ## Composition
 
 Use the following composition to build an accordion:
@@ -67,22 +96,12 @@ Accordion
 
 ## Examples
 
-### Odisha
+### Without icons
 
-Use `variant="odisha"` for a Konark-inspired look. Expanded cards get a warm
-primary gradient, a fading temple accent bar, and a Konark wheel that rotates
-into place.
+Omit the `icon` prop for a compact trigger with the same heritage styling.
 
-<ComponentPreview name="accordion-odisha">
-  <AccordionOdisha />
-</ComponentPreview>
-
-### Flush
-
-Use `variant="flush"` for a clean divided list with no card chrome.
-
-<ComponentPreview name="accordion-flush">
-  <AccordionFlush />
+<ComponentPreview name="accordion-plain">
+  <AccordionPlain />
 </ComponentPreview>
 
 ### Multiple
@@ -101,28 +120,27 @@ Use the `disabled` prop on `AccordionItem` to disable individual items.
   <AccordionDisabled />
 </ComponentPreview>
 
-### Borders
+### Inside a card
 
-Add a border to the `Accordion` to wrap the items in a single bordered panel.
+Wrap the accordion in a bordered container to group it with other content.
 
-<ComponentPreview name="accordion-borders">
-  <AccordionBorders />
+<ComponentPreview name="accordion-card">
+  <AccordionCard />
 </ComponentPreview>
 
 ## API Reference
 
 ### Accordion
 
-| Prop            | Type                                  | Default  |
-| --------------- | ------------------------------------- | -------- |
-| `variant`       | `"card" \| "flush" \| "odisha"`       | `"card"` |
-| `multiple`      | `boolean`                             | `false`  |
-| `defaultValue`  | `unknown[]`                           | -        |
-| `value`         | `unknown[]`                           | -        |
-| `onValueChange` | `(value: unknown[], details) => void` | -        |
-| `keepMounted`   | `boolean`                             | `false`  |
-| `disabled`      | `boolean`                             | `false`  |
-| `className`     | `string`                              | -        |
+| Prop            | Type                                  | Default |
+| --------------- | ------------------------------------- | ------- |
+| `multiple`      | `boolean`                             | `false` |
+| `defaultValue`  | `unknown[]`                           | -       |
+| `value`         | `unknown[]`                           | -       |
+| `onValueChange` | `(value: unknown[], details) => void` | -       |
+| `keepMounted`   | `boolean`                             | `false` |
+| `disabled`      | `boolean`                             | `false` |
+| `className`     | `string`                              | -       |
 
 ### AccordionItem
 
@@ -135,9 +153,10 @@ Add a border to the `Accordion` to wrap the items in a single bordered panel.
 
 ### AccordionTrigger
 
-| Prop        | Type     | Default |
-| ----------- | -------- | ------- |
-| `className` | `string` | -       |
+| Prop        | Type        | Default |
+| ----------- | ----------- | ------- |
+| `icon`      | `ReactNode` | -       |
+| `className` | `string`    | -       |
 
 ### AccordionContent
 

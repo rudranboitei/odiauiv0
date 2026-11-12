@@ -26,16 +26,15 @@ const items = [
   },
 ];
 
-export const AccordionBorders = () => (
-  <Accordion
-    variant="flush"
-    className="w-full max-w-lg overflow-hidden rounded-xl border border-border bg-card px-5"
-  >
-    {items.map((item) => (
-      <AccordionItem key={item.value} value={item.value}>
-        <AccordionTrigger>{item.trigger}</AccordionTrigger>
-        <AccordionContent>{item.content}</AccordionContent>
-      </AccordionItem>
-    ))}
-  </Accordion>
+export const AccordionCard = () => (
+  <div className="w-full max-w-lg rounded-2xl border border-border bg-card p-4 shadow-sm">
+    <Accordion>
+      {items.map((item) => (
+        <AccordionItem key={item.value} value={item.value}>
+          <AccordionTrigger>{item.trigger}</AccordionTrigger>
+          <AccordionContent>{item.content}</AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  </div>
 );

@@ -26,8 +26,8 @@ const items = [
   },
 ];
 
-export const AccordionFlush = () => (
-  <Accordion variant="flush" className="w-full max-w-lg">
+export const AccordionPlain = () => (
+  <Accordion className="w-full max-w-lg">
     {items.map((item) => (
       <AccordionItem key={item.value} value={item.value}>
         <AccordionTrigger>{item.trigger}</AccordionTrigger>
