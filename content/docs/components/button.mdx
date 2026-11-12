@@ -2,15 +2,14 @@
 title: Button
 description: Displays a button or a component that looks like a button.
 links:
-  doc: https://base-ui.com/react/components/button
-  api: https://base-ui.com/react/components/button#api-reference
+  doc: https://ui.shadcn.com/docs/components/button
+  api: https://github.com/shadcn-ui/ui/blob/main/apps/v4/registry/ui/button.tsx
 ---
 
 import { ButtonAsLink } from "@/examples/button-as-link";
 import { ButtonDisabled } from "@/examples/button-disabled";
 import { ButtonHero } from "@/examples/button-hero";
 import { ButtonLoading } from "@/examples/button-loading";
-import { ButtonMedallionDemo } from "@/examples/button-medallion";
 import { ButtonSizes } from "@/examples/button-sizes";
 import { ButtonUsage } from "@/examples/button-usage";
 import { ButtonVariants } from "@/examples/button-variants";
@@ -39,7 +38,7 @@ bunx --bun shadcn@latest add https://odiaui.vercel.app/r/button.json
 Install the following dependencies:
 
 ```bash
-bun add @base-ui/react class-variance-authority lucide-react
+bun add @radix-ui/react-slot class-variance-authority
 ```
 
 Copy and paste the following code into your project.
@@ -70,9 +69,12 @@ import { Button } from "@/components/ui/button";
 ### Variants
 
 Use the `variant` prop to change the look of the button. `default` is the solid
-brand action, `gold` is the high-contrast inverse, and `secondary` uses a soft
-neutral surface for quieter actions. The palette is intentionally monochrome to
-match the OdiaUI brand, with semantic red reserved for `destructive`.
+brand action, `frame` adds a double-border heritage frame, and `secondary` uses
+a soft neutral surface for quieter actions.
+
+Filled and outline variants also render a subtle Konark temple-and-wheel
+artwork behind the label. Pass `art={false}` to turn it off, or `art` to force
+it on.
 
 <ComponentPreview name="button-variants">
   <ButtonVariants />
@@ -81,7 +83,8 @@ match the OdiaUI brand, with semantic red reserved for `destructive`.
 ### Sizes
 
 Use the `size` prop to change the size of the button. Icon sizes render a
-square button and expect a single icon as their child.
+square button and expect a single icon as their child; `icon-full` renders it
+as a circle.
 
 <ComponentPreview name="button-sizes">
   <ButtonSizes />
@@ -89,21 +92,11 @@ square button and expect a single icon as their child.
 
 ### With Icon
 
-`ButtonChakra` adds the Konark wheel medallion to the start of a button. For
-plain icons, add `data-icon="inline-start"` or `data-icon="inline-end"` so the
-spacing matches the button size.
+Add lucide icons as children. The button sizes icons automatically and keeps
+them from shrinking.
 
 <ComponentPreview name="button-with-icon">
   <ButtonWithIcon />
-</ComponentPreview>
-
-### Medallion
-
-`ButtonMedallion` renders the round brand badge on its own. Drop any lucide icon
-inside it.
-
-<ComponentPreview name="button-medallion">
-  <ButtonMedallionDemo />
 </ComponentPreview>
 
 ### Disabled
@@ -117,8 +110,8 @@ prevent interaction.
 
 ### Loading
 
-Render a spinning `Loader2` icon inside a disabled button to show a loading
-state. The `data-icon="inline-start"` attribute keeps the spacing consistent.
+Pass the `loading` prop to show a spinner and disable interaction until the
+work is done.
 
 <ComponentPreview name="button-loading">
   <ButtonLoading />
@@ -126,8 +119,7 @@ state. The `data-icon="inline-start"` attribute keeps the spacing consistent.
 
 ### As Link
 
-Use Base UI's `render` prop with `nativeButton={false}` to render the button
-styles on an anchor element.
+Use the `asChild` prop to render the button styles on an anchor element.
 
 <ComponentPreview name="button-as-link">
   <ButtonAsLink />
@@ -137,16 +129,18 @@ styles on an anchor element.
 
 ### Button
 
-The `Button` component is a wrapper around the Base UI button element that adds
-the OdiaUI heritage styling and a variety of sizes and variants.
+The `Button` component is a radix `Slot`-based button element with OdiaUI
+heritage styling, a variety of sizes and variants, and optional decorative
+temple artwork.
 
-| Prop        | Type                                                                                    | Default     | Description                                                     |
-| ----------- | --------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------------------- |
-| `variant`   | `"default" \| "gold" \| "secondary" \| "outline" \| "ghost" \| "destructive" \| "link"` | `"default"` | The visual style of the button.                                 |
-| `size`      | `"xs" \| "sm" \| "default" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"`    | `"default"` | The size of the button. Icon sizes render a square button.      |
-| `disabled`  | `boolean`                                                                               | `false`     | Prevents interaction and fades the button.                      |
-| `render`    | `React.ReactElement`                                                                    | -           | Replaces the rendered element, for example to render an anchor. |
-| `className` | `string`                                                                                | -           | Additional classes merged onto the button.                      |
+| Prop        | Type                                                                                     | Default     | Description                                                                 |
+| ----------- | ---------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------------------------------- |
+| `variant`   | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link" \| "frame"` | `"default"` | The visual style of the button.                                             |
+| `size`      | `"sm" \| "default" \| "lg" \| "icon" \| "icon-sm" \| "icon-full"`                        | `"default"` | The size of the button. Icon sizes render a square button.                  |
+| `loading`   | `boolean`                                                                                | `false`     | Shows a spinner, disables interaction and sets `aria-busy`.                 |
+| `art`       | `boolean`                                                                                | auto        | Toggles the Konark temple-and-wheel artwork. Defaults on for filled styles. |
+| `asChild`   | `boolean`                                                                                | `false`     | Renders the styles on the single child element instead of a button.         |
+| `className` | `string`                                                                                 | -           | Additional classes merged onto the button.                                  |
 
-See the [Base UI documentation](https://base-ui.com/react/components/button) for
-more information.
+See the [shadcn/ui button documentation](https://ui.shadcn.com/docs/components/button)
+for more information.

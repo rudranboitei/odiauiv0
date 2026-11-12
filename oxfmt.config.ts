@@ -21,6 +21,10 @@ export default defineConfig({
     ".claude/**",
     ".web-kits/**",
     "audio/**",
+    // Verbatim copies from the zolo project — do not reformat or relint
+    "components/ui/button.tsx",
+    "components/ui/odia-icons1.tsx",
+    "registry/**",
   ],
   jsxSingleQuote: false,
   printWidth: 80,

@@ -1,9 +1,10 @@
 "use client";
 
-import type { ButtonProps } from "@/components/ui/button";
+import type React from "react";
+
 import { Button } from "@/components/ui/button";
 
-interface ExternalLinkButtonProps extends ButtonProps {
+interface ExternalLinkButtonProps extends React.ComponentProps<typeof Button> {
   href: string;
 }
 
@@ -12,7 +13,7 @@ export const ExternalLinkButton = ({
   children,
   ...props
 }: ExternalLinkButtonProps) => (
-  <Button sound="click" asChild {...props}>
+  <Button asChild {...props}>
     <a href={href} target="_blank" rel="noopener noreferrer">
       {children}
     </a>

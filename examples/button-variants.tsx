@@ -2,12 +2,12 @@ import { Button } from "@/components/ui/button";
 
 const VARIANTS = [
   "default",
-  "gold",
   "secondary",
+  "destructive",
   "outline",
   "ghost",
-  "destructive",
   "link",
+  "frame",
 ] as const;
 
 export const ButtonVariants = () => (

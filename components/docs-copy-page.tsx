@@ -184,7 +184,6 @@ export const DocsCopyPage = ({
         <CopyButton
           value={copyValue}
           showTooltip={false}
-          sound="copy"
           variant="secondary"
           className="md:h-7 md:text-[0.8rem]"
         >
@@ -222,7 +221,6 @@ export const DocsCopyPage = ({
               size="lg"
               asChild
               key={key}
-              sound="click"
               className="w-full justify-start text-base font-normal *:[svg]:text-muted-foreground"
             >
               {render(url)}

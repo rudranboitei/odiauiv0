@@ -25,13 +25,18 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Displays a button or a component that looks like a button.",
-      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "description": "A heritage-style button with Konark temple-and-wheel artwork, loading state, and a framed variant.",
+      "dependencies": ["class-variance-authority", "@radix-ui/react-slot"],
       "files": [
         {
           "path": "registry/new-york/button.tsx",
           "type": "registry:ui",
           "target": "components/ui/button.tsx"
+        },
+        {
+          "path": "registry/new-york/odia-icons1.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/odia-icons1.tsx"
         }
       ]
     },

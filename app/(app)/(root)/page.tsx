@@ -32,7 +32,9 @@ export default function IndexPage() {
 
         <section className="container-wrapper pb-8 lg:pb-12">
           <div className="container flex flex-col items-center gap-4">
-            <Button size="lg">Namaskar</Button>
+            <Button size="lg" className="rounded-full">
+              Namaskar
+            </Button>
             <p className="text-sm text-muted-foreground">
               Built for Odisha. Made with shadcn/ui.
             </p>
