@@ -54,12 +54,17 @@ const iconSize: Record<string, string> = {
   "icon-full": "[&>svg]:size-5",
 }
 
+type ButtonWatermark = "auto" | "deula" | "chakra" | "none"
+
 type ButtonProps = React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
     loading?: boolean
-    /** Temple + chakra artwork. Defaults to on for filled/outline variants, off for ghost, link and icon sizes. */
-    art?: boolean
+    /** Heritage artwork behind the label. "auto" keeps the stock behaviour —
+     * on for filled and outline variants, off for ghost, link and icon sizes.
+     * "deula" shows only the temple, "chakra" only the wheel, "none" turns the
+     * artwork off. */
+    watermark?: ButtonWatermark
   }
 
 function Button({
@@ -68,13 +73,19 @@ function Button({
   size = "default",
   asChild = false,
   loading = false,
-  art,
+  watermark,
   children,
   onClick,
   ...props
 }: ButtonProps) {
   const isIcon = !!size && size.startsWith("icon")
-  const showArt = art ?? (variant !== "ghost" && variant !== "link" && !isIcon)
+  const wm = watermark ?? "auto"
+  const artOn =
+    wm === "deula" ||
+    wm === "chakra" ||
+    (wm === "auto" && variant !== "ghost" && variant !== "link" && !isIcon)
+  const showTemple = artOn && wm !== "chakra"
+  const showWheel = artOn && wm !== "deula"
   const classes = cn(buttonVariants({ variant, size }), className)
 
   if (asChild) {
@@ -94,21 +105,21 @@ function Button({
       onClick={loading ? undefined : onClick}
       {...props}
     >
-      {showArt && (
-        <>
-          <span
-            aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 w-[30%] pb-0.5 pl-1.5 [mask-image:linear-gradient(to_right,black_55%,transparent)]"
-          >
-            <TempleArt className="size-full" style={{ stroke: "var(--odia-art)" }} preserveAspectRatio="xMinYMax meet" />
-          </span>
-          <span
-            aria-hidden
-            className="pointer-events-none absolute top-1/2 right-0 aspect-square h-[135%] -translate-y-1/2 translate-x-[30%] [mask-image:linear-gradient(to_left,black_50%,transparent)]"
-          >
-            <WheelArt className="size-full" style={{ stroke: "var(--odia-art)" }} />
-          </span>
-        </>
+      {showTemple && (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 left-0 w-[30%] pb-0.5 pl-1.5 [mask-image:linear-gradient(to_right,black_55%,transparent)]"
+        >
+          <TempleArt className="size-full" style={{ stroke: "var(--odia-art)" }} preserveAspectRatio="xMinYMax meet" />
+        </span>
+      )}
+      {showWheel && (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute top-1/2 right-0 aspect-square h-[135%] -translate-y-1/2 translate-x-[30%] [mask-image:linear-gradient(to_left,black_50%,transparent)]"
+        >
+          <WheelArt className="size-full" style={{ stroke: "var(--odia-art)" }} />
+        </span>
       )}
       <span className={cn("relative z-10 inline-flex items-center gap-2 [&>svg]:shrink-0", iconSize[size ?? "default"])}>
         {loading && <SpinnerIcon className="animate-spin" />}

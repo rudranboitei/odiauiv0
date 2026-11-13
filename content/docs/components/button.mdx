@@ -44,8 +44,9 @@ brand action, `frame` adds a double-border heritage frame, and `secondary` uses
 a soft neutral surface for quieter actions.
 
 Filled and outline variants also render a subtle Konark temple-and-wheel
-artwork behind the label. Pass `art={false}` to turn it off, or `art` to force
-it on.
+artwork behind the label. `watermark="none"` turns it off,
+`watermark="deula"` keeps only the temple, and `watermark="chakra"`
+only the wheel — leaving it unset keeps the stock behaviour.
 
 <ComponentPreview name="button-variants">
   <ButtonVariants />
@@ -104,14 +105,14 @@ The `Button` component is a radix `Slot`-based button element with OdiaUI
 heritage styling, a variety of sizes and variants, and optional decorative
 temple artwork.
 
-| Prop        | Type                                                                                     | Default     | Description                                                                 |
-| ----------- | ---------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------------------------------- |
-| `variant`   | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link" \| "frame"` | `"default"` | The visual style of the button.                                             |
-| `size`      | `"sm" \| "default" \| "lg" \| "icon" \| "icon-sm" \| "icon-full"`                        | `"default"` | The size of the button. Icon sizes render a square button.                  |
-| `loading`   | `boolean`                                                                                | `false`     | Shows a spinner, disables interaction and sets `aria-busy`.                 |
-| `art`       | `boolean`                                                                                | auto        | Toggles the Konark temple-and-wheel artwork. Defaults on for filled styles. |
-| `asChild`   | `boolean`                                                                                | `false`     | Renders the styles on the single child element instead of a button.         |
-| `className` | `string`                                                                                 | -           | Additional classes merged onto the button.                                  |
+| Prop        | Type                                                                                     | Default     | Description                                                                                                   |
+| ----------- | ---------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------- |
+| `variant`   | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link" \| "frame"` | `"default"` | The visual style of the button.                                                                               |
+| `size`      | `"sm" \| "default" \| "lg" \| "icon" \| "icon-sm" \| "icon-full"`                        | `"default"` | The size of the button. Icon sizes render a square button.                                                    |
+| `loading`   | `boolean`                                                                                | `false`     | Shows a spinner, disables interaction and sets `aria-busy`.                                                   |
+| `watermark` | `"auto" \| "deula" \| "chakra" \| "none"`                                                | `"auto"`    | Temple and/or wheel artwork behind the label. Auto: on for filled styles, off for ghost, link and icon sizes. |
+| `asChild`   | `boolean`                                                                                | `false`     | Renders the styles on the single child element instead of a button.                                           |
+| `className` | `string`                                                                                 | -           | Additional classes merged onto the button.                                                                    |
 
 See the [shadcn/ui button documentation](https://ui.shadcn.com/docs/components/button)
 for more information.
