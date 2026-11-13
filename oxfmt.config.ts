@@ -24,6 +24,8 @@ export default defineConfig({
     // Verbatim copies from the zolo project — do not reformat or relint
     "components/ui/button.tsx",
     "components/ui/odia-icons1.tsx",
+    "components/ui/separator.tsx",
+    "components/ui/skeleton.tsx",
     "registry/**",
   ],
   jsxSingleQuote: false,

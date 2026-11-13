@@ -517,3 +517,20 @@
     animation-delay: 0s !important;
   }
 }
+
+/* OdiaUI Skeleton — shimmer sweep (see components/ui/skeleton.tsx) */
+@theme inline {
+  --animate-shimmer: odia-shimmer 1.8s ease-in-out infinite;
+
+  @keyframes odia-shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-shimmer {
+    animation: none;
+  }
+}

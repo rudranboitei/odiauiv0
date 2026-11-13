@@ -1,0 +1,117 @@
+---
+title: Separator
+description: A separator with heritage ornaments, repeating craft patterns, and motif bands drawn inline with theme tokens.
+---
+
+import { SeparatorJagannath } from "@/examples/separator-jagannath";
+import { SeparatorLabel } from "@/examples/separator-label";
+import { SeparatorOrnaments } from "@/examples/separator-ornaments";
+import { SeparatorPatterns } from "@/examples/separator-patterns";
+import { SeparatorUsage } from "@/examples/separator-usage";
+import { SeparatorVariants } from "@/examples/separator-variants";
+import { SeparatorVertical } from "@/examples/separator-vertical";
+
+<ComponentPreview name="separator-variants">
+  <SeparatorVariants />
+</ComponentPreview>
+
+## Installation
+
+```bash
+npx shadcn@latest add https://odiaui.vercel.app/r/separator.json
+```
+
+## Usage
+
+```tsx
+import { Separator } from "@/components/ui/separator";
+```
+
+```tsx
+<Separator />
+```
+
+## Examples
+
+### Rule Styles
+
+`plain` is the stock hairline. The other base styles pair a rule treatment
+with a heritage ornament: `default` (solid + Konark wheel), `dashed` (dotted +
+lotus), `muted` (double line + diamond), and `frame` (framed + temple deula).
+
+<ComponentPreview name="separator-variants">
+  <SeparatorVariants />
+</ComponentPreview>
+
+### Ornaments
+
+Ornament variants swap the centre piece: `chakra` (Konark wheel), `deula`
+(temple tower with flag), `padma` (lotus), `nritya` (Odissi dancer),
+`diamond`, and `mala` (marigold garland on beads). Each ornament can also be
+swapped with the `ornament` prop — for example `ornament="eye"` renders the
+Jagannath eye — or set to `null` to show rules only.
+
+<ComponentPreview name="separator-ornaments">
+  <SeparatorOrnaments />
+</ComponentPreview>
+
+### Craft Patterns
+
+Pattern variants render a repeating band, masked with theme tokens so they
+follow light and dark mode: `rekha` (Sambalpuri chain), `pattachitra`
+(rosettes between beads), `pata` (scroll vine), and `kalinga` (checker band).
+
+<ComponentPreview name="separator-patterns">
+  <SeparatorPatterns />
+</ComponentPreview>
+
+### Jagannath Motif
+
+`jagannath` renders rising diamonds on a thread between two end dots.
+
+<ComponentPreview name="separator-jagannath">
+  <SeparatorJagannath />
+</ComponentPreview>
+
+### With Label
+
+Pass the `label` prop to show text under the ornament (horizontal only).
+
+<ComponentPreview name="separator-label">
+  <SeparatorLabel />
+</ComponentPreview>
+
+### Vertical
+
+Use the `orientation` prop for vertical separators. A vertical `default` stays
+a plain line; ornament variants stack rule · ornament · rule. Give the parent
+a height so the line has something to fill.
+
+<ComponentPreview name="separator-vertical">
+  <SeparatorVertical />
+</ComponentPreview>
+
+### Composition
+
+Separators divide blocks of content and sit between inline items.
+
+<ComponentPreview name="separator-usage">
+  <SeparatorUsage />
+</ComponentPreview>
+
+## API Reference
+
+### Separator
+
+The `Separator` component is a Base UI separator element with OdiaUI heritage
+styling. All ornaments and patterns are drawn inline with theme tokens, so
+they follow light and dark mode automatically.
+
+| Prop          | Type                                                                                                                                                                                            | Default        | Description                                         |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | --------------------------------------------------- |
+| `variant`     | `"plain" \| "default" \| "dashed" \| "muted" \| "frame" \| "chakra" \| "deula" \| "padma" \| "nritya" \| "diamond" \| "mala" \| "rekha" \| "pattachitra" \| "pata" \| "kalinga" \| "jagannath"` | `"default"`    | The visual style of the separator.                  |
+| `ornament`    | `"chakra" \| "deula" \| "padma" \| "nritya" \| "eye" \| "diamond" \| "flower" \| null`                                                                                                          | variant's own  | Overrides the centre ornament on ornament variants. |
+| `label`       | `React.ReactNode`                                                                                                                                                                               | -              | Text shown under the ornament (horizontal only).    |
+| `orientation` | `"horizontal" \| "vertical"`                                                                                                                                                                    | `"horizontal"` | The direction of the separator.                     |
+| `children`    | `React.ReactNode`                                                                                                                                                                               | -              | Extra content rendered inside the separator.        |
+| `className`   | `string`                                                                                                                                                                                        | -              | Additional classes merged onto the separator.       |

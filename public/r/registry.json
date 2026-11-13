@@ -66,6 +66,34 @@
           "target": "components/ui/card.tsx"
         }
       ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "A separator with heritage ornament, tiled-pattern, and motif variants drawn inline with theme tokens.",
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/new-york/separator.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/separator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "A loading skeleton with shimmer, ikat, and pida variants, heritage shapes, and faint temple artwork for media placeholders.",
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/new-york/skeleton.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/skeleton.tsx"
+        }
+      ]
     }
   ]
 }

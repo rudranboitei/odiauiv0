@@ -1,0 +1,100 @@
+---
+title: Skeleton
+description: A loading skeleton with pulse, shimmer, ikat, and pida variants, heritage shapes, and faint temple artwork for media placeholders.
+---
+
+import { SkeletonArt } from "@/examples/skeleton-art";
+import { SkeletonShapes } from "@/examples/skeleton-shapes";
+import { SkeletonUsage } from "@/examples/skeleton-usage";
+import { SkeletonVariants } from "@/examples/skeleton-variants";
+
+<ComponentPreview name="skeleton-variants">
+  <SkeletonVariants />
+</ComponentPreview>
+
+## Installation
+
+```bash
+npx shadcn@latest add https://odiaui.vercel.app/r/skeleton.json
+```
+
+The shimmer variant needs one keyframes block in your global CSS (Tailwind
+v4) — it ships with the odiaui theme:
+
+```css
+@theme inline {
+  --animate-shimmer: odia-shimmer 1.8s ease-in-out infinite;
+
+  @keyframes odia-shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+```
+
+## Usage
+
+```tsx
+import { Skeleton } from "@/components/ui/skeleton";
+```
+
+```tsx
+<Skeleton className="h-4 w-[250px]" />
+```
+
+## Examples
+
+### Variants
+
+`default` is the classic pulse, `shimmer` sweeps a soft light across the
+block, `ikat` tiles a dash-and-diamond band along the edges, and `pida`
+clips the block into a stepped pida silhouette.
+
+<ComponentPreview name="skeleton-variants">
+  <SkeletonVariants />
+</ComponentPreview>
+
+### Shapes
+
+The `shape` prop restyles the block: `chakra` (Konark wheel), `arch` (deula
+doorway), `diamond` (rotated square with inset mouldings), `pida` (stepped
+block), and `line` (thin text line). `none` is free-form — size it with
+`className`.
+
+<ComponentPreview name="skeleton-shapes">
+  <SkeletonShapes />
+</ComponentPreview>
+
+### Media Artwork
+
+The `art` prop draws faint heritage artwork inside a media placeholder —
+`temple` (Kalinga deula towers with flags and a pidha porch), `wheel` (Konark
+wheel cropped by the top-right corner), or `arch` (nested doorway). Pass one
+value or an array.
+
+<ComponentPreview name="skeleton-art">
+  <SkeletonArt />
+</ComponentPreview>
+
+### Composition
+
+Combine shapes to skeleton real layouts — avatars, titles, and text lines.
+
+<ComponentPreview name="skeleton-usage">
+  <SkeletonUsage />
+</ComponentPreview>
+
+## API Reference
+
+### Skeleton
+
+The `Skeleton` component is a plain `div` — all artwork is drawn inline with
+theme tokens, so it follows light and dark mode automatically.
+
+| Prop        | Type                                                            | Default     | Description                                  |
+| ----------- | --------------------------------------------------------------- | ----------- | -------------------------------------------- |
+| `variant`   | `"default" \| "shimmer" \| "ikat" \| "pida"`                    | `"default"` | The loading animation style.                 |
+| `shape`     | `"none" \| "chakra" \| "arch" \| "diamond" \| "pida" \| "line"` | `"none"`    | The silhouette of the block.                 |
+| `art`       | `"temple" \| "wheel" \| "arch"` or an array of them             | -           | Faint artwork drawn inside the skeleton.     |
+| `className` | `string`                                                        | -           | Additional classes merged onto the skeleton. |
