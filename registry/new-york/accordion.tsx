@@ -92,7 +92,7 @@ const itemVariants = cva("", {
       /** Rows divided by hairlines */
       separated: "border-b last:border-0",
       /** Each item is its own rounded card */
-      card: "rounded-xl border bg-card/50 shadow-xs",
+      card: "rounded-2xl border-0 bg-card shadow-[0_1px_2px_rgba(0,0,0,0.04),0_6px_20px_rgba(0,0,0,0.06)]",
     },
   },
   defaultVariants: { variant: "separated" },

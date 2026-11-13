@@ -73,7 +73,7 @@ function DialogWatermarkArt({
       data-slot="dialog-watermark"
       data-variant={variant}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-xl text-foreground opacity-[0.06] dark:opacity-[0.09]"
+      className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[inherit] text-foreground opacity-[0.06] dark:opacity-[0.09]"
     >
       {variant === "deula" ? (
         /* Kalinga temple: rekha deula (tower) + jagamohana (stepped porch) */
@@ -188,7 +188,7 @@ function DialogContent({
         data-slot="dialog-content"
         data-size={size}
         className={cn(
-          "fixed top-1/2 left-1/2 z-50 isolate grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl bg-popover p-4 text-sm text-popover-foreground ring-1 ring-foreground/10 duration-100 outline-none data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+          "fixed top-1/2 left-1/2 z-50 isolate grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-3xl border-0 bg-popover p-4 text-sm text-popover-foreground shadow-[0_2px_6px_rgba(0,0,0,0.08),0_24px_64px_rgba(0,0,0,0.18)] duration-100 outline-none data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
           sizeClasses[size],
           /* When a DialogBanner is present, the close button sits on the primary colour */
           "has-data-[slot=dialog-banner]:[&>[data-odia-close]]:text-primary-foreground has-data-[slot=dialog-banner]:[&>[data-odia-close]]:hover:bg-primary-foreground/15 has-data-[slot=dialog-banner]:[&>[data-odia-close]]:hover:text-primary-foreground",
@@ -241,7 +241,7 @@ function DialogFooter({
     <div
       data-slot="dialog-footer"
       className={cn(
-        "-mx-4 -mb-4 flex flex-col-reverse gap-2 rounded-b-xl border-t bg-muted/50 p-4 sm:flex-row sm:justify-end",
+        "-mx-4 -mb-4 flex flex-col-reverse gap-2 rounded-b-3xl border-t bg-muted/50 p-4 sm:flex-row sm:justify-end",
         className
       )}
       {...props}
@@ -304,7 +304,7 @@ function DialogBanner({
     <div
       data-slot="dialog-banner"
       className={cn(
-        "relative -mx-4 -mt-4 flex min-h-12 items-center gap-3 overflow-hidden rounded-t-xl bg-primary py-2 pr-12 pl-4 text-primary-foreground",
+        "relative -mx-4 -mt-4 flex min-h-12 items-center gap-3 overflow-hidden rounded-t-3xl bg-primary py-2 pr-12 pl-4 text-primary-foreground",
         className
       )}
       {...props}
@@ -368,8 +368,8 @@ function DialogMedia({
       className={cn(
         "relative shrink-0 overflow-hidden bg-muted [&>img]:size-full [&>img]:object-cover",
         position === "left"
-          ? "-mt-4 -ml-4 min-h-28 w-28 self-stretch rounded-tl-xl sm:w-36"
-          : "-mx-4 -mt-4 aspect-video rounded-t-xl",
+          ? "-mt-4 -ml-4 min-h-28 w-28 self-stretch rounded-tl-3xl sm:w-36"
+          : "-mx-4 -mt-4 aspect-video rounded-t-3xl",
         className
       )}
       {...props}

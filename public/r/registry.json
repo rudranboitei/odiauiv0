@@ -21,7 +21,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "A heritage-style button with a controllable Konark temple-and-wheel watermark (deula, chakra, or none), loading state, and a framed variant.",
+      "description": "A fully rounded, matte heritage button with soft layered shadows and a controllable Konark temple-and-wheel watermark (deula, chakra, or none), loading state, and a framed variant.",
       "dependencies": ["class-variance-authority", "@radix-ui/react-slot"],
       "files": [
         {
@@ -54,7 +54,7 @@
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "A composable card with size presets and a --card-spacing spacing variable, an opt-in faint Odisha watermark (deula, chakra, or padma), edge-bleeding image media slots, and an Ikat ornament strip.",
+      "description": "A soft tonal card — large radius, borderless, layered shadows — with size presets, a --card-spacing spacing variable, a sand-gradient media zone, an opt-in faint Odisha watermark (deula, chakra, or padma), and an Ikat ornament strip.",
       "registryDependencies": ["badge"],
       "files": [
         {
@@ -123,7 +123,7 @@
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
-      "description": "A text input with search, email, password, and file presets, start/end icons, addons, sizes, and built-in error messages.",
+      "description": "A text input with warm rounded fields, search, email, password, and file presets, start/end icons, addons, sizes, and built-in error messages.",
       "dependencies": ["@base-ui/react"],
       "registryDependencies": ["label"],
       "files": [
@@ -152,7 +152,7 @@
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
-      "description": "A callout with cultural badge motifs per variant, success, warning, and info colours, and an engraved ornament frame.",
+      "description": "A callout with soft tonal depth — borderless, rounded-2xl, layered shadows — cultural badge motifs per variant, success, warning, and info colours, and an engraved ornament frame.",
       "dependencies": ["class-variance-authority"],
       "registryDependencies": ["badge"],
       "files": [
@@ -196,7 +196,7 @@
       "name": "toggle-group",
       "type": "registry:ui",
       "title": "Toggle Group",
-      "description": "A Base UI set of toggle buttons sharing pressed state, single or multiple selection, with default, ghost, outline, and secondary variants and five sizes.",
+      "description": "A Base UI set of pill-shaped toggle buttons sharing pressed state, single or multiple selection, with borderless tonal default, ghost, outline, and secondary variants and five sizes.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
       "files": [
         {
@@ -225,7 +225,7 @@
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
-      "description": "A Base UI dialog with size presets, faint deula and chakra watermarks, an Ikat-patterned banner header, media slots, and an Ikat ornament strip.",
+      "description": "A Base UI dialog with a borderless rounded-3xl surface and large soft shadow, size presets, faint deula and chakra watermarks, an Ikat-patterned banner header, media slots, and an Ikat ornament strip.",
       "dependencies": ["@base-ui/react", "lucide-react"],
       "registryDependencies": ["button"],
       "files": [
@@ -270,7 +270,7 @@
       "name": "toast",
       "type": "registry:ui",
       "title": "Toast",
-      "description": "A Base UI toast system with a faint deula watermark on every toast by default (chakra or none as options) and cultural type icons — success bana, info padma, warning ikat, error jagannath.",
+      "description": "A Base UI toast system with a borderless soft-shadow surface, a faint deula watermark on every toast by default (chakra or none as options) and cultural type icons — success bana, info padma, warning ikat, error jagannath.",
       "dependencies": ["@base-ui/react", "lucide-react"],
       "registryDependencies": ["button", "badge"],
       "files": [

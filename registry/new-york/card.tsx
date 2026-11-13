@@ -23,7 +23,8 @@ type CardWatermark = "none" | "deula" | "chakra" | "padma"
 const cardVariants = cva(
   [
     "relative isolate flex flex-col gap-(--card-spacing) overflow-hidden",
-    "rounded-xl border bg-card py-(--card-spacing) text-card-foreground shadow-sm",
+    "rounded-3xl bg-card py-(--card-spacing) text-card-foreground",
+    "shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.07)]",
   ],
   {
     variants: {
@@ -177,7 +178,7 @@ function CardMedia({
       data-slot="card-media"
       data-position={position}
       className={cn(
-        "relative shrink-0 overflow-hidden bg-muted [&>img]:size-full [&>img]:object-cover",
+        "relative shrink-0 overflow-hidden bg-[linear-gradient(160deg,color-mix(in_oklab,var(--sand)_82%,white)_0%,var(--sand)_55%,color-mix(in_oklab,var(--sand)_88%,black)_100%)] [&>img]:size-full [&>img]:object-cover",
         position === "top" &&
           "-mx-(--card-spacing) -mt-(--card-spacing) aspect-video rounded-t-[inherit]",
         position === "bottom" &&
@@ -200,7 +201,7 @@ function CardOrnament({ className, ...props }: React.ComponentProps<"svg">) {
       data-slot="card-ornament"
       aria-hidden="true"
       focusable="false"
-      className={cn("h-2 text-primary/60", className)}
+      className={cn("h-2 text-sand-foreground/60", className)}
       {...props}
     >
       <defs>

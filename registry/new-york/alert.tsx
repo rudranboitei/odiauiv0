@@ -16,7 +16,7 @@ import { BadgeIcon, type BadgeIconName } from "@/components/ui/badge"
  * ─────────────────────────────────────────────────────────── */
 
 const alertVariants = cva(
-  "group/alert relative grid w-full gap-0.5 rounded-lg border px-2.5 py-2 text-left text-sm has-data-[slot=alert-action]:relative has-data-[slot=alert-action]:pr-18 has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-2 *:[svg]:row-span-2 *:[svg]:translate-y-0.5 *:[svg]:text-current *:[svg:not([class*='size-'])]:size-4",
+  "group/alert relative grid w-full gap-0.5 rounded-2xl border-0 px-2.5 py-2 text-left text-sm shadow-[0_1px_2px_rgba(0,0,0,0.04),0_6px_20px_rgba(0,0,0,0.06)] has-data-[slot=alert-action]:relative has-data-[slot=alert-action]:pr-18 has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-2 *:[svg]:row-span-2 *:[svg]:translate-y-0.5 *:[svg]:text-current *:[svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
@@ -31,7 +31,7 @@ const alertVariants = cva(
       },
       /** Engraved inner hairline frame, like a pattachitra medallion */
       ornament: {
-        true: "before:pointer-events-none before:absolute before:inset-[3px] before:rounded-[5px] before:border before:border-border/60 before:content-['']",
+        true: "before:pointer-events-none before:absolute before:inset-[3px] before:rounded-[calc(1rem-3px)] before:border before:border-border/60 before:content-['']",
         false: "",
       },
     },

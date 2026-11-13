@@ -60,7 +60,7 @@ export interface CopyButtonProps extends Omit<
 export const CopyButton = ({
   value,
   className,
-  variant = "ghost",
+  variant = "default",
   event,
   children,
   showTooltip = true,
