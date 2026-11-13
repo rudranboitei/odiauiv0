@@ -1,0 +1,120 @@
+---
+title: Toast
+description: A Base UI toast system with a faint deula watermark on every toast by default (chakra or none as options) and cultural type icons — success bana, info padma, warning ikat, error jagannath.
+---
+
+import { ToastDemo } from "@/examples/toast";
+import { ToastTypes } from "@/examples/toast-types";
+import { ToastWatermark } from "@/examples/toast-watermark";
+import { Button } from "@/components/ui/button";
+import { Toaster, createToastManager, toast } from "@/components/ui/toast";
+
+<ComponentPreview name="toast">
+  <ToastDemo />
+</ComponentPreview>
+
+## Installation
+
+```bash
+npx shadcn@latest add https://odiaui.vercel.app/r/toast.json
+```
+
+Colours come only from shadcn theme tokens, so toasts follow your theme
+automatically in light and dark mode.
+
+## Setup
+
+Mount `<Toaster />` once in your root layout, then fire toasts from the
+module-level manager:
+
+```tsx
+import { Toaster } from "@/components/ui/toast";
+
+// in your layout
+<Toaster />;
+```
+
+```tsx
+import { toast } from "@/components/ui/toast";
+
+toast.add({
+  title: "Prasad added",
+  description: "Your offering is queued for the morning darshan.",
+});
+```
+
+Heritage is on by default: every toast carries a faint **deula
+watermark** cropped into its corner. Opt out with `none`, or swap in
+the Konark wheel with `chakra` — per toast, via the manager's `data`
+field:
+
+```tsx
+toast.add({
+  title: "Konark wheel",
+  data: { watermark: "chakra" },
+});
+```
+
+## Examples
+
+### Types
+
+Toast types map to cultural icons from the Badge component's set —
+**success** `bana`, **info** `padma`, **warning** `ikat`, **error**
+`jagannath` in the destructive colour, and **loading** keeps a plain
+spinner. Untyped toasts show no icon.
+
+<ComponentPreview name="toast-types">
+  <ToastTypes />
+</ComponentPreview>
+
+### Watermarks
+
+`deula` (default) hides a faint rekha deula behind the content,
+`chakra` crops a Konark wheel into the corner, and `none` gives the
+plain stock toast. The docs demos each mount their own manager so
+toasts don't leak between previews.
+
+<ComponentPreview name="toast-watermark">
+  <ToastWatermark />
+</ComponentPreview>
+
+## API Reference
+
+### Toaster / ToastProvider / ToastPortal / ToastViewport
+
+Mount `Toaster` once near your app root. It wires the provider, portal,
+viewport, and renders the toast list for its manager — pass your own
+with `toastManager` (the demos do, so each preview is isolated), or
+omit it to use the shared module-level manager.
+
+### toast / createToastManager / useToastManager
+
+`toast` is the shared manager. `createToastManager()` makes an
+isolated one. Both expose `add`, `close`, `update`, and `promise`;
+`useToastManager()` reads the active list inside a React tree.
+
+### Toast
+
+Renders one toast card with the swipe and stack animations from Base
+UI.
+
+| Prop        | Type                            | Default   | Description                                     |
+| ----------- | ------------------------------- | --------- | ----------------------------------------------- |
+| `watermark` | `"none" \| "deula" \| "chakra"` | `"deula"` | Faint Odisha artwork in the corner of the card. |
+| `className` | `string`                        | -         | Additional classes merged onto the card.        |
+
+Per-toast overrides travel through the manager's `data` field
+(`toast.add({ data: { watermark: "chakra" } })`) and are picked up
+automatically.
+
+### ToastContent / ToastTitle / ToastDescription
+
+Content, title, and description parts. In `Toaster`'s built-in list
+they render straight from the manager's `title` / `description`.
+
+### ToastAction / ToastClose
+
+`ToastAction` renders as an outline `Button` by default, `ToastClose`
+as a ghost icon button — both accept Base UI's `render` prop to swap
+the element.

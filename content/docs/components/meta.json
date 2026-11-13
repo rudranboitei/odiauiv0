@@ -18,6 +18,7 @@
     "slider",
     "spinner",
     "switch",
-    "textarea"
+    "textarea",
+    "toast"
   ]
 }
