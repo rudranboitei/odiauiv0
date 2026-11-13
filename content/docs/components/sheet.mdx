@@ -1,6 +1,6 @@
 ---
 title: Sheet
-description: A Base UI sheet with a faint Konark temple watermark on by default (opt-out-able), plus a chakra watermark, an Ikat ornament strip, a grabber handle, header icon slots, and rounded top and bottom edges.
+description: A Base UI sheet with a faint rekha deula watermark on by default (opt-out-able), plus a chakra watermark, an Ikat ornament strip, a grabber handle, header icon slots, and rounded top and bottom edges.
 ---
 
 import { SheetDemo } from "@/examples/sheet";
@@ -54,9 +54,9 @@ import {
 </Sheet>
 ```
 
-Heritage is on by default: every sheet carries a faint **Konark
-temple watermark** — the stepped jagamohana tower behind its row of
-giant chariot wheels — behind the content. Opt out with
+Heritage is on by default: every sheet carries a faint **rekha deula
+watermark** — the curving temple tower flying its flag — behind the
+content. Opt out with
 `watermark="none"`; the **Ikat ornament strip** is available with
 `ornament`.
 
@@ -69,7 +69,7 @@ you want the trigger to render as.
 
 `side="bottom"` rounds the top edge, and `handle` adds a grabber bar
 (visual only). The Ikat ornament strip can be added with `ornament`, and
-`watermark="chakra"` swaps the Konark temple for a Konark wheel cropped
+`watermark="chakra"` swaps the deula temple for a Konark wheel cropped
 into the corner behind the content.
 
 <ComponentPreview name="sheet-bottom">
@@ -78,13 +78,14 @@ into the corner behind the content.
 
 ### Header Icons
 
-`SheetHeader` takes an `icon` — `ChakraIcon` or `PadmaIcon` ship with
+`SheetHeader` takes an `icon` — `ChakraIcon`, `PadmaIcon`, or
+`DeulaIcon` ship with
 the component, both drawn inline in `currentColor`.
 
 ### Left Sheet
 
 `side="left"` moves the close button to the top-left, poster style,
-and nudges the header below it. The default Konark watermark sits
+and nudges the header below it. The default deula watermark sits
 behind the content.
 
 <ComponentPreview name="sheet-left">
@@ -104,7 +105,7 @@ forwarded. Triggers take Base UI's `render` prop.
 | ----------------- | ---------------------------------------- | --------- | ----------------------------------------- |
 | `side`            | `"top" \| "right" \| "bottom" \| "left"` | `"right"` | The edge the sheet slides in from.        |
 | `ornament`        | `boolean`                                | `false`   | Ikat diamond strip on the bottom edge.    |
-| `watermark`       | `"none" \| "deula" \| "chakra"`          | `"deula"` | Faint Konark temple behind the content.   |
+| `watermark`       | `"none" \| "deula" \| "chakra"`          | `"deula"` | Faint rekha deula behind the content.     |
 | `handle`          | `boolean`                                | `false`   | Grabber bar at the top; visual only.      |
 | `showCloseButton` | `boolean`                                | `true`    | Renders the built-in close button.        |
 | `className`       | `string`                                 | -         | Additional classes merged onto the popup. |

@@ -24,8 +24,8 @@ export const SheetDemo = () => (
         </SheetDescription>
       </SheetHeader>
       <p className="text-muted-foreground px-4 pb-2 text-sm">
-        A faint Konark temple — stepped tower and chariot wheels — sits behind
-        the content by default. Turn it off with{" "}
+        A faint rekha deula with its temple flag sits behind the content by
+        default. Turn it off with{" "}
         <code className="text-foreground">watermark="none"</code>.
       </p>
     </SheetContent>

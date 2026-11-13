@@ -225,7 +225,7 @@
       "name": "sheet",
       "type": "registry:ui",
       "title": "Sheet",
-      "description": "A Base UI sheet with a faint Konark temple watermark on by default (opt-out-able), plus a chakra watermark, an Ikat ornament strip, a grabber handle, header icon slots, and rounded top and bottom edges.",
+      "description": "A Base UI sheet with a faint rekha deula watermark on by default (opt-out-able), plus a chakra watermark, an Ikat ornament strip, a grabber handle, header icon slots, and rounded top and bottom edges.",
       "dependencies": ["@base-ui/react", "lucide-react"],
       "registryDependencies": ["button"],
       "files": [
