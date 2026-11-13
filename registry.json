@@ -235,6 +235,21 @@
           "target": "components/ui/sheet.tsx"
         }
       ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "A Base UI slider whose thumbs carry cultural motifs from the Badge icon set — a mini Konark wheel by default — with optional Ikat-diamond tick markers along the track.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["badge"],
+      "files": [
+        {
+          "path": "registry/new-york/slider.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/slider.tsx"
+        }
+      ]
     }
   ]
 }

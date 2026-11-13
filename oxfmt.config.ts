@@ -38,6 +38,7 @@ export default defineConfig({
     "components/ui/radio-group.tsx",
     "components/ui/dialog.tsx",
     "components/ui/sheet.tsx",
+    "components/ui/slider.tsx",
     "registry/**",
   ],
   jsxSingleQuote: false,
