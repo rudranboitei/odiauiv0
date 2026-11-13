@@ -1,0 +1,130 @@
+---
+title: Dialog
+description: A Base UI dialog with size presets, faint deula and chakra watermarks, an Ikat-patterned banner header, media slots, and an Ikat ornament strip.
+---
+
+import { DialogDemo } from "@/examples/dialog";
+import { DialogBannerDemo } from "@/examples/dialog-banner";
+import { DialogMediaDemo } from "@/examples/dialog-media";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+<ComponentPreview name="dialog">
+  <DialogDemo />
+</ComponentPreview>
+
+## Installation
+
+```bash
+npx shadcn@latest add https://odiaui.vercel.app/r/dialog.json
+```
+
+Colours come only from shadcn theme tokens, so the dialog follows your
+theme automatically in light and dark mode.
+
+## Usage
+
+```tsx
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+```
+
+```tsx
+<Dialog>
+  <DialogTrigger render={<Button variant="outline" />}>Open</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Title</DialogTitle>
+      <DialogDescription>Description</DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <DialogClose render={<Button />}>Done</DialogClose>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+```
+
+Base UI uses the `render` prop instead of `asChild` — pass the element
+you want the trigger or close button to render as.
+
+## Examples
+
+### Banner Header
+
+`DialogBanner` is a primary-colour heritage header with a faint
+Sambalpuri Ikat pattern and an optional icon in a round badge — use
+`JagannathIcon` or any node. Place it as the first child of
+`DialogContent`; the close button restyles itself automatically.
+
+<ComponentPreview name="dialog-banner">
+  <DialogBannerDemo />
+</ComponentPreview>
+
+### Watermarks
+
+`watermark="deula"` draws a faint Kalinga temple — rekha deula tower
+and stepped jagamohana porch — behind the content; `watermark="chakra"`
+crops a Konark wheel into the corner. Both sit at 6% opacity (9% in
+dark mode), behind the text.
+
+### Media
+
+`DialogMedia` places an image beside the text (`position="left"`,
+default) or above it (`position="top"`), bleeding into the dialog edge.
+
+<ComponentPreview name="dialog-media">
+  <DialogMediaDemo />
+</ComponentPreview>
+
+### Ornament
+
+`DialogOrnament` is a thin Ikat diamond strip — use it as a divider
+under a header or above the footer.
+
+### Sizes
+
+`size` on `DialogContent`: `sm`, `default`, or `lg`.
+
+## API Reference
+
+### Dialog / DialogTrigger / DialogClose / DialogOverlay / DialogPortal
+
+Thin wrappers around Base UI's dialog parts — all Base UI props are
+forwarded. Triggers and close buttons take Base UI's `render` prop.
+
+### DialogContent
+
+| Prop              | Type                            | Default     | Description                               |
+| ----------------- | ------------------------------- | ----------- | ----------------------------------------- |
+| `size`            | `"sm" \| "default" \| "lg"`     | `"default"` | Width preset of the dialog.               |
+| `watermark`       | `"none" \| "deula" \| "chakra"` | `"none"`    | Faint Odisha artwork behind the content.  |
+| `showCloseButton` | `boolean`                       | `true`      | Renders the built-in close button.        |
+| `className`       | `string`                        | -           | Additional classes merged onto the popup. |
+
+### DialogBanner / DialogMedia / DialogOrnament
+
+| Component        | Notes                                                                         |
+| ---------------- | ----------------------------------------------------------------------------- |
+| `DialogBanner`   | `icon` prop renders artwork in a round badge; first child of `DialogContent`. |
+| `DialogMedia`    | `position="left" \| "top"`; wrap it and the header in a flex row for left.    |
+| `DialogOrnament` | Inline SVG with an Ikat diamond pattern; `className` recolours it.            |
+
+### DialogHeader / DialogTitle / DialogDescription / DialogFooter
+
+Standard header, title, description, and footer parts. `DialogFooter`
+supports `showCloseButton` to append a built-in close button.
