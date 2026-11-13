@@ -21,6 +21,9 @@ export default defineConfig({
     "components/ui/separator.tsx",
     "components/ui/skeleton.tsx",
     "components/ui/spinner.tsx",
+    "components/ui/label.tsx",
+    "components/ui/input.tsx",
+    "components/ui/textarea.tsx",
     "registry/**",
   ],
 });

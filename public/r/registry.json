@@ -108,6 +108,48 @@
           "target": "components/ui/spinner.tsx"
         }
       ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "A form label with required asterisk, optional pill, invalid, and disabled states, plus a FieldMessage for helper and error text.",
+      "files": [
+        {
+          "path": "registry/new-york/label.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/label.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "A text input with search, email, password, and file presets, start/end icons, addons, sizes, and built-in error messages.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["label"],
+      "files": [
+        {
+          "path": "registry/new-york/input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "A multi-line text field with resize control, a live character counter, and built-in error messages.",
+      "registryDependencies": ["label"],
+      "files": [
+        {
+          "path": "registry/new-york/textarea.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/textarea.tsx"
+        }
+      ]
     }
   ]
 }

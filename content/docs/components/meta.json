@@ -6,8 +6,11 @@
     "badge",
     "button",
     "card",
+    "label",
+    "input",
     "separator",
     "skeleton",
-    "spinner"
+    "spinner",
+    "textarea"
   ]
 }
