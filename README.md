@@ -8,9 +8,9 @@
   A shadcn/ui component library for Odisha. Open source, accessible, and built to copy straight into your project.
   <br />
   <br />
-  <a href="https://github.com/rudranboitei/odiaui"><img src="https://www.shieldcn.dev/github/stars/rudranboitei/odiaui.svg?variant=secondary&size=xs&theme=zinc" alt="GitHub Stars" /></a>
-  <a href="https://github.com/rudranboitei/odiaui/actions"><img src="https://www.shieldcn.dev/github/ci/rudranboitei/odiaui.svg?variant=secondary&size=xs&theme=zinc" alt="CI" /></a>
-  <a href="https://x.com/rudranboitei"><img src="https://www.shieldcn.dev/x/follow/rudranboitei.svg?variant=branded&size=xs&theme=zinc" alt="X Follow" /></a>
+  <a href="https://github.com/rudranboitei/odiaui/stargazers"><img src="https://img.shields.io/github/stars/rudranboitei/odiaui?style=flat&logo=github&label=Stars&labelColor=%2318181b&color=%23a1a1aa" alt="GitHub Stars" /></a>
+  <a href="https://github.com/rudranboitei/odiaui/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/rudranboitei/odiaui/ci.yml?style=flat&logo=github&label=CI&labelColor=%2318181b&color=%23a1a1aa" alt="CI" /></a>
+  <a href="https://x.com/rudranboitei"><img src="https://img.shields.io/x/follow/rudranboitei?style=flat&logo=x&label=Follow&labelColor=%2318181b&color=%23a1a1aa" alt="X Follow" /></a>
 </p>
 
 ## Install
@@ -22,10 +22,10 @@ npx shadcn@latest add https://odiaui.vercel.app/r/button.json
 Then import the component:
 
 ```tsx
-import { RollingButton } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 export function Example() {
-  return <RollingButton>Namaskar</RollingButton>;
+  return <Button>Namaskar</Button>;
 }
 ```
 
@@ -38,18 +38,35 @@ npx shadcn@latest add @odiaui/button
 
 ## Components
 
-| Component      | Install                                                            |
-| -------------- | ------------------------------------------------------------------ |
-| Accordion      | `npx shadcn@latest add https://odiaui.vercel.app/r/accordion.json` |
-| Rolling Button | `npx shadcn@latest add https://odiaui.vercel.app/r/button.json`    |
-| Badge          | `npx shadcn@latest add https://odiaui.vercel.app/r/badge.json`     |
-| Card           | `npx shadcn@latest add https://odiaui.vercel.app/r/card.json`      |
+18 components, each carrying an Odisha touch — a faint Konark watermark, a chakra motif, an Ikat ornament — that you can turn off per instance.
+
+| Component   | Install                                                              |
+| ----------- | -------------------------------------------------------------------- |
+| Accordion   | `npx shadcn@latest add https://odiaui.vercel.app/r/accordion.json`   |
+| Button      | `npx shadcn@latest add https://odiaui.vercel.app/r/button.json`      |
+| Badge       | `npx shadcn@latest add https://odiaui.vercel.app/r/badge.json`       |
+| Card        | `npx shadcn@latest add https://odiaui.vercel.app/r/card.json`        |
+| Separator   | `npx shadcn@latest add https://odiaui.vercel.app/r/separator.json`   |
+| Skeleton    | `npx shadcn@latest add https://odiaui.vercel.app/r/skeleton.json`    |
+| Spinner     | `npx shadcn@latest add https://odiaui.vercel.app/r/spinner.json`     |
+| Label       | `npx shadcn@latest add https://odiaui.vercel.app/r/label.json`       |
+| Input       | `npx shadcn@latest add https://odiaui.vercel.app/r/input.json`       |
+| Textarea    | `npx shadcn@latest add https://odiaui.vercel.app/r/textarea.json`    |
+| Alert       | `npx shadcn@latest add https://odiaui.vercel.app/r/alert.json`       |
+| Avatar      | `npx shadcn@latest add https://odiaui.vercel.app/r/avatar.json`      |
+| Switch      | `npx shadcn@latest add https://odiaui.vercel.app/r/switch.json`      |
+| Radio Group | `npx shadcn@latest add https://odiaui.vercel.app/r/radio-group.json` |
+| Dialog      | `npx shadcn@latest add https://odiaui.vercel.app/r/dialog.json`      |
+| Sheet       | `npx shadcn@latest add https://odiaui.vercel.app/r/sheet.json`       |
+| Slider      | `npx shadcn@latest add https://odiaui.vercel.app/r/slider.json`      |
+| Toast       | `npx shadcn@latest add https://odiaui.vercel.app/r/toast.json`       |
 
 ## Features
 
 - 📦 **shadcn/ui compatible** - Works with `npx shadcn add`
-- ♿ **Accessible** - Built on Radix primitives with keyboard support
-- 🌗 **Themeable** - CSS variables for light and dark mode
+- 🛕 **Heritage by default** - Every component carries a visible-by-default Odisha touch (watermarks, motifs, ornaments), all opt-out-able per instance with a `watermark` prop
+- ♿ **Accessible** - Built on Base UI primitives (with Radix Slot) with keyboard support
+- 🌗 **Themeable** - CSS variables for light and dark mode; no hardcoded colors, only shadcn theme tokens
 - 📚 **Documentation site** - Powered by Fumadocs
 - 🤖 **Agent ready** - Ships with `llms.txt`, `llms-full.txt`, an API catalog, and agent skill discovery
 - 🔊 **Web audio feedback** - Interaction sounds powered by `@web-kits/audio`
@@ -64,10 +81,10 @@ npx shadcn@latest add @odiaui/button
 - `Next.js 16` with the App Router
 - `React 19` and `TypeScript`
 - `Tailwind CSS 4`
+- `Base UI` for accessible primitives (plus `@radix-ui/react-slot`)
 - `Fumadocs` for documentation
 - `shiki` + `rehype-pretty-code` for code blocks
 - `sonner` for toasts
-- `radix-ui` + `vaul` for accessible primitives
 - `@vercel/analytics` for analytics
 
 ## Local Development
@@ -88,19 +105,7 @@ bun dev
 
 The site runs at [http://localhost:3000](http://localhost:3000).
 
-## Adding a Component
-
-1. Create the component in `registry/new-york/`, for example `registry/new-york/badge.tsx`.
-2. Register it in `registry.json` with a name, title, description, and file path.
-3. Build the registry so the installable JSON is generated:
-
-```bash
-bun run registry:build
-```
-
-4. Add a docs page at `content/docs/components/<name>.mdx` and list it in `content/docs/components/meta.json`.
-
-`registry/new-york/your-component.tsx` is a local placeholder you can copy when starting a new component. It is not published in the registry.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full component workflow.
 
 ## Project Structure
 
@@ -109,7 +114,9 @@ bun run registry:build
 │   └── new-york/           # Component source files
 │       └── button.tsx
 ├── registry.json           # Component registry manifest
+├── examples/               # Live demos rendered in the docs
 ├── content/docs/           # Documentation (MDX)
+├── components/             # Site components + installed UI at components/ui
 ├── app/                    # Next.js app
 └── public/r/               # Built registry files (auto-generated)
 ```
