@@ -1,14 +1,15 @@
 "use client"
 
 import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { BadgeIcon } from "@/components/ui/badge"
 
 /* -------------------------------------------------------------------------- */
 /*  OdiaUI Card                                                               */
-/*  Same API as shadcn/ui Card. Colours come only from shadcn theme tokens    */
-/*  (card, muted, primary, border...), so it follows your theme in light and  */
-/*  dark mode.                                                                */
+/*  Same API as shadcn/ui Card, plus the v4-style size / --card-spacing API.   */
+/*  Colours come only from shadcn theme tokens (card, muted, primary,          */
+/*  border...), so it follows your theme in light and dark mode.               */
 /*                                                                            */
 /*  Odia additions:                                                           */
 /*   - Card         watermark  "deula" | "chakra" | "padma" faint artwork,    */
@@ -18,6 +19,24 @@ import { BadgeIcon } from "@/components/ui/badge"
 /* -------------------------------------------------------------------------- */
 
 type CardWatermark = "none" | "deula" | "chakra" | "padma"
+
+const cardVariants = cva(
+  [
+    "relative isolate flex flex-col gap-(--card-spacing) overflow-hidden",
+    "rounded-xl border bg-card py-(--card-spacing) text-card-foreground shadow-sm",
+  ],
+  {
+    variants: {
+      size: {
+        default: "[--card-spacing:--spacing(6)]",
+        sm: "[--card-spacing:--spacing(4)]",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+    },
+  }
+)
 
 /* ------------------------------- Watermarks -------------------------------- */
 
@@ -46,19 +65,19 @@ function CardWatermarkArt({
 function Card({
   className,
   children,
-  watermark = "deula",
+  watermark = "none",
+  size,
   ...props
-}: React.ComponentProps<"div"> & {
-  /** Faint Odisha artwork cropped into the card's corner. */
-  watermark?: CardWatermark
-}) {
+}: React.ComponentProps<"div"> &
+  VariantProps<typeof cardVariants> & {
+    /** Faint Odisha artwork cropped into the card's corner — "none" by default. */
+    watermark?: CardWatermark
+  }) {
   return (
     <div
       data-slot="card"
-      className={cn(
-        "relative isolate flex flex-col gap-6 rounded-xl border bg-card py-6 text-card-foreground shadow-sm",
-        className
-      )}
+      data-size={size}
+      className={cn(cardVariants({ size }), className)}
       {...props}
     >
       {watermark !== "none" ? <CardWatermarkArt variant={watermark} /> : null}
@@ -72,7 +91,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-header"
       className={cn(
-        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
+        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-(--card-spacing)",
         className
       )}
       {...props}
@@ -118,7 +137,11 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">) {
 
 function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div data-slot="card-content" className={cn("px-6", className)} {...props} />
+    <div
+      data-slot="card-content"
+      className={cn("px-(--card-spacing)", className)}
+      {...props}
+    />
   )
 }
 
@@ -126,7 +149,10 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-footer"
-      className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
+      className={cn(
+        "flex items-center px-(--card-spacing) [.border-t]:pt-(--card-spacing)",
+        className
+      )}
       {...props}
     />
   )
@@ -152,11 +178,12 @@ function CardMedia({
       data-position={position}
       className={cn(
         "relative shrink-0 overflow-hidden bg-muted [&>img]:size-full [&>img]:object-cover",
-        position === "top" && "-mx-6 -mt-6 aspect-video rounded-t-[inherit]",
+        position === "top" &&
+          "-mx-(--card-spacing) -mt-(--card-spacing) aspect-video rounded-t-[inherit]",
         position === "bottom" &&
-          "-mx-6 -mb-6 aspect-video rounded-b-[inherit]",
+          "-mx-(--card-spacing) -mb-(--card-spacing) aspect-video rounded-b-[inherit]",
         position === "left" &&
-          "-mt-6 -ml-6 w-28 self-stretch rounded-tl-[inherit] sm:w-36",
+          "-mt-(--card-spacing) -ml-(--card-spacing) w-28 self-stretch rounded-tl-[inherit] sm:w-36",
         className
       )}
       {...props}
@@ -173,7 +200,7 @@ function CardOrnament({ className, ...props }: React.ComponentProps<"svg">) {
       data-slot="card-ornament"
       aria-hidden="true"
       focusable="false"
-      className={cn("h-2 w-full text-primary/60", className)}
+      className={cn("h-2 text-primary/60", className)}
       {...props}
     >
       <defs>

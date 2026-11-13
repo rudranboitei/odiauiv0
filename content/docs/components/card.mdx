@@ -1,11 +1,13 @@
 ---
 title: Card
-description: A composable card with header, content, footer, and action slots, plus a faint deula watermark on by default (chakra or padma as options), edge-bleeding image media slots, and an Ikat ornament strip.
+description: A composable card with size presets and a --card-spacing spacing variable, an opt-in faint Odisha watermark (deula, chakra, or padma), edge-bleeding image media slots, and an Ikat ornament strip.
 ---
 
-import { CardDemo } from "@/examples/card";
-import { CardMediaDemo } from "@/examples/card-media";
-import { CardPricing } from "@/examples/card-pricing";
+import { CardLogin } from "@/examples/card";
+import { CardSmall } from "@/examples/card-small";
+import { CardSpacing } from "@/examples/card-spacing";
+import { CardEdgeToEdge } from "@/examples/card-edge-to-edge";
+import { CardImage } from "@/examples/card-image";
 import {
   Card,
   CardContent,
@@ -16,7 +18,7 @@ import {
 } from "@/components/ui/card";
 
 <ComponentPreview name="card">
-  <CardDemo />
+  <CardLogin />
 </ComponentPreview>
 
 ## Installation
@@ -52,50 +54,83 @@ import {
 </Card>
 ```
 
-Heritage is on by default: every card carries a faint **deula
-watermark** cropped into its bottom-right corner. Opt out with
-`watermark="none"`, or swap in the Konark wheel or a lotus with
+The watermark is **opt-in**: cards are plain by default. Pass
+`watermark` to add a faint **deula watermark** cropped into the
+bottom-right corner, or swap in the Konark wheel or a lotus with
 `watermark="chakra"` / `watermark="padma"`.
 
 ## Examples
 
-### Media
+### Size
 
-`CardMedia` renders an image or illustration that bleeds to the card
-edges — above the content by default, or beside it with
-`position="left"` (wrap it and the header in a flex row), or below
-with `position="bottom"`. Pair it with a `Badge` in `CardAction` for
-the classic heritage-tourism look.
+Use `size="sm"` for a compact card — it drives all padding through the
+`--card-spacing` variable.
 
-<ComponentPreview name="card-media">
-  <CardMediaDemo />
+<ComponentPreview name="card-small">
+  <CardSmall />
 </ComponentPreview>
 
-### Pricing
+### Spacing
 
-Cards compose with the rest of the kit — here a `watermark="chakra"`
-card with a price line and a full-width `Button`.
+The card's internal spacing is a CSS variable. Override it with the
+`--spacing()` function, alone or per size:
 
-<ComponentPreview name="card-pricing">
-  <CardPricing />
+```tsx
+<Card className="[--card-spacing:--spacing(8)]">...</Card>
+```
+
+<ComponentPreview name="card-spacing">
+  <CardSpacing />
+</ComponentPreview>
+
+### Edge to edge
+
+Combine negative and positive `--card-spacing` utilities to bleed
+content into the card's padding — here a scrollable terms panel.
+
+<ComponentPreview name="card-edge-to-edge">
+  <CardEdgeToEdge />
+</ComponentPreview>
+
+### Image
+
+An image card with an overlay tint — `pt-0` lets the image reach the
+top edge.
+
+<ComponentPreview name="card-image">
+  <CardImage />
 </ComponentPreview>
 
 ### Ornament
 
 `CardOrnament` is a thin Ikat diamond strip — use it as a divider
-under a header (add `mx-6` to keep the card's inner padding).
+under a header (add `mx-(--card-spacing)` to keep the card's inner
+padding).
 
 ## API Reference
 
 ### Card
 
-The outer container. A `relative isolate` flex column with the
-watermark layer behind the content.
+The outer container. A `relative isolate overflow-hidden` flex column
+with the watermark layer behind the content.
 
-| Prop        | Type                                       | Default   | Description                                   |
-| ----------- | ------------------------------------------ | --------- | --------------------------------------------- |
-| `watermark` | `"none" \| "deula" \| "chakra" \| "padma"` | `"deula"` | Faint Odisha artwork in the card's corner.    |
-| `className` | `string`                                   | -         | Additional classes merged onto the container. |
+| Prop        | Type                                       | Default     | Description                                       |
+| ----------- | ------------------------------------------ | ----------- | ------------------------------------------------- |
+| `size`      | `"default" \| "sm"`                        | `"default"` | Compact preset; sets `--card-spacing` to 4/6.     |
+| `watermark` | `"none" \| "deula" \| "chakra" \| "padma"` | `"none"`    | Opt-in faint Odisha artwork in the card's corner. |
+| `className` | `string`                                   | -           | Additional classes merged onto the container.     |
+
+#### Theming
+
+All internal spacing reads `--card-spacing` (default 6 = 24px, `sm` =
+4 = 16px). Override it anywhere on or around the card:
+
+```tsx
+<Card className="[--card-spacing:--spacing(8)]">
+```
+
+Then use negative / positive spacing utilities like
+`-mx-(--card-spacing)` to bleed content to the edges.
 
 ### CardHeader / CardTitle / CardDescription
 

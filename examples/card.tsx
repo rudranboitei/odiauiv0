@@ -1,41 +1,61 @@
-import { ArrowRightIcon } from "lucide-react";
-
-import { BadgeIcon } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
-  CardOrnament,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
-export const CardDemo = () => (
-  <Card className="w-full max-w-sm">
+export const CardLogin = () => (
+  <Card className="mx-auto w-full max-w-sm" watermark="chakra">
     <CardHeader>
-      <span className="text-primary [&>svg]:size-8">
-        <BadgeIcon name="chakra" />
-      </span>
-      <CardTitle>Odia Culture</CardTitle>
+      <CardTitle>Login to your account</CardTitle>
       <CardDescription>
-        Rich heritage, vibrant traditions, and timeless values.
+        Enter your email below to login to your account
       </CardDescription>
+      <CardAction>
+        <Button variant="link">Sign Up</Button>
+      </CardAction>
     </CardHeader>
-    <CardOrnament className="mx-6" />
     <CardContent>
-      <p className="text-sm text-muted-foreground">
-        Every card carries a faint deula watermark in its corner — turn it off
-        with <code className="text-foreground">watermark="none"</code>.
-      </p>
+      <form>
+        <div className="flex flex-col gap-6">
+          <div className="grid gap-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="m@example.com"
+              required
+            />
+          </div>
+          <div className="grid gap-2">
+            <div className="flex items-center">
+              <Label htmlFor="password">Password</Label>
+              <a
+                href="#"
+                className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+              >
+                Forgot your password?
+              </a>
+            </div>
+            <Input id="password" type="password" required />
+          </div>
+        </div>
+      </form>
     </CardContent>
-    <CardFooter>
-      <a
-        className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
-        href="#"
-      >
-        Learn More <ArrowRightIcon className="size-4" />
-      </a>
+    <CardFooter className="flex-col gap-2">
+      <Button type="submit" className="w-full" watermark="none">
+        Login
+      </Button>
+      <Button variant="outline" className="w-full" watermark="none">
+        Login with Google
+      </Button>
     </CardFooter>
   </Card>
 );
