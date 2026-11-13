@@ -27,6 +27,7 @@ export default defineConfig({
     "components/ui/odia-icons1.tsx",
     "components/ui/separator.tsx",
     "components/ui/skeleton.tsx",
+    "components/ui/spinner.tsx",
     "registry/**",
   ],
   jsxSingleQuote: false,

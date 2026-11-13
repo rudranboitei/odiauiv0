@@ -94,6 +94,20 @@
           "target": "components/ui/skeleton.tsx"
         }
       ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "A loading spinner with cultural glyphs — turning Konark chakra, breathing deula, opening lotus — plus dots, ring, and pulse styles.",
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/new-york/spinner.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/spinner.tsx"
+        }
+      ]
     }
   ]
 }

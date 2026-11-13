@@ -7,6 +7,7 @@
     "button",
     "card",
     "separator",
-    "skeleton"
+    "skeleton",
+    "spinner"
   ]
 }
