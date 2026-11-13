@@ -54,7 +54,8 @@
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "A composable card with header, content, footer, and action slots.",
+      "description": "A composable card with header, content, footer, and action slots, plus a faint deula watermark on by default (chakra or padma as options), edge-bleeding image media slots, and an Ikat ornament strip.",
+      "registryDependencies": ["badge"],
       "files": [
         {
           "path": "registry/new-york/card.tsx",
@@ -248,6 +249,21 @@
           "path": "registry/new-york/slider.tsx",
           "type": "registry:ui",
           "target": "components/ui/slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "A Base UI toast system with a faint deula watermark on every toast by default (chakra or none as options) and cultural type icons — success bana, info padma, warning ikat, error jagannath.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["button", "badge"],
+      "files": [
+        {
+          "path": "registry/new-york/toast.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toast.tsx"
         }
       ]
     }

@@ -1,8 +1,11 @@
 ---
 title: Card
-description: A composable card with header, content, footer, and action slots.
+description: A composable card with header, content, footer, and action slots, plus a faint deula watermark on by default (chakra or padma as options), edge-bleeding image media slots, and an Ikat ornament strip.
 ---
 
+import { CardDemo } from "@/examples/card";
+import { CardMediaDemo } from "@/examples/card-media";
+import { CardPricing } from "@/examples/card-pricing";
 import {
   Card,
   CardContent,
@@ -10,21 +13,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/card";
+} from "@/components/ui/card";
 
 <ComponentPreview name="card">
-  <Card className="w-full max-w-sm">
-    <CardHeader>
-      <CardTitle>Konark</CardTitle>
-      <CardDescription>Sun Temple, Odisha</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <p className="text-sm text-muted-foreground">A card built with odiaui.</p>
-    </CardContent>
-    <CardFooter>
-      <p className="text-xs text-muted-foreground">Built for Odisha.</p>
-    </CardFooter>
-  </Card>
+  <CardDemo />
 </ComponentPreview>
 
 ## Installation
@@ -33,6 +25,9 @@ import {
 npx shadcn@latest add https://odiaui.vercel.app/r/card.json
 ```
 
+Colours come only from shadcn theme tokens, so cards follow your theme
+automatically in light and dark mode.
+
 ## Usage
 
 ```tsx
@@ -40,29 +35,92 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-export function Example() {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Konark</CardTitle>
-        <CardDescription>Sun Temple, Odisha</CardDescription>
-      </CardHeader>
-      <CardContent>Built with odiaui.</CardContent>
-    </Card>
-  );
-}
 ```
 
-## Subcomponents
+```tsx
+<Card>
+  <CardHeader>
+    <CardTitle>Title</CardTitle>
+    <CardDescription>Description</CardDescription>
+  </CardHeader>
+  <CardContent>Content</CardContent>
+  <CardFooter>Footer</CardFooter>
+</Card>
+```
 
-- `Card` — the outer container.
-- `CardHeader` — the header layout.
-- `CardTitle` — the card heading.
-- `CardDescription` — supporting text below the heading.
-- `CardAction` — an optional action aligned to the top-right of the header.
-- `CardContent` — the main content area.
-- `CardFooter` — the footer layout.
+Heritage is on by default: every card carries a faint **deula
+watermark** cropped into its bottom-right corner. Opt out with
+`watermark="none"`, or swap in the Konark wheel or a lotus with
+`watermark="chakra"` / `watermark="padma"`.
+
+## Examples
+
+### Media
+
+`CardMedia` renders an image or illustration that bleeds to the card
+edges — above the content by default, or beside it with
+`position="left"` (wrap it and the header in a flex row), or below
+with `position="bottom"`. Pair it with a `Badge` in `CardAction` for
+the classic heritage-tourism look.
+
+<ComponentPreview name="card-media">
+  <CardMediaDemo />
+</ComponentPreview>
+
+### Pricing
+
+Cards compose with the rest of the kit — here a `watermark="chakra"`
+card with a price line and a full-width `Button`.
+
+<ComponentPreview name="card-pricing">
+  <CardPricing />
+</ComponentPreview>
+
+### Ornament
+
+`CardOrnament` is a thin Ikat diamond strip — use it as a divider
+under a header (add `mx-6` to keep the card's inner padding).
+
+## API Reference
+
+### Card
+
+The outer container. A `relative isolate` flex column with the
+watermark layer behind the content.
+
+| Prop        | Type                                       | Default   | Description                                   |
+| ----------- | ------------------------------------------ | --------- | --------------------------------------------- |
+| `watermark` | `"none" \| "deula" \| "chakra" \| "padma"` | `"deula"` | Faint Odisha artwork in the card's corner.    |
+| `className` | `string`                                   | -         | Additional classes merged onto the container. |
+
+### CardHeader / CardTitle / CardDescription
+
+The header layout (grid with an optional action column), heading, and
+supporting text.
+
+### CardAction
+
+Aligned to the top-right of the header — badges, icon buttons, or
+bookmark toggles.
+
+### CardContent / CardFooter
+
+Main content area and footer row.
+
+### CardMedia
+
+| Prop       | Type                          | Default | Description                          |
+| ---------- | ----------------------------- | ------- | ------------------------------------ |
+| `position` | `"top" \| "left" \| "bottom"` | `"top"` | Which card edge the media bleeds to. |
+
+Style the image with `[&>img]:object-cover` (built in); any child
+element works, not just `<img>`.
+
+### CardOrnament
+
+Inline SVG with an Ikat diamond pattern; `className` recolours or
+insets it.

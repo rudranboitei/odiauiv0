@@ -32,6 +32,8 @@ export default defineConfig({
     "components/ui/dialog.tsx",
     "components/ui/sheet.tsx",
     "components/ui/slider.tsx",
+    "components/ui/toast.tsx",
+    "components/ui/card.tsx",
     "registry/**",
   ],
 });
