@@ -21,7 +21,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "A heritage-style button with Konark temple-and-wheel artwork, loading state, and a framed variant.",
+      "description": "A heritage-style button with a controllable Konark temple-and-wheel watermark (deula, chakra, or none), loading state, and a framed variant.",
       "dependencies": ["class-variance-authority", "@radix-ui/react-slot"],
       "files": [
         {
@@ -54,7 +54,7 @@
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "A composable card with header, content, footer, and action slots, plus a faint deula watermark on by default (chakra or padma as options), edge-bleeding image media slots, and an Ikat ornament strip.",
+      "description": "A composable card with size presets and a --card-spacing spacing variable, an opt-in faint Odisha watermark (deula, chakra, or padma), edge-bleeding image media slots, and an Ikat ornament strip.",
       "registryDependencies": ["badge"],
       "files": [
         {
@@ -189,6 +189,20 @@
           "path": "registry/new-york/switch.tsx",
           "type": "registry:ui",
           "target": "components/ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "A Base UI set of toggle buttons sharing pressed state, single or multiple selection, with default, ghost, outline, and secondary variants and five sizes.",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/new-york/toggle-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle-group.tsx"
         }
       ]
     },

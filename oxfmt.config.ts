@@ -41,6 +41,7 @@ export default defineConfig({
     "components/ui/slider.tsx",
     "components/ui/toast.tsx",
     "components/ui/card.tsx",
+    "components/ui/toggle-group.tsx",
     "registry/**",
   ],
   jsxSingleQuote: false,

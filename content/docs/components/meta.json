@@ -18,6 +18,7 @@
     "slider",
     "spinner",
     "switch",
+    "toggle-group",
     "textarea",
     "toast"
   ]

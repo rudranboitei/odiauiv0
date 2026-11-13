@@ -1,0 +1,91 @@
+---
+title: Toggle Group
+description: A Base UI set of toggle buttons sharing pressed state, single or multiple selection, with default, ghost, outline, and secondary variants and five sizes.
+---
+
+import { ToggleGroupDemo } from "@/examples/toggle-group";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+
+<ComponentPreview name="toggle-group">
+  <ToggleGroupDemo />
+</ComponentPreview>
+
+## Installation
+
+```bash
+npx shadcn@latest add https://odiaui.vercel.app/r/toggle-group.json
+```
+
+## Usage
+
+```tsx
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+```
+
+```tsx
+<ToggleGroup variant="outline">
+  <ToggleGroupItem value="bold">
+    <BoldIcon />
+  </ToggleGroupItem>
+  <ToggleGroupItem value="italic">
+    <ItalicIcon />
+  </ToggleGroupItem>
+</ToggleGroup>
+```
+
+## Examples
+
+### Single and multiple selection
+
+By default only one item can be pressed. Pass `multiple` to allow
+several, and control the pressed values with `value` /
+`onValueChange` (arrays):
+
+```tsx
+const [formatting, setFormatting] = React.useState(["bold"]);
+
+<ToggleGroup
+  multiple
+  value={formatting}
+  onValueChange={(value) => setFormatting(value)}
+>
+  ...
+</ToggleGroup>;
+```
+
+### Sizes and variants
+
+Items reuse the toggle styles: `variant="default" | "ghost" |
+"outline" | "secondary"` and `size="default" | "sm" | "lg" | "icon" |
+"icon-sm"`, set on the group or per item.
+
+```tsx
+<ToggleGroup variant="outline" size="sm">
+  <ToggleGroupItem value="4">16px</ToggleGroupItem>
+  <ToggleGroupItem value="8">32px</ToggleGroupItem>
+</ToggleGroup>
+```
+
+## API Reference
+
+### ToggleGroup
+
+The Base UI group root — renders a flex row of items and owns the
+pressed-state context.
+
+| Prop            | Type                        | Default | Description                                    |
+| --------------- | --------------------------- | ------- | ---------------------------------------------- |
+| `value`         | `string[]`                  | -       | Controlled pressed values (controlled mode).   |
+| `defaultValue`  | `string[]`                  | `[]`    | Initial pressed values (uncontrolled mode).    |
+| `onValueChange` | `(value: string[]) => void` | -       | Fired with all pressed values when it changes. |
+| `multiple`      | `boolean`                   | `false` | Allow several items pressed at once.           |
+| `disabled`      | `boolean`                   | `false` | Disable every item in the group.               |
+| `variant`       | via items                   | -       | Set on items; see `ToggleGroupItem`.           |
+
+### ToggleGroupItem
+
+A Base UI `Toggle` bound to the group context. Pass a `value` to
+identify it, and style with `variant` / `size` (`default`, `ghost`,
+`outline`, `secondary` × `default`, `sm`, `lg`, `icon`, `icon-sm`).
+Pressed items receive `data-pressed`, which drives the checked
+colours.
