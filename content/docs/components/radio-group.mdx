@@ -1,0 +1,92 @@
+---
+title: Radio Group
+description: A Base UI radio group with token-based checked and invalid states and full keyboard navigation.
+---
+
+import { RadioGroupDemo } from "@/examples/radio-group";
+import { RadioGroupDisabled } from "@/examples/radio-group-disabled";
+import { RadioGroupMotifs } from "@/examples/radio-group-motifs";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+
+<ComponentPreview name="radio-group">
+  <RadioGroupDemo />
+</ComponentPreview>
+
+## Installation
+
+```bash
+npx shadcn@latest add https://odiaui.vercel.app/r/radio-group.json
+```
+
+## Usage
+
+```tsx
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+```
+
+```tsx
+<RadioGroup defaultValue="puri">
+  <div className="flex items-center gap-2">
+    <RadioGroupItem value="puri" id="puri" />
+    <Label htmlFor="puri">Puri</Label>
+  </div>
+</RadioGroup>
+```
+
+## Examples
+
+### Motifs
+
+The checked indicator is a cultural icon from the Badge component's
+set — `chakra` by default, replacing the plain shadcn dot — and the
+unchecked ring is dashed, an ikat band feel. Pass any motif name, or
+`motif="none"` for the plain dot.
+
+<ComponentPreview name="radio-group-motifs">
+  <RadioGroupMotifs />
+</ComponentPreview>
+
+### Selection
+
+Arrow keys move between items and select them; the checked item fills
+with the primary token.
+
+<ComponentPreview name="radio-group">
+  <RadioGroupDemo />
+</ComponentPreview>
+
+### Disabled Items
+
+Disable individual radios with the `disabled` prop, or the whole group
+by setting `disabled` on the root.
+
+<ComponentPreview name="radio-group-disabled">
+  <RadioGroupDisabled />
+</ComponentPreview>
+
+## API Reference
+
+### RadioGroup
+
+Wraps Base UI's radio group.
+
+| Prop            | Type                            | Default | Description                               |
+| --------------- | ------------------------------- | ------- | ----------------------------------------- |
+| `value`         | `unknown`                       | -       | Controlled selected value.                |
+| `defaultValue`  | `unknown`                       | -       | Initially selected value.                 |
+| `onValueChange` | `(value, eventDetails) => void` | -       | Called when the selection changes.        |
+| `disabled`      | `boolean`                       | `false` | Disables every radio in the group.        |
+| `className`     | `string`                        | -       | Additional classes merged onto the group. |
+
+### RadioGroupItem
+
+| Prop        | Type                      | Default    | Description                                   |
+| ----------- | ------------------------- | ---------- | --------------------------------------------- |
+| `value`     | `unknown`                 | -          | The value this radio represents.              |
+| `motif`     | `BadgeIconName \| "none"` | `"chakra"` | Cultural icon replacing the dot when checked. |
+| `disabled`  | `boolean`                 | `false`    | Disables the radio.                           |
+| `className` | `string`                  | -          | Additional classes merged onto the item.      |
+
+See the [Base UI documentation](https://base-ui.com/react/components/radio-group) for more information.
