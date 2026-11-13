@@ -143,8 +143,8 @@ export const RegistryAddButton = ({
           </DrawerContent>
         </Drawer>
       ) : (
-        <Dialog open={isOpen} onOpenChange={setIsOpen} sounds>
-          <DialogTrigger asChild>{trigger}</DialogTrigger>
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogTrigger render={trigger} />
           <DialogContent className="sm:max-w-lg">
             <DialogHeader>
               <DialogTitle>{title}</DialogTitle>
@@ -160,9 +160,7 @@ export const RegistryAddButton = ({
               copyEvent="copy_registry_command"
             />
             <DialogFooter>
-              <DialogClose asChild>
-                <Button size="sm">Done</Button>
-              </DialogClose>
+              <DialogClose render={<Button size="sm">Done</Button>} />
             </DialogFooter>
           </DialogContent>
         </Dialog>

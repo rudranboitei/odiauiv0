@@ -175,6 +175,66 @@
           "target": "components/ui/avatar.tsx"
         }
       ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A Base UI toggle switch with a cultural chakra motif in the thumb when checked, sm and default sizes, and theme-token track colours.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["badge"],
+      "files": [
+        {
+          "path": "registry/new-york/switch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "A Base UI radio group with a dashed ikat-style unchecked ring, a cultural chakra indicator when checked, and full keyboard navigation.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["badge"],
+      "files": [
+        {
+          "path": "registry/new-york/radio-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/radio-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "A Base UI dialog with size presets, faint deula and chakra watermarks, an Ikat-patterned banner header, media slots, and an Ikat ornament strip.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/new-york/dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "A Base UI sheet with a faint Konark temple watermark on by default (opt-out-able), plus a chakra watermark, an Ikat ornament strip, a grabber handle, header icon slots, and rounded top and bottom edges.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/new-york/sheet.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sheet.tsx"
+        }
+      ]
     }
   ]
 }

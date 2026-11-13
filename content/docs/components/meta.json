@@ -8,11 +8,15 @@
     "badge",
     "button",
     "card",
+    "dialog",
     "label",
     "input",
+    "radio-group",
     "separator",
+    "sheet",
     "skeleton",
     "spinner",
+    "switch",
     "textarea"
   ]
 }
