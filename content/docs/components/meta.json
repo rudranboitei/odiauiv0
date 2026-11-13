@@ -3,6 +3,8 @@
   "pages": [
     "index",
     "accordion",
+    "alert",
+    "avatar",
     "badge",
     "button",
     "card",

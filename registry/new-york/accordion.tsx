@@ -1,149 +1,274 @@
-"use client";
+"use client"
 
-/**
- * OdiaUI — Accordion (Base UI) · "Heritage" style
- * Tailwind classes only. No custom CSS, no custom keyframes, no image assets.
+import * as React from "react"
+import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+import { BadgeIcon, type BadgeIconName } from "@/components/ui/badge"
+
+/* ───────────────────────────────────────────────────────────
+ * OdiaUI Accordion
  *
- * Registry deps:  @base-ui/react, lucide-react
- * Needs:          cn() from "@/lib/utils"  (change the import to match your registry alias)
- * Optional:       odia-icons.tsx for the SVG medallion icons
- *
- * Palette: gold #e8b960 / #d29b3d · indigo #2a2160 · parchment #f7e0b5 / #f1cb8d
- *          ink #2b1d10 · sindoor #c2481b
- */
+ * shadcn tokens only. Indicator icons are drawn inline in
+ * currentColor — no icon imports. The `motif` prop reuses the
+ * cultural icons from Badge (chakra, deula, odissi, ikat,
+ * jagannath, pattachitra, padma, bana); `icon` accepts any node.
+ * ─────────────────────────────────────────────────────────── */
 
-import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
-import { ChevronDown } from "lucide-react";
-import * as React from "react";
+/* ── Indicator icons ───────────────────────────────────── */
 
-import { cn } from "@/lib/utils";
+const SPOKES_8 = Array.from({ length: 8 }, (_, i) => i * 45)
 
-/* ---------------------------------- Root --------------------------------- */
+/** Konark wheel — flips over when the panel opens */
+function ChakraIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      aria-hidden
+      {...props}
+    >
+      <circle cx="12" cy="12" r="10" strokeWidth="1.8" />
+      <circle cx="12" cy="12" r="7.6" strokeWidth="0.9" />
+      {SPOKES_8.map((a) => (
+        <line key={a} x1="12" y1="4.4" x2="12" y2="8.2" strokeWidth="1.8" transform={`rotate(${a} 12 12)`} />
+      ))}
+      {SPOKES_8.map((a) => (
+        <line key={a} x1="12" y1="4.4" x2="12" y2="7" strokeWidth="0.9" transform={`rotate(${a + 22.5} 12 12)`} />
+      ))}
+      <circle cx="12" cy="12" r="2.4" strokeWidth="1.4" />
+      <circle cx="12" cy="12" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
 
-const Accordion = ({ className, ...props }: AccordionPrimitive.Root.Props) => (
-  <AccordionPrimitive.Root
-    data-slot="accordion"
-    // px-4 leaves room for the diamond ornament that overhangs the bar edge
-    className={cn(
-      "flex w-full flex-col gap-2 px-2 text-sm sm:gap-3.5 sm:px-4 sm:text-[0.9375rem]",
-      className
-    )}
-    {...props}
-  />
-);
+function ChevronIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      {...props}
+    >
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  )
+}
 
-/* ---------------------------------- Item --------------------------------- */
+function PlusIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      aria-hidden
+      {...props}
+    >
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+  )
+}
 
-const AccordionItem = ({
-  className,
-  ...props
-}: AccordionPrimitive.Item.Props) => (
-  <AccordionPrimitive.Item
-    data-slot="accordion-item"
-    className={cn("flex flex-col", className)}
-    {...props}
-  />
-);
+const INDICATORS = {
+  chevron: ChevronIcon,
+  chakra: ChakraIcon,
+  plus: PlusIcon,
+} as const
 
-/* -------------------------------- Trigger -------------------------------- */
+/* ── Variants ──────────────────────────────────────────── */
 
-/** Sindoor diamond ornament with a gold edge */
-const Diamond = ({ className }: { className?: string }) => (
-  <span
-    aria-hidden
-    className={cn(
-      "size-2.5 shrink-0 rotate-45 border-[1.5px] border-[#e8b960] bg-[#c2481b] sm:size-4 sm:border-2",
-      "shadow-[0_1px_3px_rgb(0_0_0/0.45)]",
-      className
-    )}
-  />
-);
+const itemVariants = cva("", {
+  variants: {
+    variant: {
+      /** Rows divided by hairlines */
+      separated: "border-b last:border-0",
+      /** Each item is its own rounded card */
+      card: "rounded-xl border bg-card/50 shadow-xs",
+    },
+  },
+  defaultVariants: { variant: "separated" },
+})
+
+const triggerVariants = cva(
+  "group/trigger flex w-full flex-1 items-center gap-2 text-left font-medium outline-none transition-[color,background-color,box-shadow] focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none data-disabled:pointer-events-none data-disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        separated: "hover:underline underline-offset-4",
+        card: "rounded-lg hover:bg-muted/50 focus-visible:rounded-lg",
+      },
+      size: {
+        sm: "min-h-9 py-1.5 text-sm [&_svg]:size-3.5",
+        md: "min-h-11 py-2 text-sm [&_svg]:size-4",
+        lg: "min-h-13 py-2.5 text-base [&_svg]:size-5",
+      },
+    },
+    compoundVariants: [
+      { variant: "separated", size: "sm", class: "px-3" },
+      { variant: "separated", size: "md", class: "px-1" },
+      { variant: "separated", size: "lg", class: "px-1" },
+      { variant: "card", size: "sm", class: "px-3" },
+      { variant: "card", size: "md", class: "px-3.5" },
+      { variant: "card", size: "lg", class: "px-4" },
+    ],
+    defaultVariants: { variant: "separated", size: "md" },
+  }
+)
+
+const contentVariants = cva("text-sm text-muted-foreground", {
+  variants: {
+    variant: {
+      separated: "px-1",
+      card: "px-3.5",
+    },
+    size: {
+      sm: "pb-3 text-xs",
+      md: "pb-4 text-sm",
+      lg: "pb-5 text-sm",
+    },
+  },
+  compoundVariants: [
+    { variant: "card", size: "sm", class: "px-3" },
+    { variant: "card", size: "lg", class: "px-4" },
+  ],
+  defaultVariants: { variant: "separated", size: "md" },
+})
+
+type AccordionConfig = {
+  variant: "separated" | "card"
+  size: "sm" | "md" | "lg"
+}
+
+const AccordionContext = React.createContext<AccordionConfig>({
+  variant: "separated",
+  size: "md",
+})
+
+/* ── Components ────────────────────────────────────────── */
+
+type AccordionProps = AccordionPrimitive.Root.Props &
+  VariantProps<typeof itemVariants> & {
+    /** Trigger and panel density. */
+    size?: AccordionConfig["size"]
+  }
+
+function Accordion({ className, variant = "separated", size = "md", ...props }: AccordionProps) {
+  return (
+    <AccordionContext.Provider value={{ variant: variant ?? "separated", size: size ?? "md" }}>
+      <AccordionPrimitive.Root
+        data-slot="accordion"
+        className={cn(
+          "flex w-full flex-col text-sm",
+          variant === "card" && "gap-2.5",
+          className
+        )}
+        {...props}
+      />
+    </AccordionContext.Provider>
+  )
+}
+
+function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
+  const { variant } = React.useContext(AccordionContext)
+  return (
+    <AccordionPrimitive.Item
+      data-slot="accordion-item"
+      className={cn(itemVariants({ variant }), className)}
+      {...props}
+    />
+  )
+}
 
 type AccordionTriggerProps = AccordionPrimitive.Trigger.Props & {
-  /** Medallion artwork: an inline <svg> (see odia-icons.tsx), lucide icon or <img> */
-  icon?: React.ReactNode;
-};
+  /** Cultural motif from Badge (chakra, deula, odissi, ikat, jagannath, pattachitra, padma, bana) in a coin medallion. */
+  motif?: BadgeIconName
+  /** Custom medallion artwork: an inline <svg>, lucide icon or <img>. Overrides `motif`. */
+  icon?: React.ReactNode
+  /** Inline icon that rotates when the panel opens. */
+  indicator?: keyof typeof INDICATORS
+}
 
-const AccordionTrigger = ({
+function AccordionTrigger({
   className,
   children,
+  motif,
   icon,
+  indicator = "chevron",
   ...props
-}: AccordionTriggerProps) => (
-  <AccordionPrimitive.Header className="flex">
-    <AccordionPrimitive.Trigger
-      data-slot="accordion-trigger"
+}: AccordionTriggerProps) {
+  const { variant, size } = React.useContext(AccordionContext)
+  const Indicator = INDICATORS[indicator]
+  const medallion = icon ?? (motif ? <BadgeIcon name={motif} /> : null)
+
+  return (
+    <AccordionPrimitive.Header className="flex">
+      <AccordionPrimitive.Trigger
+        data-slot="accordion-trigger"
+        className={cn(triggerVariants({ variant, size }), className)}
+        {...props}
+      >
+        {medallion && (
+          <span
+            aria-hidden
+            className="grid size-6 shrink-0 place-items-center rounded-full bg-muted text-muted-foreground ring-1 ring-border ring-inset transition-colors group-aria-expanded/trigger:text-foreground [&_img]:size-full [&_svg]:size-3.5"
+          >
+            {medallion}
+          </span>
+        )}
+        <span className="min-w-0 flex-1 break-words">{children}</span>
+        <Indicator
+          data-slot="accordion-trigger-icon"
+          className="pointer-events-none shrink-0 text-muted-foreground transition-transform duration-300 group-aria-expanded/trigger:rotate-180"
+        />
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
+  )
+}
+
+function AccordionContent({ className, children, ...props }: AccordionPrimitive.Panel.Props) {
+  const { variant, size } = React.useContext(AccordionContext)
+  return (
+    <AccordionPrimitive.Panel
+      data-slot="accordion-content"
       className={cn(
-        "group/trigger relative flex min-h-11 w-full items-center gap-2 rounded-lg border py-1.5 pr-2 text-left outline-none sm:min-h-14 sm:gap-3 sm:rounded-xl sm:border-2 sm:pr-4",
-        icon ? "pl-2 sm:pl-3" : "pl-3 sm:pl-5",
-        "transition-all duration-300",
-        // inner hairline for the engraved, double-border look
-        "before:pointer-events-none before:absolute before:inset-0.75 before:rounded-[7px] before:border before:border-[#fff2c4]/45",
-        // closed: golden bar
-        "border-[#a97a2c] bg-linear-to-b from-[#ebbd64] to-[#d29b3d] text-[#2b1d10]",
-        "shadow-[inset_0_1px_0_rgb(255_255_255/0.5),inset_0_-2px_0_rgb(120_80_20/0.25),0_3px_6px_rgb(60_30_0/0.3)]",
-        "hover:brightness-105",
-        // open: deep indigo bar, gold text
-        "aria-expanded:border-[#e0b04e] aria-expanded:from-[#2c2364] aria-expanded:to-[#1f1857] aria-expanded:text-[#f2c867]",
-        "aria-expanded:before:border-[#e0b04e]/35",
-        "aria-expanded:shadow-[inset_0_1px_0_rgb(255_255_255/0.12),0_6px_14px_rgb(35_26_92/0.45)]",
-        "focus-visible:ring-4 focus-visible:ring-[#e0b04e]/60",
-        "disabled:pointer-events-none disabled:opacity-50 data-disabled:pointer-events-none data-disabled:opacity-50",
+        "h-(--accordion-panel-height) overflow-hidden",
+        "transition-[height,opacity] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]",
+        "data-starting-style:h-0 data-starting-style:opacity-0",
+        "data-ending-style:h-0 data-ending-style:opacity-0",
+        "motion-reduce:transition-none",
         className
       )}
       {...props}
     >
-      {icon && (
-        <>
-          <Diamond className="absolute top-1/2 -left-1.5 -translate-y-1/2 sm:-left-3.5" />
-          <span className="relative flex shrink-0 items-center gap-1 sm:gap-2.5">
-            <span className="grid size-7 place-items-center rounded-full bg-[#1e1752] p-0.5 shadow-[0_2px_4px_rgb(0_0_0/0.4)] ring-1 ring-[#e8b960] ring-offset-1 ring-offset-[#1e1752]/0 sm:size-12 sm:p-1.5 sm:ring-2 [&_img]:size-full [&_img]:rounded-full [&_svg]:size-full">
-              {icon}
-            </span>
-            <Diamond className="hidden sm:block" />
-          </span>
-        </>
-      )}
-      <span className="relative min-w-0 flex-1 break-words">{children}</span>
-      <ChevronDown
-        data-slot="accordion-trigger-icon"
-        strokeWidth={2.5}
-        className="pointer-events-none relative size-4 shrink-0 transition-transform duration-300 group-aria-expanded/trigger:rotate-180 sm:size-5"
-      />
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
-);
+      <div className={cn(contentVariants({ variant, size }), variant === "card" && "pt-0")}>
+        {children}
+      </div>
+    </AccordionPrimitive.Panel>
+  )
+}
 
-/* -------------------------------- Content -------------------------------- */
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }
+export type { AccordionProps, AccordionTriggerProps }
 
-const AccordionContent = ({
-  className,
-  children,
-  ...props
-}: AccordionPrimitive.Panel.Props) => (
-  <AccordionPrimitive.Panel
-    data-slot="accordion-content"
-    className={cn(
-      "h-(--accordion-panel-height) overflow-hidden",
-      "transition-[height,opacity] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]",
-      "data-starting-style:h-0 data-starting-style:opacity-0",
-      "data-ending-style:h-0 data-ending-style:opacity-0",
-      "motion-reduce:transition-none"
-    )}
-    {...props}
-  >
-    <div
-      className={cn(
-        "mx-0.5 mt-1.5 rounded-lg border border-[#c99b55] p-3.5 sm:mx-1 sm:mt-2 sm:rounded-xl sm:border-2 sm:p-5",
-        "bg-linear-to-b from-[#f8e3ba] to-[#f1cb8d] text-[#2b1d10]",
-        "shadow-[inset_0_2px_8px_rgb(150_100_30/0.2),0_2px_4px_rgb(60_30_0/0.15)]",
-        "[&_a]:underline [&_a]:underline-offset-2 [&_p:not(:last-child)]:mb-3",
-        className
-      )}
-    >
-      {children}
-    </div>
-  </AccordionPrimitive.Panel>
-);
+/* ── Usage ──────────────────────────────────────────────────
+<Accordion defaultValue={["item-1"]}>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+  </AccordionItem>
+</Accordion>
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+<Accordion variant="card" multiple />
+<AccordionTrigger indicator="chakra" />
+<AccordionTrigger indicator="plus" />
+<Accordion size="sm" />
+*/

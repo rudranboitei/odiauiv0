@@ -6,18 +6,14 @@
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
-      "description": "A heritage-style Base UI accordion with gold and indigo bars, animated panels, and optional Odisha medallion icons.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "description": "A token-based Base UI accordion with cultural badge motifs, separated or card items, and rotating chakra, chevron, and plus indicators.",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["badge"],
       "files": [
         {
           "path": "registry/new-york/accordion.tsx",
           "type": "registry:ui",
           "target": "components/ui/accordion.tsx"
-        },
-        {
-          "path": "registry/new-york/odia-icons.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/odia-icons.tsx"
         }
       ]
     },
@@ -148,6 +144,35 @@
           "path": "registry/new-york/textarea.tsx",
           "type": "registry:ui",
           "target": "components/ui/textarea.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "A callout with cultural badge motifs per variant, success, warning, and info colours, and an engraved ornament frame.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["badge"],
+      "files": [
+        {
+          "path": "registry/new-york/alert.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/alert.tsx"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "A Base UI avatar with optional Odisha heritage frames — chakra, padma, deula, ikat, pattachitra — accent colours, heritage fallbacks, and status badges.",
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/new-york/avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/avatar.tsx"
         }
       ]
     }

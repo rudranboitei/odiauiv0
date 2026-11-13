@@ -1,9 +1,10 @@
 ---
 title: Accordion
-description: A vertically stacked set of interactive headings that each reveal a section of content.
+description: A vertically stacked set of interactive headings that each reveal a section of content, with rotating chakra, chevron, and plus indicators.
 ---
 
 import { AccordionDemo } from "@/examples/accordion";
+import { AccordionIndicators } from "@/examples/accordion-indicators";
 import { AccordionPlain } from "@/examples/accordion-plain";
 import { AccordionMultiple } from "@/examples/accordion-multiple";
 import { AccordionDisabled } from "@/examples/accordion-disabled";
@@ -19,13 +20,10 @@ import { AccordionCard } from "@/examples/accordion-card";
 npx shadcn@latest add https://odiaui.vercel.app/r/accordion.json
 ```
 
-The install adds `components/ui/accordion.tsx` and the optional medallion icons
-in `components/ui/odia-icons.tsx`.
-
-This component targets Tailwind CSS 4 and a shadcn/ui project. The heritage
-palette is intentionally fixed; pass `className` to override individual styles.
-Typography is inherited from your project, so the accordion matches the rest of
-your UI.
+The install adds `components/ui/accordion.tsx` and pulls in the Badge
+component, whose cultural icons the triggers reuse. All colours come
+from your theme tokens and `currentColor`, so the accordion follows
+light and dark mode automatically.
 
 ## Usage
 
@@ -46,54 +44,45 @@ export function Example() {
           Yes. It adheres to the WAI-ARIA design pattern.
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-2">
-        <AccordionTrigger>Can I open more than one?</AccordionTrigger>
-        <AccordionContent>
-          Yes. Add the `multiple` prop to the root to allow several items to
-          stay open at once.
-        </AccordionContent>
-      </AccordionItem>
     </Accordion>
   );
 }
 ```
 
-## Icons
-
-Pass any React node to the `icon` prop to render it inside the round indigo
-medallion. The included `odia-icons.tsx` exports four ready-made SVG icons:
-`KonarkWheelIcon`, `JagannathIcon`, `SambalpuriIcon`, and `OdissiDancerIcon`.
-
-```tsx
-import { KonarkWheelIcon } from "@/components/ui/odia-icons";
-
-<AccordionTrigger icon={<KonarkWheelIcon />}>
-  Konark Sun Temple
-</AccordionTrigger>;
-```
-
-The `icon` prop is optional. Omit it for a compact accordion without the
-medallion, as shown in the [Without icons](#without-icons) example.
-
-## Composition
-
-Use the following composition to build an accordion:
-
-```txt
-Accordion
-├── AccordionItem
-│   ├── AccordionTrigger
-│   └── AccordionContent
-└── AccordionItem
-    ├── AccordionTrigger
-    └── AccordionContent
-```
-
 ## Examples
 
-### Without icons
+### Indicators
 
-Omit the `icon` prop for a compact trigger with the same heritage styling.
+The inline icon before the content flips over when the panel opens:
+`chevron` (the default), `chakra` (a Konark wheel), or `plus`. All are
+drawn inline in `currentColor`.
+
+<ComponentPreview name="accordion-indicators">
+  <AccordionIndicators />
+</ComponentPreview>
+
+### Cultural Motifs
+
+The `motif` prop puts one of the Badge component's cultural icons in a
+coin medallion beside the heading — `chakra`, `deula`, `odissi`, `ikat`,
+`jagannath`, `pattachitra`, `padma`, or `bana`. The icons are drawn
+inline in `currentColor`, so they pick up your theme colours and light
+up when their row opens.
+
+```tsx
+<AccordionTrigger motif="jagannath">
+  Pattachitra Art: Scrolls of Heritage
+</AccordionTrigger>
+```
+
+### Custom Icons
+
+Pass any React node to the `icon` prop to override the motif with your
+own artwork — an inline `<svg>`, a lucide icon, or an `<img>`.
+
+### Without Icons
+
+Omit the `icon` prop for a compact trigger.
 
 <ComponentPreview name="accordion-plain">
   <AccordionPlain />
@@ -101,7 +90,8 @@ Omit the `icon` prop for a compact trigger with the same heritage styling.
 
 ### Multiple
 
-Use the `multiple` prop to allow multiple items to be open at the same time.
+Use the `multiple` prop to allow multiple items to be open at the same
+time.
 
 <ComponentPreview name="accordion-multiple">
   <AccordionMultiple />
@@ -115,9 +105,11 @@ Use the `disabled` prop on `AccordionItem` to disable individual items.
   <AccordionDisabled />
 </ComponentPreview>
 
-### Inside a card
+### Card Items
 
-Wrap the accordion in a bordered container to group it with other content.
+`variant="card"` turns each item into its own rounded, bordered card
+instead of hairline-divided rows. `size` is available in `sm`, `md`,
+and `lg` on the root.
 
 <ComponentPreview name="accordion-card">
   <AccordionCard />
@@ -127,36 +119,44 @@ Wrap the accordion in a bordered container to group it with other content.
 
 ### Accordion
 
-| Prop            | Type                                  | Default |
-| --------------- | ------------------------------------- | ------- |
-| `multiple`      | `boolean`                             | `false` |
-| `defaultValue`  | `unknown[]`                           | -       |
-| `value`         | `unknown[]`                           | -       |
-| `onValueChange` | `(value: unknown[], details) => void` | -       |
-| `keepMounted`   | `boolean`                             | `false` |
-| `disabled`      | `boolean`                             | `false` |
-| `className`     | `string`                              | -       |
+Wraps Base UI's accordion root and provides the `variant` and `size` to
+every item, trigger, and panel through context.
+
+| Prop            | Type                                  | Default       | Description                                        |
+| --------------- | ------------------------------------- | ------------- | -------------------------------------------------- |
+| `variant`       | `"separated" \| "card"`               | `"separated"` | Hairline-divided rows or individual rounded cards. |
+| `size`          | `"sm" \| "md" \| "lg"`                | `"md"`        | Trigger height and panel density.                  |
+| `multiple`      | `boolean`                             | `false`       | Allow several items to stay open at once.          |
+| `defaultValue`  | `unknown[]`                           | -             | Initially open item values.                        |
+| `value`         | `unknown[]`                           | -             | Controlled open item values.                       |
+| `onValueChange` | `(value: unknown[], details) => void` | -             | Called when the open set changes.                  |
+| `disabled`      | `boolean`                             | `false`       | Disables every item.                               |
+| `className`     | `string`                              | -             | Additional classes merged onto the root.           |
 
 ### AccordionItem
 
-| Prop           | Type                      | Default |
-| -------------- | ------------------------- | ------- |
-| `value`        | `unknown`                 | auto    |
-| `disabled`     | `boolean`                 | `false` |
-| `onOpenChange` | `(open: boolean) => void` | -       |
-| `className`    | `string`                  | -       |
+| Prop        | Type      | Default | Description                     |
+| ----------- | --------- | ------- | ------------------------------- |
+| `value`     | `unknown` | auto    | The unique value of the item.   |
+| `disabled`  | `boolean` | `false` | Disables the item.              |
+| `className` | `string`  | -       | Additional classes on the item. |
 
 ### AccordionTrigger
 
-| Prop        | Type        | Default |
-| ----------- | ----------- | ------- |
-| `icon`      | `ReactNode` | -       |
-| `className` | `string`    | -       |
+| Prop        | Type                                                                                             | Default     | Description                                       |
+| ----------- | ------------------------------------------------------------------------------------------------ | ----------- | ------------------------------------------------- |
+| `motif`     | `"chakra" \| "deula" \| "odissi" \| "ikat" \| "jagannath" \| "pattachitra" \| "padma" \| "bana"` | -           | Cultural icon from Badge in a coin medallion.     |
+| `icon`      | `ReactNode`                                                                                      | -           | Custom medallion artwork; overrides `motif`.      |
+| `indicator` | `"chevron" \| "chakra" \| "plus"`                                                                | `"chevron"` | Inline icon that flips over when the panel opens. |
+| `className` | `string`                                                                                         | -           | Additional classes on the trigger.                |
 
 ### AccordionContent
 
-| Prop        | Type     | Default |
-| ----------- | -------- | ------- |
-| `className` | `string` | -       |
+The panel animates its height with Base UI's panel transition and
+respects `prefers-reduced-motion`.
+
+| Prop        | Type     | Default | Description                      |
+| ----------- | -------- | ------- | -------------------------------- |
+| `className` | `string` | -       | Additional classes on the panel. |
 
 See the [Base UI documentation](https://base-ui.com/react/components/accordion) for more information.

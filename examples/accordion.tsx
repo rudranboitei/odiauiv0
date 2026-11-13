@@ -4,17 +4,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  JagannathIcon,
-  KonarkWheelIcon,
-  OdissiDancerIcon,
-  SambalpuriIcon,
-} from "@/components/ui/odia-icons";
 
 export const AccordionDemo = () => (
   <Accordion defaultValue={["konark"]} className="max-w-2xl">
     <AccordionItem value="konark">
-      <AccordionTrigger icon={<KonarkWheelIcon />}>
+      <AccordionTrigger motif="chakra">
         Konark Sun Temple: Architectural Marvel
       </AccordionTrigger>
       <AccordionContent>
@@ -25,7 +19,7 @@ export const AccordionDemo = () => (
     </AccordionItem>
 
     <AccordionItem value="pattachitra">
-      <AccordionTrigger icon={<JagannathIcon />}>
+      <AccordionTrigger motif="jagannath">
         Pattachitra Art: Scrolls of Heritage
       </AccordionTrigger>
       <AccordionContent>
@@ -35,7 +29,7 @@ export const AccordionDemo = () => (
     </AccordionItem>
 
     <AccordionItem value="sambalpuri">
-      <AccordionTrigger icon={<SambalpuriIcon />}>
+      <AccordionTrigger motif="ikat">
         Sambalpuri Handlooms: A Weaver&apos;s Legacy
       </AccordionTrigger>
       <AccordionContent>
@@ -45,7 +39,7 @@ export const AccordionDemo = () => (
     </AccordionItem>
 
     <AccordionItem value="odissi">
-      <AccordionTrigger icon={<OdissiDancerIcon />}>
+      <AccordionTrigger motif="odissi">
         Odissi Dance: Sacred Expressions
       </AccordionTrigger>
       <AccordionContent>
