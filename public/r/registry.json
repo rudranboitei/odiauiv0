@@ -44,8 +44,8 @@
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
-      "description": "A compact label for status, categories, and metadata.",
-      "dependencies": ["class-variance-authority", "radix-ui"],
+      "description": "A badge with cultural icon, status dot, loading, and size variants drawn inline with theme tokens.",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
       "files": [
         {
           "path": "registry/new-york/badge.tsx",
