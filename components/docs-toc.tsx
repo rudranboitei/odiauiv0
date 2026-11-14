@@ -77,7 +77,7 @@ export const DocsTableOfContents = ({
     [toc]
   );
   const activeHeading = useActiveItem(itemIds);
-  const playTick = useFeedback({ sound: "tick" });
+  const playTick = useFeedback({ sound: "tap" });
 
   if (!toc?.length) {
     return null;

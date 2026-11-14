@@ -4,7 +4,10 @@ import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 import { useCallback, useEffect, useRef } from "react";
 
-import { dropdownClose, dropdownOpen } from "@/audio/core";
+import {
+  collapse as dropdownClose,
+  expand as dropdownOpen,
+} from "@/audio/minimal";
 import type { FeedbackType } from "@/hooks/use-feedback";
 import { useFeedback } from "@/hooks/use-feedback";
 import { cn } from "@/lib/utils";

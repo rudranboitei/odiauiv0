@@ -3,7 +3,10 @@
 import { Popover as PopoverPrimitive } from "radix-ui";
 import { useCallback, useEffect, useRef } from "react";
 
-import { dropdownClose, dropdownOpen } from "@/audio/core";
+import {
+  collapse as dropdownClose,
+  expand as dropdownOpen,
+} from "@/audio/minimal";
 import { useFeedback } from "@/hooks/use-feedback";
 import { cn } from "@/lib/utils";
 

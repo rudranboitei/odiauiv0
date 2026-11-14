@@ -4,7 +4,7 @@ import * as React from "react";
 import { useCallback, useEffect, useRef } from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
 
-import { drawerClose, drawerOpen } from "@/audio/core";
+import { collapse as drawerClose, expand as drawerOpen } from "@/audio/minimal";
 import { useFeedback } from "@/hooks/use-feedback";
 import { cn } from "@/lib/utils";
 

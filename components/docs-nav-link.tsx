@@ -10,6 +10,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useFeedback } from "@/hooks/use-feedback";
 import { cn } from "@/lib/utils";
 
 export const DocsNavLink = ({
@@ -19,6 +20,7 @@ export const DocsNavLink = ({
   tooltip,
   transitionTypes,
   size = "icon-sm",
+  onClick,
   ...props
 }: React.ComponentProps<typeof Button> & {
   href: string;
@@ -27,6 +29,8 @@ export const DocsNavLink = ({
   tooltip?: { title: string; icon: React.ReactNode };
   transitionTypes?: string[];
 }) => {
+  const playClick = useFeedback({ sound: "click" });
+
   const link = (
     <Button
       variant="ghost"
@@ -36,6 +40,10 @@ export const DocsNavLink = ({
         className
       )}
       asChild
+      onClick={(e) => {
+        playClick();
+        onClick?.(e);
+      }}
       {...props}
     >
       <Link href={href} transitionTypes={transitionTypes}>

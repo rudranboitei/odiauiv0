@@ -5,12 +5,12 @@ import {
   ArrowRightIcon,
   CornerDownLeftIcon,
   CircleDashedIcon,
+  SearchIcon,
   SquareDashedIcon,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -320,19 +320,22 @@ export const CommandMenu = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger
         render={
-          <Button
-            variant="secondary"
-            className={cn(
-              "bg-surface text-surface-foreground/60 dark:bg-card relative h-8 w-full justify-start pl-2.5 font-normal shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64"
-            )}
+          <button
+            type="button"
+            className="border-input bg-surface text-muted-foreground hover:bg-accent/50 hover:text-foreground dark:bg-input/30 flex h-8 w-full cursor-pointer items-center gap-2 overflow-hidden rounded-md border pl-2.5 text-sm font-normal whitespace-nowrap transition-colors sm:pr-12 md:w-40 lg:w-56 xl:w-64 [&_svg]:size-4 [&_svg]:shrink-0"
             onClick={handleOpenClick}
             {...props}
           />
         }
       >
-        <span className="hidden lg:inline-flex">Search documentation...</span>
-        <span className="inline-flex lg:hidden">Search...</span>
-        <div className="absolute top-1.5 right-1.5 hidden gap-1 sm:flex">
+        <SearchIcon className="opacity-60" />
+        <span className="hidden min-w-0 truncate lg:inline-flex">
+          Search documentation...
+        </span>
+        <span className="inline-flex min-w-0 truncate lg:hidden">
+          Search...
+        </span>
+        <div className="ml-auto hidden gap-1 sm:flex">
           <Kbd>{isMac ? "⌘" : "Ctrl"}</Kbd>
           <Kbd className="aspect-square">K</Kbd>
         </div>

@@ -5,7 +5,7 @@ import { defineSound } from "@web-kits/audio";
 import { useCallback } from "react";
 import { useWebHaptics } from "web-haptics/react";
 
-import * as audio from "@/audio/core";
+import * as audio from "@/audio/minimal";
 import { useHapticsEnabled } from "@/hooks/use-haptic-toggle";
 import { useSoundEnabled } from "@/hooks/use-sound-toggle";
 

@@ -54,6 +54,7 @@ const SidebarPageGroup = ({
                 asChild
                 className={MENU_BUTTON_CLS}
                 isActive={page.url === pathname}
+                sound="click"
               >
                 <Link href={page.url}>{page.name}</Link>
               </SidebarMenuButton>
@@ -96,6 +97,7 @@ export const DocsSidebar = ({
                         ? pathname === href
                         : pathname.startsWith(href)
                     }
+                    sound="click"
                   >
                     <Link href={href}>{name}</Link>
                   </SidebarMenuButton>
