@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { DocsTocFooter } from "@/components/docs-toc-footer";
 import { DocsTocRail } from "@/components/docs-toc-rail";
 import { PageTransition } from "@/components/page-transition";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { GITHUB, LINK } from "@/constants/links";
 import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/utils";
 import { BreadcrumbJsonLd } from "@/seo/json-ld";
@@ -217,7 +219,11 @@ const BlocksPage = () => (
         </div>
         <DocsTocRail
           toc={[{ depth: 1, title: "What's coming", url: "#whats-coming" }]}
-        />
+        >
+          <DocsTocFooter
+            editHref={`${LINK.GITHUB}/edit/${GITHUB.branch}/app/(app)/(pages)/blocks/page.tsx`}
+          />
+        </DocsTocRail>
       </div>
     </PageTransition>
   </>

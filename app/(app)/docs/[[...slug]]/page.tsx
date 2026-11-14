@@ -253,7 +253,7 @@ const Page = async (props: { params: Promise<{ slug?: string[] }> }) => {
             </div>
           </div>
           <DocsTocRail toc={doc.toc ?? []}>
-            <DocsTocFooter docId={page.path} className="mx-6" />
+            <DocsTocFooter docId={page.path} />
           </DocsTocRail>
         </div>
       </PageTransition>

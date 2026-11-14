@@ -10,46 +10,56 @@ import { cn } from "@/lib/utils";
 
 export const DocsTocFooter = ({
   docId,
+  editHref,
   className,
 }: {
-  docId: string;
+  docId?: string;
+  editHref?: string;
   className?: string;
-}) => (
-  <div className={cn("flex flex-col gap-2", className)}>
-    {docId && (
+}) => {
+  const resolvedEditHref =
+    editHref ??
+    (docId
+      ? `${LINK.GITHUB}/edit/${GITHUB.branch}/${DOCS_DIR}/${docId}`
+      : undefined);
+
+  return (
+    <div className={cn("flex flex-col gap-2", className)}>
+      {resolvedEditHref && (
+        <a
+          href={resolvedEditHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="transition-colors text-[0.8rem] hover:text-foreground text-muted-foreground [&_svg]:size-3 flex gap-1.5 items-center"
+          onClick={() =>
+            trackEvent({
+              name: "click_edit_page",
+              properties: { doc: docId ?? editHref ?? "" },
+            })
+          }
+        >
+          <SquarePenIcon />
+          Edit this page
+        </a>
+      )}
       <a
-        href={`${LINK.GITHUB}/edit/${GITHUB.branch}/${DOCS_DIR}/${docId}`}
+        href={LINK.X}
         target="_blank"
         rel="noopener noreferrer"
         className="transition-colors text-[0.8rem] hover:text-foreground text-muted-foreground [&_svg]:size-3 flex gap-1.5 items-center"
-        onClick={() =>
-          trackEvent({
-            name: "click_edit_page",
-            properties: { doc: docId },
-          })
-        }
       >
-        <SquarePenIcon />
-        Edit this page
+        <XIcon />
+        Follow @rudranboitei
       </a>
-    )}
-    <a
-      href={LINK.X}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="transition-colors text-[0.8rem] hover:text-foreground text-muted-foreground [&_svg]:size-3 flex gap-1.5 items-center"
-    >
-      <XIcon />
-      Follow @rudranboitei
-    </a>
-    <a
-      href={LINK.DISCUSSIONS}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="transition-colors text-[0.8rem] hover:text-foreground text-muted-foreground [&_svg]:size-3 flex gap-1.5 items-center"
-    >
-      <MessageCircleIcon />
-      Join the discussion
-    </a>
-  </div>
-);
+      <a
+        href={LINK.DISCUSSIONS}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="transition-colors text-[0.8rem] hover:text-foreground text-muted-foreground [&_svg]:size-3 flex gap-1.5 items-center"
+      >
+        <MessageCircleIcon />
+        Join the discussion
+      </a>
+    </div>
+  );
+};

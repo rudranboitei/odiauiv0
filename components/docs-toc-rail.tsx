@@ -22,6 +22,6 @@ export const DocsTocRail = ({
         <DocsTableOfContents toc={toc} />
       </div>
     ) : null}
-    {children}
+    {children ? <div className="mx-6">{children}</div> : null}
   </div>
 );

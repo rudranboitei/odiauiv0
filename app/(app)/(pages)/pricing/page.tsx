@@ -1,19 +1,23 @@
-import { CheckIcon, ExternalLink, Heart } from "lucide-react";
+import { CheckIcon, ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { DocsTocFooter } from "@/components/docs-toc-footer";
 import { DocsTocRail } from "@/components/docs-toc-rail";
 import { ExternalLinkButton } from "@/components/external-link-button";
+import { GithubIcon } from "@/components/icons";
 import { PageTransition } from "@/components/page-transition";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { LINK } from "@/constants/links";
+import { GITHUB, LINK } from "@/constants/links";
 import { ROUTES } from "@/constants/routes";
 import { BreadcrumbJsonLd } from "@/seo/json-ld";
 import { createPageMetadata } from "@/seo/metadata";
@@ -63,11 +67,14 @@ const PricingPage = () => (
             className="border-grid border-b px-4 py-12 lg:px-8 lg:py-16"
             id="plans"
           >
-            <div className="mx-auto grid w-full max-w-4xl gap-4 lg:grid-cols-2">
-              <Card className="gap-4 py-6" id="free">
-                <CardHeader>
+            <div className="mx-auto grid w-full max-w-4xl gap-6 lg:grid-cols-2">
+              <Card className="flex flex-col" id="free">
+                <CardHeader className="border-b">
+                  <CardAction>
+                    <Badge variant="secondary">Open source</Badge>
+                  </CardAction>
                   <CardDescription>Free forever</CardDescription>
-                  <div className="flex items-baseline gap-2">
+                  <div className="flex items-baseline gap-1.5">
                     <CardTitle className="text-4xl font-semibold tracking-tight">
                       $0
                     </CardTitle>
@@ -76,28 +83,35 @@ const PricingPage = () => (
                     </span>
                   </div>
                 </CardHeader>
-                <CardContent className="flex flex-col gap-4">
-                  <ul className="flex flex-col gap-2.5">
+                <CardContent className="flex flex-1 flex-col gap-5">
+                  <ul className="flex flex-col gap-3 pt-1">
                     {FREE_FEATURES.map((feature) => (
                       <li
-                        className="flex items-start gap-2.5 text-sm"
+                        className="flex items-start gap-3 text-sm"
                         key={feature}
                       >
-                        <CheckIcon className="text-foreground mt-0.5 size-4 shrink-0" />
-                        <span className="text-muted-foreground">{feature}</span>
+                        <span className="border-grid bg-surface mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full border">
+                          <CheckIcon className="text-foreground size-3" />
+                        </span>
+                        <span className="text-muted-foreground leading-relaxed">
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>
-                  <Button asChild size="lg" className="mt-2">
+                  <Button asChild className="mt-auto w-full" size="lg">
                     <Link href={ROUTES.DOCS_COMPONENTS}>Browse components</Link>
                   </Button>
                 </CardContent>
               </Card>
 
-              <Card className="gap-4 py-6" id="sponsor">
-                <CardHeader>
+              <Card className="flex flex-col" id="sponsor">
+                <CardHeader className="border-b">
+                  <CardAction>
+                    <Badge variant="outline">Optional</Badge>
+                  </CardAction>
                   <CardDescription>If you want to help</CardDescription>
-                  <div className="flex items-baseline gap-2">
+                  <div className="flex items-baseline gap-1.5">
                     <CardTitle className="text-4xl font-semibold tracking-tight">
                       Sponsor
                     </CardTitle>
@@ -106,23 +120,28 @@ const PricingPage = () => (
                     </span>
                   </div>
                 </CardHeader>
-                <CardContent className="flex flex-col gap-4">
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    No pro tier, no gated components, no &quot;premium&quot;
-                    badge. Sponsoring just says you like that this exists in the
-                    open — and helps justify spending real time on it.
-                  </p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    Money not your thing? Star the repo or share something you
-                    liked.
-                  </p>
-                  <div className="mt-2 flex flex-col gap-2 sm:flex-row">
-                    <ExternalLinkButton size="lg" href={LINK.SPONSOR}>
-                      <Heart />
+                <CardContent className="flex flex-1 flex-col gap-5">
+                  <div className="flex flex-col gap-3 pt-1">
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      No pro tier, no gated components, no &quot;premium&quot;
+                      badge. Sponsoring just says you like that this exists in
+                      the open — and helps justify spending real time on it.
+                    </p>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      Money not your thing? Star the repo or share something you
+                      liked.
+                    </p>
+                  </div>
+                  <div className="mt-auto flex flex-col gap-2">
+                    <ExternalLinkButton
+                      className="w-full gap-1"
+                      href={LINK.SPONSOR}
+                    >
+                      <GithubIcon />
                       Sponsor on GitHub
-                      <ExternalLink className="size-3.5 opacity-60" />
+                      <ExternalLink className="size-3.5 opacity-60" size={15} />
                     </ExternalLinkButton>
-                    <Button asChild size="lg" variant="outline">
+                    <Button asChild className="w-full" variant="outline">
                       <Link href={ROUTES.SPONSOR}>See supporters</Link>
                     </Button>
                   </div>
@@ -136,7 +155,11 @@ const PricingPage = () => (
             { depth: 1, title: "Free forever", url: "#free" },
             { depth: 1, title: "Sponsor", url: "#sponsor" },
           ]}
-        />
+        >
+          <DocsTocFooter
+            editHref={`${LINK.GITHUB}/edit/${GITHUB.branch}/app/(app)/(pages)/pricing/page.tsx`}
+          />
+        </DocsTocRail>
       </div>
     </PageTransition>
   </>

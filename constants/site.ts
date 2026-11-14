@@ -20,8 +20,8 @@ export const SITE = {
     TWITTER: "@rudranboitei",
   },
   DESCRIPTION: {
-    LONG: "An open-source shadcn/ui component registry for Odisha — accessible, themeable, and built with modern React.",
-    SHORT: "A shadcn/ui library for Odisha",
+    LONG: "Open-source animated components and blocks for Odisha. Accessible, themeable, and ready to use in your next project.",
+    SHORT: "Animated components and blocks for Odisha",
   },
   KEYWORDS: [
     "odiaui",
