@@ -108,7 +108,7 @@ description: Matches the registry.json description.
 ## Installation
 
 \`\`\`bash
-npx shadcn@latest add https://odiaui.vercel.app/r/my-component.json
+npx shadcn@latest add https://odiaui.xyz/r/my-component.json
 \`\`\`
 
 ## Usage
@@ -137,7 +137,7 @@ Files you design by hand (rather than adapting stock shadcn code) are excluded f
 
 ## Conventions
 
-- **Install URLs** always use the production registry: `npx shadcn@latest add https://odiaui.vercel.app/r/<name>.json` — docs install tabs trigger on `npx`/`npm` prefixes.
+- **Install URLs** always use the production registry: `npx shadcn@latest add https://odiaui.xyz/r/<name>.json` — docs install tabs trigger on `npx`/`npm` prefixes.
 - **No `asChild`.** Components are Base UI-based; use the `render` prop for composition instead.
 - **Commits** use Conventional Commits: `feat:`, `fix:`, `docs:`, `chore:`.
 

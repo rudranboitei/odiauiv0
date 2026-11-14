@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://odiaui.vercel.app/og" alt="odiaui banner" />
+  <img src="https://odiaui.xyz/og" alt="odiaui banner" />
 </p>
 
 <h1 align="center">odiaui</h1>
@@ -16,7 +16,7 @@
 ## Install
 
 ```bash
-npx shadcn@latest add https://odiaui.vercel.app/r/button.json
+npx shadcn@latest add https://odiaui.xyz/r/button.json
 ```
 
 Then import the component:
@@ -32,7 +32,7 @@ export function Example() {
 Or add the registry once and install by namespace:
 
 ```bash
-npx shadcn@latest registry add "@odiaui=https://odiaui.vercel.app/r/{name}.json"
+npx shadcn@latest registry add "@odiaui=https://odiaui.xyz/r/{name}.json"
 npx shadcn@latest add @odiaui/button
 ```
 
@@ -40,26 +40,26 @@ npx shadcn@latest add @odiaui/button
 
 18 components, each carrying an Odisha touch — a faint Konark watermark, a chakra motif, an Ikat ornament — that you can turn off per instance.
 
-| Component   | Install                                                              |
-| ----------- | -------------------------------------------------------------------- |
-| Accordion   | `npx shadcn@latest add https://odiaui.vercel.app/r/accordion.json`   |
-| Button      | `npx shadcn@latest add https://odiaui.vercel.app/r/button.json`      |
-| Badge       | `npx shadcn@latest add https://odiaui.vercel.app/r/badge.json`       |
-| Card        | `npx shadcn@latest add https://odiaui.vercel.app/r/card.json`        |
-| Separator   | `npx shadcn@latest add https://odiaui.vercel.app/r/separator.json`   |
-| Skeleton    | `npx shadcn@latest add https://odiaui.vercel.app/r/skeleton.json`    |
-| Spinner     | `npx shadcn@latest add https://odiaui.vercel.app/r/spinner.json`     |
-| Label       | `npx shadcn@latest add https://odiaui.vercel.app/r/label.json`       |
-| Input       | `npx shadcn@latest add https://odiaui.vercel.app/r/input.json`       |
-| Textarea    | `npx shadcn@latest add https://odiaui.vercel.app/r/textarea.json`    |
-| Alert       | `npx shadcn@latest add https://odiaui.vercel.app/r/alert.json`       |
-| Avatar      | `npx shadcn@latest add https://odiaui.vercel.app/r/avatar.json`      |
-| Switch      | `npx shadcn@latest add https://odiaui.vercel.app/r/switch.json`      |
-| Radio Group | `npx shadcn@latest add https://odiaui.vercel.app/r/radio-group.json` |
-| Dialog      | `npx shadcn@latest add https://odiaui.vercel.app/r/dialog.json`      |
-| Sheet       | `npx shadcn@latest add https://odiaui.vercel.app/r/sheet.json`       |
-| Slider      | `npx shadcn@latest add https://odiaui.vercel.app/r/slider.json`      |
-| Toast       | `npx shadcn@latest add https://odiaui.vercel.app/r/toast.json`       |
+| Component   | Install                                                       |
+| ----------- | ------------------------------------------------------------- |
+| Accordion   | `npx shadcn@latest add https://odiaui.xyz/r/accordion.json`   |
+| Button      | `npx shadcn@latest add https://odiaui.xyz/r/button.json`      |
+| Badge       | `npx shadcn@latest add https://odiaui.xyz/r/badge.json`       |
+| Card        | `npx shadcn@latest add https://odiaui.xyz/r/card.json`        |
+| Separator   | `npx shadcn@latest add https://odiaui.xyz/r/separator.json`   |
+| Skeleton    | `npx shadcn@latest add https://odiaui.xyz/r/skeleton.json`    |
+| Spinner     | `npx shadcn@latest add https://odiaui.xyz/r/spinner.json`     |
+| Label       | `npx shadcn@latest add https://odiaui.xyz/r/label.json`       |
+| Input       | `npx shadcn@latest add https://odiaui.xyz/r/input.json`       |
+| Textarea    | `npx shadcn@latest add https://odiaui.xyz/r/textarea.json`    |
+| Alert       | `npx shadcn@latest add https://odiaui.xyz/r/alert.json`       |
+| Avatar      | `npx shadcn@latest add https://odiaui.xyz/r/avatar.json`      |
+| Switch      | `npx shadcn@latest add https://odiaui.xyz/r/switch.json`      |
+| Radio Group | `npx shadcn@latest add https://odiaui.xyz/r/radio-group.json` |
+| Dialog      | `npx shadcn@latest add https://odiaui.xyz/r/dialog.json`      |
+| Sheet       | `npx shadcn@latest add https://odiaui.xyz/r/sheet.json`       |
+| Slider      | `npx shadcn@latest add https://odiaui.xyz/r/slider.json`      |
+| Toast       | `npx shadcn@latest add https://odiaui.xyz/r/toast.json`       |
 
 ## Features
 
@@ -132,9 +132,9 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full component workflow.
 
 ## Links
 
-- Website: [odiaui.vercel.app](https://odiaui.vercel.app)
-- Documentation: [odiaui.vercel.app/docs](https://odiaui.vercel.app/docs)
-- Registry: [odiaui.vercel.app/r/registry.json](https://odiaui.vercel.app/r/registry.json)
+- Website: [odiaui.xyz](https://odiaui.xyz)
+- Documentation: [odiaui.xyz/docs](https://odiaui.xyz/docs)
+- Registry: [odiaui.xyz/r/registry.json](https://odiaui.xyz/r/registry.json)
 - GitHub: [github.com/rudranboitei/odiaui](https://github.com/rudranboitei/odiaui)
 - X: [@rudranboitei](https://x.com/rudranboitei)
 
