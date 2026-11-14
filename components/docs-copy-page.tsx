@@ -169,26 +169,29 @@ export const DocsCopyPage = ({
 
   const trigger = (
     <Button
-      variant="secondary"
-      size="sm"
-      className="peer -ml-0.5 size-8 md:size-7 md:text-[0.8rem]"
+      variant="ghost"
+      className="h-full w-7 rounded-none text-muted-foreground hover:bg-transparent hover:text-foreground active:bg-transparent md:w-6"
     >
-      <ChevronDownIcon className="rotate-180 sm:rotate-0" />
+      <ChevronDownIcon className="size-3.5" />
     </Button>
   );
 
   return (
     <Popover sounds>
-      <div className="group/buttons relative flex rounded-lg bg-secondary *:data-[slot=button]:focus-visible:relative *:data-[slot=button]:focus-visible:z-10">
+      <div className="border-grid flex h-8 items-center overflow-hidden rounded-lg border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.06)] md:h-7">
         <PopoverAnchor />
         <CopyButton
           value={copyValue}
           showTooltip={false}
-          variant="secondary"
-          className="md:h-7 md:text-[0.8rem]"
+          variant="ghost"
+          className="h-full rounded-none px-3 hover:bg-transparent active:bg-transparent md:px-2.5"
         >
           Copy Page
         </CopyButton>
+        <Separator
+          orientation="vertical"
+          className="bg-border! h-4! shrink-0"
+        />
         <DropdownMenu sounds>
           <DropdownMenuTrigger asChild className="hidden sm:flex">
             {trigger}
@@ -204,10 +207,6 @@ export const DocsCopyPage = ({
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
-        <Separator
-          orientation="vertical"
-          className="absolute top-1 right-8 z-0 h-6! bg-foreground/5! peer-focus-visible:opacity-0 sm:right-7 sm:h-5!"
-        />
         <PopoverTrigger asChild className="flex sm:hidden">
           {trigger}
         </PopoverTrigger>

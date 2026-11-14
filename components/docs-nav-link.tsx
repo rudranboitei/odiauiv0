@@ -1,12 +1,8 @@
 "use client";
 
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
-import { useCallback, useRef } from "react";
 
-import type { ArrowLeftIconHandle } from "@/components/animated-icons/arrow-left";
-import { ArrowLeftIcon } from "@/components/animated-icons/arrow-left";
-import type { ArrowRightIconHandle } from "@/components/animated-icons/arrow-right";
-import { ArrowRightIcon } from "@/components/animated-icons/arrow-right";
 import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
 import {
@@ -22,7 +18,7 @@ export const DocsNavLink = ({
   className,
   tooltip,
   transitionTypes,
-  size = "icon",
+  size = "icon-sm",
   ...props
 }: React.ComponentProps<typeof Button> & {
   href: string;
@@ -31,33 +27,24 @@ export const DocsNavLink = ({
   tooltip?: { title: string; icon: React.ReactNode };
   transitionTypes?: string[];
 }) => {
-  const iconRef = useRef<ArrowLeftIconHandle | ArrowRightIconHandle>(null);
-
-  const handleMouseEnter = useCallback(() => {
-    iconRef.current?.startAnimation();
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    iconRef.current?.stopAnimation();
-  }, []);
-
   const link = (
     <Button
-      variant="secondary"
+      variant="ghost"
       size={size}
-      className={cn("shadow-none", className)}
+      className={cn(
+        "text-muted-foreground hover:text-foreground active:text-foreground",
+        className
+      )}
       asChild
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       {...props}
     >
       <Link href={href} transitionTypes={transitionTypes}>
         {transitionTypes?.includes("nav-back") && (
-          <ArrowLeftIcon ref={iconRef} />
+          <ChevronLeftIcon className="size-4" />
         )}
         {children}
         {transitionTypes?.includes("nav-forward") && (
-          <ArrowRightIcon ref={iconRef} />
+          <ChevronRightIcon className="size-4" />
         )}
       </Link>
     </Button>

@@ -201,6 +201,21 @@
   @apply border-border/50 dark:border-border;
 }
 
+@utility bg-grid-lines {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--border) 55%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--border) 55%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 40px 40px;
+}
+
 @utility section-soft {
   @apply from-background to-surface/40 dark:bg-background 3xl:fixed:bg-none bg-gradient-to-b;
 }

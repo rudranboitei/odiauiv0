@@ -1,5 +1,9 @@
 import { findNeighbour } from "fumadocs-core/page-tree";
-import { ArrowLeftIcon, ArrowRightIcon, ArrowUpRightIcon } from "lucide-react";
+import {
+  ArrowUpRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -106,6 +110,29 @@ const Page = async (props: { params: Promise<{ slug?: string[] }> }) => {
             <div className="h-(--top-spacing) shrink-0" />
             <div className="mx-auto flex w-full max-w-2xl min-w-0 flex-1 flex-col gap-8 px-4 py-6 text-neutral-800 md:px-0 lg:py-8 dark:text-neutral-300">
               <div className="flex flex-col gap-2">
+                <nav
+                  aria-label="Breadcrumb"
+                  className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-[0.8rem]"
+                >
+                  {breadcrumbs.map((crumb, index) => (
+                    <span
+                      key={crumb.path}
+                      className="flex items-center gap-1.5"
+                    >
+                      {index > 0 && <span className="opacity-50">/</span>}
+                      {index === breadcrumbs.length - 1 ? (
+                        <span className="text-foreground">{crumb.name}</span>
+                      ) : (
+                        <Link
+                          href={crumb.path}
+                          className="transition-colors hover:text-foreground"
+                        >
+                          {crumb.name}
+                        </Link>
+                      )}
+                    </span>
+                  ))}
+                </nav>
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
                     <h1 className="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
@@ -127,9 +154,8 @@ const Page = async (props: { params: Promise<{ slug?: string[] }> }) => {
                           <DocsNavLink
                             href={neighbours.previous.url}
                             transitionTypes={["nav-back"]}
-                            className="extend-touch-target size-8 md:size-7"
                             tooltip={{
-                              icon: <ArrowLeftIcon />,
+                              icon: <ChevronLeftIcon />,
                               title: "Previous Page",
                             }}
                           >
@@ -140,9 +166,8 @@ const Page = async (props: { params: Promise<{ slug?: string[] }> }) => {
                           <DocsNavLink
                             href={neighbours.next.url}
                             transitionTypes={["nav-forward"]}
-                            className="extend-touch-target size-8 md:size-7"
                             tooltip={{
-                              icon: <ArrowRightIcon />,
+                              icon: <ChevronRightIcon />,
                               title: "Next Page",
                             }}
                           >
@@ -205,7 +230,7 @@ const Page = async (props: { params: Promise<{ slug?: string[] }> }) => {
                 <MdxContent components={mdxComponents} />
               </div>
             </div>
-            <div className="mx-auto hidden h-16 w-full max-w-2xl items-center gap-2 px-4 sm:flex md:px-0">
+            <div className="border-grid mx-auto hidden h-16 w-full max-w-2xl items-center gap-2 border-t px-4 sm:flex md:px-0">
               {neighbours.previous && (
                 <DocsNavLink
                   href={neighbours.previous.url}
@@ -227,14 +252,14 @@ const Page = async (props: { params: Promise<{ slug?: string[] }> }) => {
               )}
             </div>
           </div>
-          <div className="sticky top-[calc(var(--header-height)+1px)] z-30 ml-auto hidden h-[calc(100svh-var(--footer-height)+2rem)] w-72 flex-col gap-4 overflow-hidden overscroll-none pb-8 xl:flex">
+          <div className="border-grid sticky top-(--header-height) z-30 ml-auto hidden h-[calc(100svh-var(--header-height))] w-64 flex-col gap-4 overflow-hidden overscroll-none border-l pb-8 xl:flex">
             <div className="h-(--top-spacing) shrink-0" />
             {doc.toc?.length ? (
-              <div className="no-scrollbar overflow-y-auto mx-8 border-b">
+              <div className="no-scrollbar mx-6 overflow-y-auto border-b">
                 <DocsTableOfContents toc={doc.toc} />
               </div>
             ) : null}
-            <DocsTocFooter docId={page.path} className="mx-8" />
+            <DocsTocFooter docId={page.path} className="mx-6" />
           </div>
         </div>
       </PageTransition>

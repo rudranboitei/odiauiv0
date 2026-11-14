@@ -118,8 +118,8 @@ export const DocsTableOfContents = ({
 
   return (
     <div className={cn("flex flex-col gap-2 p-4 pt-0 text-sm", className)}>
-      <p className="text-muted-foreground bg-background sticky top-0 h-6 text-xs">
-        On This Page
+      <p className="text-muted-foreground/80 bg-background sticky top-0 h-6 text-[0.7rem] font-medium tracking-[0.12em] uppercase">
+        On this page
       </p>
       {toc.map((item) => (
         <a

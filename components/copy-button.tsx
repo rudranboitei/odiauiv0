@@ -110,7 +110,7 @@ export const CopyButton = ({
       <AnimatePresence mode="popLayout" initial={false}>
         {isCopied ? (
           <motion.span key="done" {...motionIconProps}>
-            <VerifiedIcon className="size-4 text-white-500 dark:text-white-400" />
+            <VerifiedIcon className="size-4 text-emerald-600 dark:text-emerald-400" />
           </motion.span>
         ) : (
           <motion.span key="idle" {...motionIconProps}>

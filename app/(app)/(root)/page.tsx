@@ -1,7 +1,13 @@
+import { ArrowUpRightIcon } from "lucide-react";
+import Link from "next/link";
+
 import { CommandBox } from "@/components/command-box";
 import { HomeCtas } from "@/components/home-ctas";
 import { PageTransition } from "@/components/page-transition";
+import { LINK } from "@/constants/links";
 import { ROUTES } from "@/constants/routes";
+import { UTM_PARAMS } from "@/constants/site";
+import { addQueryParams } from "@/lib/url";
 import { Button } from "@/registry/new-york/button";
 import { BreadcrumbJsonLd } from "@/seo/json-ld";
 
@@ -13,31 +19,72 @@ export default function IndexPage() {
     <>
       <BreadcrumbJsonLd items={[{ name: "Home", path: ROUTES.HOME }]} />
       <PageTransition>
-        <section className="container-wrapper relative">
-          <div className="container flex flex-col items-center gap-4 py-16 text-center md:py-20 lg:py-24">
-            <h1 className="max-w-7xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl from-foreground via-foreground to-foreground/65 bg-linear-to-b bg-clip-text text-transparent">
+        <section className="relative overflow-hidden border-b border-grid">
+          <div
+            aria-hidden="true"
+            className="bg-grid-lines absolute inset-0 [mask-image:radial-gradient(ellipse_70%_65%_at_50%_0%,black_20%,transparent_75%)]"
+          />
+          <div className="container relative flex flex-col items-center gap-4 py-16 text-center md:py-20 lg:py-24">
+            <p className="text-muted-foreground text-[0.7rem] font-medium tracking-[0.18em] uppercase">
+              shadcn/ui registry · from odisha
+            </p>
+            <h1 className="max-w-3xl text-5xl font-semibold tracking-[-0.03em] text-foreground sm:text-6xl">
               odiaui
             </h1>
 
-            <p className="max-w-2xl text-lg text-muted-foreground sm:text-xl">
-              A shadcn/ui component library for Odisha. Open source, accessible,
-              and built to copy straight into your project.
+            <p className="max-w-xl text-lg text-muted-foreground sm:text-xl">
+              An open-source shadcn/ui component registry for Odisha.
+              Accessible, themeable, and built to copy straight into your
+              project.
             </p>
 
             <CommandBox className="mt-4 w-full max-w-xl" />
 
-            <HomeCtas className="mt-4" />
+            <HomeCtas className="mt-2" />
           </div>
         </section>
 
-        <section className="container-wrapper pb-8 lg:pb-12">
-          <div className="container flex flex-col items-center gap-4">
-            <Button size="lg" className="rounded-full">
-              Namaskar
-            </Button>
-            <p className="text-sm text-muted-foreground">
-              Built for Odisha. Made with shadcn/ui.
-            </p>
+        <section className="border-b border-grid">
+          <div className="container grid gap-8 py-12 md:grid-cols-2 md:gap-0 md:py-0">
+            <div className="flex flex-col items-start justify-center gap-3 md:pr-12 md:py-14">
+              <p className="text-muted-foreground/80 text-[0.7rem] font-medium tracking-[0.18em] uppercase">
+                Get started
+              </p>
+              <h2 className="text-2xl font-semibold tracking-tight">
+                Copy a component
+              </h2>
+              <p className="text-muted-foreground max-w-md text-sm leading-relaxed">
+                Every component ships as plain source code in your own repo — no
+                package to install, no styles to fight.
+              </p>
+              <code className="border-grid bg-surface mt-2 w-full max-w-md truncate rounded-md border px-3 py-2 text-xs">
+                npx shadcn@latest add https://odiaui.xyz/r/button.json
+              </code>
+              <Button asChild variant="outline" size="sm" className="mt-2">
+                <Link href={ROUTES.DOCS_COMPONENTS}>Browse components</Link>
+              </Button>
+            </div>
+            <div className="border-grid flex flex-col items-start justify-center gap-3 md:border-l md:pl-12 md:py-14">
+              <p className="text-muted-foreground/80 text-[0.7rem] font-medium tracking-[0.18em] uppercase">
+                Open source
+              </p>
+              <h2 className="text-2xl font-semibold tracking-tight">
+                Built in public
+              </h2>
+              <p className="text-muted-foreground max-w-md text-sm leading-relaxed">
+                The whole kit — source, docs, and registry — lives on GitHub.
+                Issues, PRs, and ideas are welcome.
+              </p>
+              <Button asChild variant="outline" size="sm" className="mt-2">
+                <a
+                  href={addQueryParams(LINK.GITHUB, UTM_PARAMS)}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Star on GitHub <ArrowUpRightIcon />
+                </a>
+              </Button>
+            </div>
           </div>
         </section>
       </PageTransition>

@@ -90,6 +90,23 @@ watermarks — all drawn at low opacity in theme tokens, all opt-out-able via
 | `--ring`                  | warm brown       | warm light       | focus                                           |
 | `--selection`             | ink + cream text | ivory + ink text | selection                                       |
 
+## Site chrome: the hairline grid
+
+The shell of the site (header, docs columns, footer, landing sections) is
+drawn with **1px hairlines** (`border-grid`) instead of soft surfaces:
+
+- **Header** — sticky, `border-b`, slight backdrop blur.
+- **Docs** — three full-height columns separated by hairlines: sidebar
+  (`border-r`), article, TOC rail (`border-l`). Sidebar rows are plain text
+  with an ink left-bar marking the active page; group labels are uppercase
+  letterspaced micro-labels.
+- **Landing** — sections separated by `border-b`; the hero sits on a
+  masked `bg-grid-lines` canvas; the title is solid ink (no gradient text).
+- **Footer** — single `border-t` rule.
+
+Hairlines are the _chrome_; components inside remain tonal and soft. Don't
+mix the two inside one component.
+
 ## Component rules
 
 - **Card** — `rounded-3xl`, no border, double soft shadow; `CardMedia`
