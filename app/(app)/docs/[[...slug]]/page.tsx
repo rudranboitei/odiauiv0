@@ -12,8 +12,8 @@ import { DocsCopyPage } from "@/components/docs-copy-page";
 import { DocsKeyboardShortcuts } from "@/components/docs-keyboard-shortcuts";
 import { DocsNavLink } from "@/components/docs-nav-link";
 import { DocsShareMenu } from "@/components/docs-share-menu";
-import { DocsTableOfContents } from "@/components/docs-toc";
 import { DocsTocFooter } from "@/components/docs-toc-footer";
+import { DocsTocRail } from "@/components/docs-toc-rail";
 import { PageTransition } from "@/components/page-transition";
 import { Badge } from "@/components/ui/badge";
 import { ROUTES } from "@/constants/routes";
@@ -252,15 +252,9 @@ const Page = async (props: { params: Promise<{ slug?: string[] }> }) => {
               )}
             </div>
           </div>
-          <div className="border-grid sticky top-(--header-height) z-30 ml-auto hidden h-[calc(100svh-var(--header-height))] w-64 flex-col gap-4 overflow-hidden overscroll-none border-l pb-8 xl:flex">
-            <div className="h-(--top-spacing) shrink-0" />
-            {doc.toc?.length ? (
-              <div className="no-scrollbar mx-6 overflow-y-auto border-b">
-                <DocsTableOfContents toc={doc.toc} />
-              </div>
-            ) : null}
+          <DocsTocRail toc={doc.toc ?? []}>
             <DocsTocFooter docId={page.path} className="mx-6" />
-          </div>
+          </DocsTocRail>
         </div>
       </PageTransition>
     </>
