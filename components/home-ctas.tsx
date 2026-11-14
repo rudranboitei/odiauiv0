@@ -29,9 +29,17 @@ const GetStartedButton = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Link href={ROUTES.DOCS_INSTALLATION} transitionTypes={["nav-forward"]}>
+      <Link
+        href={ROUTES.DOCS_INSTALLATION}
+        transitionTypes={["nav-forward"]}
+        className="gap-1"
+      >
         Get Started
-        <ArrowRightIcon className="hidden sm:inline" ref={arrowRightRef} />
+        <ArrowRightIcon
+          className="hidden sm:inline"
+          ref={arrowRightRef}
+          size={15}
+        />
       </Link>
     </Button>
   );
@@ -56,11 +64,15 @@ const BrowseComponentsButton = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Link href={ROUTES.DOCS_COMPONENTS} transitionTypes={["nav-forward"]}>
+      <Link
+        href={ROUTES.DOCS_COMPONENTS}
+        transitionTypes={["nav-forward"]}
+        className="gap-1"
+      >
         <ComponentIcon
           className="hidden sm:inline"
           ref={componentIconRef}
-          size={22}
+          size={15}
         />
         Browse Components
       </Link>
