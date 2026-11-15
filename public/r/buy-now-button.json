@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "buy-now-button",
+  "title": "Buy Now Button",
+  "description": "High emphasis buy now button.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/buy-now-button.tsx",
+      "content": "\"use client\";\n\nimport { CreditCardIcon } from \"lucide-react\";\nimport * as React from \"react\";\n\nimport { Button } from \"./button\";\n\nexport type BuyNowButtonProps = React.ComponentProps<typeof Button>;\n\nexport function BuyNowButton({\n  children = \"Buy Now\",\n  ...props\n}: BuyNowButtonProps) {\n  return (\n    <Button className=\"w-full sm:w-auto\" size=\"lg\" {...props}>\n      <CreditCardIcon className=\"size-4\" aria-hidden=\"true\" />\n      {children}\n    </Button>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/odiaui/buy-now-button.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

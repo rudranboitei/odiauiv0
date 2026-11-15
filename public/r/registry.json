@@ -7,7 +7,10 @@
       "type": "registry:ui",
       "title": "Accordion",
       "description": "A clean, token-based Base UI accordion with four style families (flush, bordered, card, timeline), chevron / plus-minus / numbered / icon indicators, nested layouts and expand-all control.",
-      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
       "registryDependencies": [],
       "files": [
         {
@@ -22,7 +25,10 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "A fully rounded, matte button with clean token-driven variants (solid, secondary, destructive, outline, ghost, link, frame), a built-in loading state, and six sizes.",
-      "dependencies": ["class-variance-authority", "@radix-ui/react-slot"],
+      "dependencies": [
+        "class-variance-authority",
+        "@radix-ui/react-slot"
+      ],
       "files": [
         {
           "path": "registry/new-york/button.tsx",
@@ -40,8 +46,12 @@
       "name": "button-kit",
       "type": "registry:ui",
       "title": "Button Kit",
-      "description": "45 ready-made button patterns on top of the Button \u2014 actions (add to cart, save, delete with confirm, refresh), states (loading, success, error shake, progress, countdown, hold to confirm), toggles (like, bookmark, follow, theme, mute), auth/social buttons, icon-only buttons and layout buttons (group, split, segmented control, pagination).",
-      "dependencies": ["lucide-react", "motion", "next-themes"],
+      "description": "45 ready-made button patterns on top of the Button — actions (add to cart, save, delete with confirm, refresh), states (loading, success, error shake, progress, countdown, hold to confirm), toggles (like, bookmark, follow, theme, mute), auth/social buttons, icon-only buttons and layout buttons (group, split, segmented control, pagination).",
+      "dependencies": [
+        "lucide-react",
+        "motion",
+        "next-themes"
+      ],
       "registryDependencies": [
         "button",
         "tooltip",
@@ -61,7 +71,10 @@
       "type": "registry:ui",
       "title": "Badge",
       "description": "A badge with cultural icon, status dot, loading, and size variants drawn inline with theme tokens.",
-      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
       "files": [
         {
           "path": "registry/new-york/badge.tsx",
@@ -74,8 +87,10 @@
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "A soft tonal card \u2014 large radius, borderless, layered shadows \u2014 with size presets, a --card-spacing spacing variable, a sand-gradient media zone, an opt-in faint Odisha watermark (deula, chakra, or padma), and an Ikat ornament strip.",
-      "registryDependencies": ["badge"],
+      "description": "A soft tonal card — large radius, borderless, layered shadows — with size presets, a --card-spacing spacing variable, a sand-gradient media zone, an opt-in faint Odisha watermark (deula, chakra, or padma), and an Ikat ornament strip.",
+      "registryDependencies": [
+        "badge"
+      ],
       "files": [
         {
           "path": "registry/new-york/card.tsx",
@@ -89,7 +104,9 @@
       "type": "registry:ui",
       "title": "Separator",
       "description": "A separator with heritage ornament, tiled-pattern, and motif variants drawn inline with theme tokens.",
-      "dependencies": ["@base-ui/react"],
+      "dependencies": [
+        "@base-ui/react"
+      ],
       "files": [
         {
           "path": "registry/new-york/separator.tsx",
@@ -103,7 +120,9 @@
       "type": "registry:ui",
       "title": "Skeleton",
       "description": "A loading skeleton with shimmer, ikat, and pida variants, heritage shapes, and faint temple artwork for media placeholders.",
-      "dependencies": ["class-variance-authority"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "files": [
         {
           "path": "registry/new-york/skeleton.tsx",
@@ -116,8 +135,10 @@
       "name": "spinner",
       "type": "registry:ui",
       "title": "Spinner",
-      "description": "A loading spinner with cultural glyphs \u2014 turning Konark chakra, breathing deula, opening lotus \u2014 plus dots, ring, and pulse styles.",
-      "dependencies": ["class-variance-authority"],
+      "description": "A loading spinner with cultural glyphs — turning Konark chakra, breathing deula, opening lotus — plus dots, ring, and pulse styles.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "files": [
         {
           "path": "registry/new-york/spinner.tsx",
@@ -144,8 +165,12 @@
       "type": "registry:ui",
       "title": "Input",
       "description": "A text input with warm rounded fields, search, email, password, and file presets, start/end icons, addons, sizes, and built-in error messages.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["label"],
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "label"
+      ],
       "files": [
         {
           "path": "registry/new-york/input.tsx",
@@ -159,7 +184,9 @@
       "type": "registry:ui",
       "title": "Textarea",
       "description": "A multi-line text field with resize control, a live character counter, and built-in error messages.",
-      "registryDependencies": ["label"],
+      "registryDependencies": [
+        "label"
+      ],
       "files": [
         {
           "path": "registry/new-york/textarea.tsx",
@@ -173,7 +200,9 @@
       "type": "registry:ui",
       "title": "Alert",
       "description": "A clean, token-based alert with six semantic colours (default, info, success, important, warning, destructive), soft / outline / solid looks, inline actions and GitHub-style docs callouts.",
-      "dependencies": ["class-variance-authority"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "registryDependencies": [],
       "files": [
         {
@@ -187,8 +216,10 @@
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
-      "description": "A Base UI avatar with optional Odisha heritage frames \u2014 chakra, padma, deula, ikat, pattachitra \u2014 accent colours, heritage fallbacks, and status badges.",
-      "dependencies": ["@base-ui/react"],
+      "description": "A Base UI avatar with optional Odisha heritage frames — chakra, padma, deula, ikat, pattachitra — accent colours, heritage fallbacks, and status badges.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
       "files": [
         {
           "path": "registry/new-york/avatar.tsx",
@@ -202,8 +233,12 @@
       "type": "registry:ui",
       "title": "Switch",
       "description": "A Base UI toggle switch with a cultural chakra motif in the thumb when checked, sm and default sizes, and theme-token track colours.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["badge"],
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "badge"
+      ],
       "files": [
         {
           "path": "registry/new-york/switch.tsx",
@@ -217,7 +252,10 @@
       "type": "registry:ui",
       "title": "Toggle Group",
       "description": "A Base UI set of pill-shaped toggle buttons sharing pressed state, single or multiple selection, with borderless tonal default, ghost, outline, and secondary variants and five sizes.",
-      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
       "files": [
         {
           "path": "registry/new-york/toggle-group.tsx",
@@ -231,8 +269,12 @@
       "type": "registry:ui",
       "title": "Radio Group",
       "description": "A Base UI radio group with a dashed ikat-style unchecked ring, a cultural chakra indicator when checked, and full keyboard navigation.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["badge"],
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "badge"
+      ],
       "files": [
         {
           "path": "registry/new-york/radio-group.tsx",
@@ -246,8 +288,13 @@
       "type": "registry:ui",
       "title": "Dialog",
       "description": "A Base UI dialog with a borderless rounded-3xl surface and large soft shadow, size presets, faint deula and chakra watermarks, an Ikat-patterned banner header, media slots, and an Ikat ornament strip.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["button"],
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
       "files": [
         {
           "path": "registry/new-york/dialog.tsx",
@@ -261,8 +308,13 @@
       "type": "registry:ui",
       "title": "Sheet",
       "description": "A Base UI sheet with a faint rekha deula watermark on by default (opt-out-able), plus a chakra watermark, an Ikat ornament strip, a grabber handle, header icon slots, and rounded top and bottom edges.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["button"],
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
       "files": [
         {
           "path": "registry/new-york/sheet.tsx",
@@ -275,9 +327,13 @@
       "name": "slider",
       "type": "registry:ui",
       "title": "Slider",
-      "description": "A Base UI slider whose thumbs carry cultural motifs from the Badge icon set \u2014 a mini Konark wheel by default \u2014 with optional Ikat-diamond tick markers along the track.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["badge"],
+      "description": "A Base UI slider whose thumbs carry cultural motifs from the Badge icon set — a mini Konark wheel by default — with optional Ikat-diamond tick markers along the track.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "badge"
+      ],
       "files": [
         {
           "path": "registry/new-york/slider.tsx",
@@ -290,14 +346,245 @@
       "name": "toast",
       "type": "registry:ui",
       "title": "Toast",
-      "description": "A Base UI toast system with a borderless soft-shadow surface, a faint deula watermark on every toast by default (chakra or none as options) and cultural type icons \u2014 success bana, info padma, warning ikat, error jagannath.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["button", "badge"],
+      "description": "A Base UI toast system with a borderless soft-shadow surface, a faint deula watermark on every toast by default (chakra or none as options) and cultural type icons — success bana, info padma, warning ikat, error jagannath.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "badge"
+      ],
       "files": [
         {
           "path": "registry/new-york/toast.tsx",
           "type": "registry:ui",
           "target": "components/ui/toast.tsx"
+        }
+      ]
+    },
+    {
+      "name": "add-to-cart-button",
+      "type": "registry:ui",
+      "title": "Add to Cart Button",
+      "description": "Add to cart button with quantity feedback.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/add-to-cart-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odiaui/add-to-cart-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "buy-now-button",
+      "type": "registry:ui",
+      "title": "Buy Now Button",
+      "description": "High emphasis buy now button.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/buy-now-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odiaui/buy-now-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pay-with-upi-button",
+      "type": "registry:ui",
+      "title": "Pay with UPI Button",
+      "description": "Pay with UPI checkout button.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/pay-with-upi-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odiaui/pay-with-upi-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "submit-button",
+      "type": "registry:ui",
+      "title": "Submit Button",
+      "description": "Submit button with loading and valid state.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/submit-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odiaui/submit-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "google-sign-in-button",
+      "type": "registry:ui",
+      "title": "Google Sign In Button",
+      "description": "Continue with Google button.",
+      "dependencies": [],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/google-sign-in-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odiaui/google-sign-in-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "send-otp-button",
+      "type": "registry:ui",
+      "title": "Send OTP Button",
+      "description": "Send OTP button with resend countdown.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/send-otp-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odiaui/send-otp-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "whatsapp-share-button",
+      "type": "registry:ui",
+      "title": "WhatsApp Share Button",
+      "description": "Share to WhatsApp button.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/whatsapp-share-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odiaui/whatsapp-share-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "wishlist-button",
+      "type": "registry:ui",
+      "title": "Wishlist Button",
+      "description": "Wishlist heart toggle button.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/wishlist-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odiaui/wishlist-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "copy-button",
+      "type": "registry:ui",
+      "title": "Copy Button",
+      "description": "Copy to clipboard button with copied state.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/copy-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odiaui/copy-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "download-button",
+      "type": "registry:ui",
+      "title": "Download Button",
+      "description": "Download button with progress feedback.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/download-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odiaui/download-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "delete-confirm-button",
+      "type": "registry:ui",
+      "title": "Delete Confirm Button",
+      "description": "Destructive confirm button for delete/cancel order.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/delete-confirm-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odiaui/delete-confirm-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "language-toggle-button",
+      "type": "registry:ui",
+      "title": "Language Toggle Button",
+      "description": "Toggle between Odia and English.",
+      "dependencies": [],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/language-toggle-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odiaui/language-toggle-button.tsx"
         }
       ]
     }

@@ -2,11 +2,11 @@
   "title": "Components",
   "pages": [
     "index",
+    "button",
     "accordion",
     "alert",
     "avatar",
     "badge",
-    "button",
     "card",
     "dialog",
     "label",

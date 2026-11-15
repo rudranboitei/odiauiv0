@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "send-otp-button",
+  "title": "Send OTP Button",
+  "description": "Send OTP button with resend countdown.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/send-otp-button.tsx",
+      "content": "\"use client\";\n\nimport { CheckIcon, Loader2Icon, SendIcon } from \"lucide-react\";\nimport * as React from \"react\";\n\nimport { Button } from \"./button\";\n\nexport type SendOtpButtonProps = React.ComponentProps<typeof Button> & {\n  duration?: number;\n  onResend?: () => void | Promise<void>;\n};\n\nexport function SendOtpButton({\n  duration = 30,\n  onResend,\n  ...props\n}: SendOtpButtonProps) {\n  const [seconds, setSeconds] = React.useState(0);\n  const [sent, setSent] = React.useState(false);\n\n  React.useEffect(() => {\n    if (seconds <= 0) return;\n    const id = window.setInterval(() => setSeconds((s) => s - 1), 1000);\n    return () => window.clearInterval(id);\n  }, [seconds]);\n\n  const handleClick = async () => {\n    if (seconds > 0) return;\n    await onResend?.();\n    setSent(true);\n    setSeconds(duration);\n    window.setTimeout(() => setSent(false), 1500);\n  };\n\n  const disabled = seconds > 0 || props.disabled;\n\n  return (\n    <Button\n      onClick={handleClick}\n      disabled={disabled}\n      aria-busy={props[\"aria-busy\"]}\n      {...props}\n    >\n      {sent ? (\n        <CheckIcon className=\"size-4\" aria-hidden=\"true\" />\n      ) : seconds > 0 ? (\n        <Loader2Icon className=\"size-4 animate-spin\" aria-hidden=\"true\" />\n      ) : (\n        <SendIcon className=\"size-4\" aria-hidden=\"true\" />\n      )}\n      {seconds > 0 ? `Resend OTP in ${seconds}s` : sent ? \"Sent\" : \"Send OTP\"}\n    </Button>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/odiaui/send-otp-button.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

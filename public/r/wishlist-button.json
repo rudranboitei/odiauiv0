@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "wishlist-button",
+  "title": "Wishlist Button",
+  "description": "Wishlist heart toggle button.",
+  "dependencies": [
+    "lucide-react",
+    "motion"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/wishlist-button.tsx",
+      "content": "\"use client\";\n\nimport { HeartIcon } from \"lucide-react\";\nimport { motion } from \"motion/react\";\nimport * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\nimport { Button } from \"./button\";\n\nexport type WishlistButtonProps = React.ComponentProps<typeof Button> & {\n  defaultLiked?: boolean;\n  liked?: boolean;\n  onLikedChange?: (liked: boolean) => void;\n};\n\nexport function WishlistButton({\n  defaultLiked = false,\n  liked: likedProp,\n  onLikedChange,\n  className,\n  ...props\n}: WishlistButtonProps) {\n  const [uncontrolled, setUncontrolled] = React.useState(defaultLiked);\n  const liked = likedProp ?? uncontrolled;\n\n  const toggle = () => {\n    const next = !liked;\n    if (likedProp === undefined) setUncontrolled(next);\n    onLikedChange?.(next);\n  };\n\n  return (\n    <Button\n      aria-pressed={liked}\n      aria-label={liked ? \"Remove from wishlist\" : \"Add to wishlist\"}\n      className={cn(\"gap-1.5\", className)}\n      onClick={toggle}\n      variant={liked ? \"secondary\" : \"outline\"}\n      {...props}\n    >\n      <motion.span\n        animate={{ scale: liked ? [1, 1.35, 1] : 1 }}\n        className=\"inline-flex\"\n        transition={{ duration: 0.3 }}\n      >\n        <HeartIcon\n          className={cn(\"size-4\", liked && \"fill-current text-red-500\")}\n          aria-hidden=\"true\"\n        />\n      </motion.span>\n      {liked ? \"Saved\" : \"Wishlist\"}\n    </Button>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/odiaui/wishlist-button.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

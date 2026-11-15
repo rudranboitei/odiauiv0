@@ -1,236 +1,1084 @@
 ---
-title: Button
-description: Displays a button or a component that looks like a button.
-links:
-  doc: https://ui.shadcn.com/docs/components/button
-  api: https://github.com/shadcn-ui/ui/blob/main/apps/v4/registry/ui/button.tsx
+title: Buttons
+description: Ready-made buttons for real use cases. Install one and use it.
 ---
 
-import { ButtonKitActions } from "@/examples/button-kit-actions";
-import { ButtonKitAuth } from "@/examples/button-kit-auth";
-import { ButtonKitIcon } from "@/examples/button-kit-icon";
-import { ButtonKitLayout } from "@/examples/button-kit-layout";
-import { ButtonKitStates } from "@/examples/button-kit-states";
-import { ButtonKitToggles } from "@/examples/button-kit-toggles";
+import { AddToCartButton } from "@/registry/new-york/add-to-cart-button";
+import { BuyNowButton } from "@/registry/new-york/buy-now-button";
+import { PayWithUpiButton } from "@/registry/new-york/pay-with-upi-button";
+import { SubmitButton } from "@/registry/new-york/submit-button";
+import { GoogleSignInButton } from "@/registry/new-york/google-sign-in-button";
+import { SendOtpButton } from "@/registry/new-york/send-otp-button";
+import { WhatsappShareButton } from "@/registry/new-york/whatsapp-share-button";
+import { WishlistButton } from "@/registry/new-york/wishlist-button";
+import { CopyButton } from "@/registry/new-york/copy-button";
+import { DownloadButton } from "@/registry/new-york/download-button";
+import { DeleteConfirmButton } from "@/registry/new-york/delete-confirm-button";
+import { LanguageToggleButton } from "@/registry/new-york/language-toggle-button";
+import { CodeBlockCommand } from "@/components/code-block-command";
 
-## Installation
+Ready-made buttons for real use cases. Install one and use it.
+
+## Add to cart button
+
+Use when shoppers add products to a cart from a product card or detail page.
+
+<div className="flex items-center justify-center rounded-lg border p-8">
+  <AddToCartButton />
+</div>
+
+<Tabs defaultValue="command">
+  <TabsList>
+    <TabsTrigger value="command">Command</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="command">
+    <CodeBlockCommand
+      __npm__="npx shadcn@latest add https://www.odiaui.xyz/r/add-to-cart-button.json"
+      __pnpm__="pnpm dlx shadcn@latest add https://www.odiaui.xyz/r/add-to-cart-button.json"
+      __yarn__="yarn dlx shadcn@latest add https://www.odiaui.xyz/r/add-to-cart-button.json"
+      __bun__="bunx --bun shadcn@latest add https://www.odiaui.xyz/r/add-to-cart-button.json"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
 
 ```bash
-npx shadcn@latest add https://odiaui.xyz/r/button.json
+npm install lucide-react
 ```
 
-### Button Kit
+      <Step>Add the component</Step>
 
-The button kit adds 45 ready-made button patterns on top of the base
-`Button` — action buttons, state buttons, toggles, auth/social buttons,
-icon buttons and layout buttons — in a single copy-paste file.
+Create `components/odiaui/add-to-cart-button.tsx`:
+
+```tsx title="components/odiaui/add-to-cart-button.tsx"
+"use client";
+
+import { CheckIcon, ShoppingCartIcon } from "lucide-react";
+import * as React from "react";
+
+import { Button } from "./button";
+
+export type AddToCartButtonProps = React.ComponentProps<typeof Button> & {
+  onAdd?: () => void;
+};
+
+export function AddToCartButton({ onAdd, ...props }: AddToCartButtonProps) {
+  const [quantity, setQuantity] = React.useState(0);
+  const [justAdded, setJustAdded] = React.useState(false);
+
+  const handleAdd = () => {
+    setQuantity((q) => q + 1);
+    setJustAdded(true);
+    onAdd?.();
+    window.setTimeout(() => setJustAdded(false), 1500);
+  };
+
+  return (
+    <Button onClick={handleAdd} {...props}>
+      {justAdded ? (
+        <CheckIcon className="size-4" aria-hidden="true" />
+      ) : (
+        <ShoppingCartIcon className="size-4" aria-hidden="true" />
+      )}
+      {justAdded ? "Added" : "Add to cart"}
+      {quantity > 0 && !justAdded && (
+        <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-primary-foreground/25 px-1 text-xs font-semibold">
+          {quantity}
+        </span>
+      )}
+    </Button>
+  );
+}
+```
+
+      <Step>Usage</Step>
+
+```tsx
+import { AddToCartButton } from "@/components/odiaui/add-to-cart-button";
+
+<AddToCartButton onAdd={() => {}} />
+```
+
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Buy now button
+
+Use for high-intent checkout actions.
+
+<div className="flex items-center justify-center rounded-lg border p-8">
+  <BuyNowButton>Buy Now</BuyNowButton>
+</div>
+
+<Tabs defaultValue="command">
+  <TabsList>
+    <TabsTrigger value="command">Command</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="command">
+    <CodeBlockCommand
+      __npm__="npx shadcn@latest add https://www.odiaui.xyz/r/buy-now-button.json"
+      __pnpm__="pnpm dlx shadcn@latest add https://www.odiaui.xyz/r/buy-now-button.json"
+      __yarn__="yarn dlx shadcn@latest add https://www.odiaui.xyz/r/buy-now-button.json"
+      __bun__="bunx --bun shadcn@latest add https://www.odiaui.xyz/r/buy-now-button.json"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
 
 ```bash
-npx shadcn@latest add https://odiaui.xyz/r/button-kit.json
+npm install lucide-react
 ```
 
-## Usage
+      <Step>Add the component</Step>
+
+Create `components/odiaui/buy-now-button.tsx`:
+
+```tsx title="components/odiaui/buy-now-button.tsx"
+"use client";
+
+import { CreditCardIcon } from "lucide-react";
+import * as React from "react";
+
+import { Button } from "./button";
+
+export type BuyNowButtonProps = React.ComponentProps<typeof Button>;
+
+export function BuyNowButton({
+  children = "Buy Now",
+  ...props
+}: BuyNowButtonProps) {
+  return (
+    <Button className="w-full sm:w-auto" size="lg" {...props}>
+      <CreditCardIcon className="size-4" aria-hidden="true" />
+      {children}
+    </Button>
+  );
+}
+```
+
+      <Step>Usage</Step>
 
 ```tsx
-import { Button } from "@/components/ui/button";
+import { BuyNowButton } from "@/components/odiaui/buy-now-button";
+
+<BuyNowButton />
 ```
+
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Pay with UPI button
+
+Use for UPI-first checkout in India.
+
+<div className="flex items-center justify-center rounded-lg border p-8">
+  <PayWithUpiButton>Pay with UPI</PayWithUpiButton>
+</div>
+
+<Tabs defaultValue="command">
+  <TabsList>
+    <TabsTrigger value="command">Command</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="command">
+    <CodeBlockCommand
+      __npm__="npx shadcn@latest add https://www.odiaui.xyz/r/pay-with-upi-button.json"
+      __pnpm__="pnpm dlx shadcn@latest add https://www.odiaui.xyz/r/pay-with-upi-button.json"
+      __yarn__="yarn dlx shadcn@latest add https://www.odiaui.xyz/r/pay-with-upi-button.json"
+      __bun__="bunx --bun shadcn@latest add https://www.odiaui.xyz/r/pay-with-upi-button.json"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+```bash
+npm install lucide-react
+```
+
+      <Step>Add the component</Step>
+
+Create `components/odiaui/pay-with-upi-button.tsx`:
+
+```tsx title="components/odiaui/pay-with-upi-button.tsx"
+"use client";
+
+import { SmartphoneIcon } from "lucide-react";
+import * as React from "react";
+
+import { Button } from "./button";
+
+export type PayWithUpiButtonProps = React.ComponentProps<typeof Button>;
+
+export function PayWithUpiButton({
+  children = "Pay with UPI",
+  ...props
+}: PayWithUpiButtonProps) {
+  return (
+    <Button className="w-full sm:w-auto" size="lg" {...props}>
+      <SmartphoneIcon className="size-4" aria-hidden="true" />
+      {children}
+    </Button>
+  );
+}
+```
+
+      <Step>Usage</Step>
 
 ```tsx
-<Button>Click me</Button>
+import { PayWithUpiButton } from "@/components/odiaui/pay-with-upi-button";
+
+<PayWithUpiButton onClick={() => {}} />
 ```
 
-## Button Kit
+    </Steps>
 
-One kit, six families. Every component is self-contained and built on the
-base `Button`, so props like `variant`, `size` and `loading` keep working.
+  </TabsContent>
+</Tabs>
 
-### Actions
+## Submit button
 
-Everyday verbs: add to cart (icon + quantity feedback + success tick),
-buy now (high emphasis, full width on mobile), save (loading, then
-"Saved"), submit (disabled until the form is valid — pass `valid`),
-cancel / back, delete (destructive with a confirm step — click once,
-then "Are you sure?"), edit, duplicate, share, download, upload, and
-refresh with a spinning icon.
+Use for forms with a loading state and clear feedback.
 
-<ComponentPreview name="button-kit-actions">
-  <ButtonKitActions />
-</ComponentPreview>
+<div className="flex items-center justify-center rounded-lg border p-8">
+  <SubmitButton valid>Submit</SubmitButton>
+</div>
+
+<Tabs defaultValue="command">
+  <TabsList>
+    <TabsTrigger value="command">Command</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="command">
+    <CodeBlockCommand
+      __npm__="npx shadcn@latest add https://www.odiaui.xyz/r/submit-button.json"
+      __pnpm__="pnpm dlx shadcn@latest add https://www.odiaui.xyz/r/submit-button.json"
+      __yarn__="yarn dlx shadcn@latest add https://www.odiaui.xyz/r/submit-button.json"
+      __bun__="bunx --bun shadcn@latest add https://www.odiaui.xyz/r/submit-button.json"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+```bash
+npm install lucide-react
+```
+
+      <Step>Add the component</Step>
+
+Create `components/odiaui/submit-button.tsx`:
+
+```tsx title="components/odiaui/submit-button.tsx"
+"use client";
+
+import { Loader2Icon, SendIcon } from "lucide-react";
+import * as React from "react";
+
+import { Button } from "./button";
+
+export type SubmitButtonProps = React.ComponentProps<typeof Button> & {
+  valid?: boolean;
+  loading?: boolean;
+};
+
+export function SubmitButton({
+  valid = true,
+  loading = false,
+  children = "Submit",
+  disabled,
+  ...props
+}: SubmitButtonProps) {
+  return (
+    <Button
+      type="submit"
+      disabled={!valid || loading || disabled}
+      aria-busy={loading || undefined}
+      {...props}
+    >
+      {loading ? (
+        <Loader2Icon className="size-4 animate-spin" aria-hidden="true" />
+      ) : (
+        <SendIcon className="size-4" aria-hidden="true" />
+      )}
+      {children}
+    </Button>
+  );
+}
+```
+
+      <Step>Usage</Step>
 
 ```tsx
-import {
-  AddToCartButton,
-  BuyNowButton,
-  SaveButton,
-  SubmitButton,
-  CancelButton,
-  BackButton,
-  DeleteConfirmButton,
-  EditButton,
-  DuplicateButton,
-  ShareButton,
-  DownloadButton,
-  UploadButton,
-  RefreshButton,
-} from "@/components/ui/button-kit";
+import { SubmitButton } from "@/components/odiaui/submit-button";
+
+<SubmitButton valid={isValid} loading={isSubmitting}>Submit</SubmitButton>
 ```
 
-### States
+    </Steps>
 
-Loading (spinner with "Processing…"), success (turns green with a tick,
-then resets), error (shakes with "Try again"), disabled (base `Button`
-`disabled` prop), progress (fills as an upload runs), countdown
-("Resend OTP in 30s"), and hold to confirm (press and hold to delete).
+  </TabsContent>
+</Tabs>
 
-<ComponentPreview name="button-kit-states">
-  <ButtonKitStates />
-</ComponentPreview>
+## Google sign in button
+
+Use for “Continue with Google” on auth screens.
+
+<div className="flex items-center justify-center rounded-lg border p-8">
+  <GoogleSignInButton />
+</div>
+
+<Tabs defaultValue="command">
+  <TabsList>
+    <TabsTrigger value="command">Command</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="command">
+    <CodeBlockCommand
+      __npm__="npx shadcn@latest add https://www.odiaui.xyz/r/google-sign-in-button.json"
+      __pnpm__="pnpm dlx shadcn@latest add https://www.odiaui.xyz/r/google-sign-in-button.json"
+      __yarn__="yarn dlx shadcn@latest add https://www.odiaui.xyz/r/google-sign-in-button.json"
+      __bun__="bunx --bun shadcn@latest add https://www.odiaui.xyz/r/google-sign-in-button.json"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Add the component</Step>
+
+Create `components/odiaui/google-sign-in-button.tsx`:
+
+```tsx title="components/odiaui/google-sign-in-button.tsx"
+"use client";
+
+import * as React from "react";
+
+import { Button } from "./button";
+
+function GoogleMark({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+    </svg>
+  );
+}
+
+export type GoogleSignInButtonProps = React.ComponentProps<typeof Button>;
+
+export function GoogleSignInButton({
+  children = "Continue with Google",
+  ...props
+}: GoogleSignInButtonProps) {
+  return (
+    <Button variant="outline" {...props}>
+      <GoogleMark className="size-4" />
+      {children}
+    </Button>
+  );
+}
+```
+
+      <Step>Usage</Step>
 
 ```tsx
-import {
-  ProcessingButton,
-  SuccessStateButton,
-  ErrorRetryButton,
-  ProgressButton,
-  CountdownButton,
-  HoldToConfirmButton,
-} from "@/components/ui/button-kit";
+import { GoogleSignInButton } from "@/components/odiaui/google-sign-in-button";
+
+<GoogleSignInButton onClick={() => {}} />
 ```
 
-### Toggles
+    </Steps>
 
-Like (heart fills with a spring pop), bookmark, follow (switches to
-"Unfollow" on hover), subscribe (bell), a bold / italic / underline
-toggle group, theme toggle (light/dark via `next-themes`), mute, and
-play/pause.
+  </TabsContent>
+</Tabs>
 
-<ComponentPreview name="button-kit-toggles">
-  <ButtonKitToggles />
-</ComponentPreview>
+## Send OTP button
+
+Use for phone/email verification flows with a resend countdown.
+
+<div className="flex items-center justify-center rounded-lg border p-8">
+  <SendOtpButton />
+</div>
+
+<Tabs defaultValue="command">
+  <TabsList>
+    <TabsTrigger value="command">Command</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="command">
+    <CodeBlockCommand
+      __npm__="npx shadcn@latest add https://www.odiaui.xyz/r/send-otp-button.json"
+      __pnpm__="pnpm dlx shadcn@latest add https://www.odiaui.xyz/r/send-otp-button.json"
+      __yarn__="yarn dlx shadcn@latest add https://www.odiaui.xyz/r/send-otp-button.json"
+      __bun__="bunx --bun shadcn@latest add https://www.odiaui.xyz/r/send-otp-button.json"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+```bash
+npm install lucide-react
+```
+
+      <Step>Add the component</Step>
+
+Create `components/odiaui/send-otp-button.tsx`:
+
+```tsx title="components/odiaui/send-otp-button.tsx"
+"use client";
+
+import { CheckIcon, Loader2Icon, SendIcon } from "lucide-react";
+import * as React from "react";
+
+import { Button } from "./button";
+
+export type SendOtpButtonProps = React.ComponentProps<typeof Button> & {
+  duration?: number;
+  onResend?: () => void | Promise<void>;
+};
+
+export function SendOtpButton({
+  duration = 30,
+  onResend,
+  ...props
+}: SendOtpButtonProps) {
+  const [seconds, setSeconds] = React.useState(0);
+  const [sent, setSent] = React.useState(false);
+
+  React.useEffect(() => {
+    if (seconds <= 0) return;
+    const id = window.setInterval(() => setSeconds((s) => s - 1), 1000);
+    return () => window.clearInterval(id);
+  }, [seconds]);
+
+  const handleClick = async () => {
+    if (seconds > 0) return;
+    await onResend?.();
+    setSent(true);
+    setSeconds(duration);
+    window.setTimeout(() => setSent(false), 1500);
+  };
+
+  const disabled = seconds > 0 || props.disabled;
+
+  return (
+    <Button
+      onClick={handleClick}
+      disabled={disabled}
+      aria-busy={props["aria-busy"]}
+      {...props}
+    >
+      {sent ? (
+        <CheckIcon className="size-4" aria-hidden="true" />
+      ) : seconds > 0 ? (
+        <Loader2Icon className="size-4 animate-spin" aria-hidden="true" />
+      ) : (
+        <SendIcon className="size-4" aria-hidden="true" />
+      )}
+      {seconds > 0 ? `Resend OTP in ${seconds}s` : sent ? "Sent" : "Send OTP"}
+    </Button>
+  );
+}
+```
+
+      <Step>Usage</Step>
 
 ```tsx
-import {
-  LikeButton,
-  BookmarkButton,
-  FollowButton,
-  SubscribeButton,
-  FormatToggleGroup,
-  ThemeToggleButton,
-  MuteButton,
-  PlayPauseButton,
-} from "@/components/ui/button-kit";
+import { SendOtpButton } from "@/components/odiaui/send-otp-button";
+
+<SendOtpButton duration={30} onResend={() => {}} />
 ```
 
-### Auth and Social
+    </Steps>
 
-Continue with Google, GitHub, Apple, X and Facebook; sign in / sign up /
-log out; send OTP and verify OTP; copy link / copy code (shows "Copied!"
-for two seconds).
+  </TabsContent>
+</Tabs>
 
-<ComponentPreview name="button-kit-auth">
-  <ButtonKitAuth />
-</ComponentPreview>
+## WhatsApp share button
+
+Use to share a link or message via WhatsApp.
+
+<div className="flex items-center justify-center rounded-lg border p-8">
+  <WhatsappShareButton />
+</div>
+
+<Tabs defaultValue="command">
+  <TabsList>
+    <TabsTrigger value="command">Command</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="command">
+    <CodeBlockCommand
+      __npm__="npx shadcn@latest add https://www.odiaui.xyz/r/whatsapp-share-button.json"
+      __pnpm__="pnpm dlx shadcn@latest add https://www.odiaui.xyz/r/whatsapp-share-button.json"
+      __yarn__="yarn dlx shadcn@latest add https://www.odiaui.xyz/r/whatsapp-share-button.json"
+      __bun__="bunx --bun shadcn@latest add https://www.odiaui.xyz/r/whatsapp-share-button.json"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+```bash
+npm install lucide-react
+```
+
+      <Step>Add the component</Step>
+
+Create `components/odiaui/whatsapp-share-button.tsx`:
+
+```tsx title="components/odiaui/whatsapp-share-button.tsx"
+"use client";
+
+import { Share2Icon } from "lucide-react";
+import * as React from "react";
+
+import { Button } from "./button";
+
+export type WhatsappShareButtonProps = React.ComponentProps<typeof Button> & {
+  text?: string;
+  url?: string;
+};
+
+export function WhatsappShareButton({
+  text = "",
+  url,
+  children = "Share on WhatsApp",
+  onClick,
+  ...props
+}: WhatsappShareButtonProps) {
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    onClick?.(e);
+    const shareUrl =
+      url ?? (typeof window !== "undefined" ? window.location.href : "");
+    const message = text ? `${text} ${shareUrl}` : shareUrl;
+    window.open(
+      `https://wa.me/?text=${encodeURIComponent(message)}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
+  return (
+    <Button
+      variant="secondary"
+      aria-label="Share on WhatsApp"
+      onClick={handleClick}
+      {...props}
+    >
+      <Share2Icon className="size-4" aria-hidden="true" />
+      {children}
+    </Button>
+  );
+}
+```
+
+      <Step>Usage</Step>
 
 ```tsx
-import {
-  GoogleButton,
-  GithubButton,
-  AppleButton,
-  XButton,
-  FacebookButton,
-  SignInButton,
-  SignUpButton,
-  LogOutButton,
-  SendOtpButton,
-  VerifyOtpButton,
-  CopyLinkButton,
-} from "@/components/ui/button-kit";
+import { WhatsappShareButton } from "@/components/odiaui/whatsapp-share-button";
+
+<WhatsappShareButton text="Check this out" url="https://example.com" />
 ```
 
-### Icon and Compact
+    </Steps>
 
-Icon-only (tooltip + accessible label via `label`), floating action
-button (add `fixed bottom-6 right-6 z-50` yourself), close, menu,
-scroll to top, expand/collapse with a rotating chevron, and pagination
-with page numbers.
+  </TabsContent>
+</Tabs>
 
-<ComponentPreview name="button-kit-icon">
-  <ButtonKitIcon />
-</ComponentPreview>
+## Wishlist button
+
+Use to toggle a favorite/save state on products.
+
+<div className="flex items-center justify-center rounded-lg border p-8">
+  <WishlistButton />
+</div>
+
+<Tabs defaultValue="command">
+  <TabsList>
+    <TabsTrigger value="command">Command</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="command">
+    <CodeBlockCommand
+      __npm__="npx shadcn@latest add https://www.odiaui.xyz/r/wishlist-button.json"
+      __pnpm__="pnpm dlx shadcn@latest add https://www.odiaui.xyz/r/wishlist-button.json"
+      __yarn__="yarn dlx shadcn@latest add https://www.odiaui.xyz/r/wishlist-button.json"
+      __bun__="bunx --bun shadcn@latest add https://www.odiaui.xyz/r/wishlist-button.json"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+```bash
+npm install lucide-react motion
+```
+
+      <Step>Add the component</Step>
+
+Create `components/odiaui/wishlist-button.tsx`:
+
+```tsx title="components/odiaui/wishlist-button.tsx"
+"use client";
+
+import { HeartIcon } from "lucide-react";
+import { motion } from "motion/react";
+import * as React from "react";
+
+import { cn } from "@/lib/utils";
+import { Button } from "./button";
+
+export type WishlistButtonProps = React.ComponentProps<typeof Button> & {
+  defaultLiked?: boolean;
+  liked?: boolean;
+  onLikedChange?: (liked: boolean) => void;
+};
+
+export function WishlistButton({
+  defaultLiked = false,
+  liked: likedProp,
+  onLikedChange,
+  className,
+  ...props
+}: WishlistButtonProps) {
+  const [uncontrolled, setUncontrolled] = React.useState(defaultLiked);
+  const liked = likedProp ?? uncontrolled;
+
+  const toggle = () => {
+    const next = !liked;
+    if (likedProp === undefined) setUncontrolled(next);
+    onLikedChange?.(next);
+  };
+
+  return (
+    <Button
+      aria-pressed={liked}
+      aria-label={liked ? "Remove from wishlist" : "Add to wishlist"}
+      className={cn("gap-1.5", className)}
+      onClick={toggle}
+      variant={liked ? "secondary" : "outline"}
+      {...props}
+    >
+      <motion.span
+        animate={{ scale: liked ? [1, 1.35, 1] : 1 }}
+        className="inline-flex"
+        transition={{ duration: 0.3 }}
+      >
+        <HeartIcon
+          className={cn("size-4", liked && "fill-current text-red-500")}
+          aria-hidden="true"
+        />
+      </motion.span>
+      {liked ? "Saved" : "Wishlist"}
+    </Button>
+  );
+}
+```
+
+      <Step>Usage</Step>
 
 ```tsx
-import {
-  IconButton,
-  FabButton,
-  CloseButton,
-  MenuButton,
-  ScrollTopButton,
-  ExpandCollapseButton,
-  Pagination,
-} from "@/components/ui/button-kit";
+import { WishlistButton } from "@/components/odiaui/wishlist-button";
+
+<WishlistButton defaultLiked={false} />
 ```
 
-### Layout
+    </Steps>
 
-Joined button group, split button (main action + dropdown), dropdown
-trigger, segmented control, full-width block button, button with a
-badge count, and a button with a keyboard shortcut hint.
+  </TabsContent>
+</Tabs>
 
-<ComponentPreview name="button-kit-layout">
-  <ButtonKitLayout />
-</ComponentPreview>
+## Copy button
+
+Use to copy text with clear “copied” feedback.
+
+<div className="flex items-center justify-center rounded-lg border p-8">
+  <CopyButton value="https://www.odiaui.xyz" />
+</div>
+
+<Tabs defaultValue="command">
+  <TabsList>
+    <TabsTrigger value="command">Command</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="command">
+    <CodeBlockCommand
+      __npm__="npx shadcn@latest add https://www.odiaui.xyz/r/copy-button.json"
+      __pnpm__="pnpm dlx shadcn@latest add https://www.odiaui.xyz/r/copy-button.json"
+      __yarn__="yarn dlx shadcn@latest add https://www.odiaui.xyz/r/copy-button.json"
+      __bun__="bunx --bun shadcn@latest add https://www.odiaui.xyz/r/copy-button.json"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+```bash
+npm install lucide-react
+```
+
+      <Step>Add the component</Step>
+
+Create `components/odiaui/copy-button.tsx`:
+
+```tsx title="components/odiaui/copy-button.tsx"
+"use client";
+
+import { CheckIcon, CopyIcon } from "lucide-react";
+import * as React from "react";
+
+import { Button } from "./button";
+
+export type CopyButtonProps = React.ComponentProps<typeof Button> & {
+  value: string;
+  copiedLabel?: string;
+};
+
+export function CopyButton({
+  value,
+  copiedLabel = "Copied",
+  children = "Copy",
+  onClick,
+  ...props
+}: CopyButtonProps) {
+  const [copied, setCopied] = React.useState(false);
+
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
+    onClick?.(e);
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // ignore
+    }
+  };
+
+  return (
+    <Button variant="outline" onClick={handleClick} {...props}>
+      {copied ? (
+        <CheckIcon className="size-4" aria-hidden="true" />
+      ) : (
+        <CopyIcon className="size-4" aria-hidden="true" />
+      )}
+      {copied ? copiedLabel : children}
+    </Button>
+  );
+}
+```
+
+      <Step>Usage</Step>
 
 ```tsx
-import {
-  ButtonGroup,
-  SplitButton,
-  DropdownTriggerButton,
-  SegmentedControl,
-  BlockButton,
-  BadgeButton,
-  ShortcutButton,
-} from "@/components/ui/button-kit";
+import { CopyButton } from "@/components/odiaui/copy-button";
+
+<CopyButton value="Hello" />
 ```
 
-## API Reference
+    </Steps>
 
-### Button
+  </TabsContent>
+</Tabs>
 
-The `Button` component is a radix `Slot`-based button element with a
-clean token-driven style, a variety of sizes and variants, and a built-in
-loading state.
+## Download button
 
-| Prop        | Type                                                                                     | Default     | Description                                                         |
-| ----------- | ---------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------- |
-| `variant`   | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link" \| "frame"` | `"default"` | The visual style of the button.                                     |
-| `size`      | `"sm" \| "default" \| "lg" \| "icon" \| "icon-sm" \| "icon-full"`                        | `"default"` | The size of the button. Icon sizes render a square button.          |
-| `loading`   | `boolean`                                                                                | `false`     | Shows a spinner, disables interaction and sets `aria-busy`.         |
-| `asChild`   | `boolean`                                                                                | `false`     | Renders the styles on the single child element instead of a button. |
-| `className` | `string`                                                                                 | -           | Additional classes merged onto the button.                          |
+Use to start downloads and show progress when available.
 
-### Button Kit
+<div className="flex items-center justify-center rounded-lg border p-8">
+  <DownloadButton />
+</div>
 
-Every kit component forwards all base `Button` props (`variant`, `size`,
-`className`, …) unless noted. The notable additions:
+<Tabs defaultValue="command">
+  <TabsList>
+    <TabsTrigger value="command">Command</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="command">
+    <CodeBlockCommand
+      __npm__="npx shadcn@latest add https://www.odiaui.xyz/r/download-button.json"
+      __pnpm__="pnpm dlx shadcn@latest add https://www.odiaui.xyz/r/download-button.json"
+      __yarn__="yarn dlx shadcn@latest add https://www.odiaui.xyz/r/download-button.json"
+      __bun__="bunx --bun shadcn@latest add https://www.odiaui.xyz/r/download-button.json"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
 
-| Component              | Prop                                 | Description                                                                  |
-| ---------------------- | ------------------------------------ | ---------------------------------------------------------------------------- |
-| `SubmitButton`         | `valid?: boolean`                    | Disabled until the form is valid.                                            |
-| `DeleteConfirmButton`  | `onDelete?: () => void`              | First click arms ("Are you sure?"), second click confirms.                   |
-| `ErrorRetryButton`     | `onRun?: () => Promise<void>`        | Rejecting the promise triggers the shake + "Try again".                      |
-| `CountdownButton`      | `duration?: number`                  | Seconds to count down after firing `onResend`. Defaults to `30`.             |
-| `HoldToConfirmButton`  | `onConfirm?: () => void`             | Fires after holding for ~1.2s.                                               |
-| `LikeButton`           | `count?: number`                     | Starting like count.                                                         |
-| `FollowButton`         | `onFollow?: () => void`              | Hover a "Following" button to reveal "Unfollow".                             |
-| `CopyLinkButton`       | `link: string`                       | Text to copy; shows "Copied!" for 2s. `copiedLabel` customises the feedback. |
-| `IconButton`           | `label: string`                      | Used for the tooltip and the accessible name.                                |
-| `FabButton`            | `label?: string`                     | Accessible name; position it yourself with `className="fixed …"`.            |
-| `ExpandCollapseButton` | `open?`, `onOpenChange?`             | Controlled or uncontrolled chevron state.                                    |
-| `Pagination`           | `page`, `totalPages`, `onPageChange` | Current page, page count and change handler.                                 |
-| `SegmentedControl`     | `options`, `value`, `onValueChange`  | Single-choice pill switcher.                                                 |
-| `SplitButton`          | `items`, `onPrimary?`                | Dropdown entries for the arrow segment.                                      |
-| `BadgeButton`          | `count?: number`                     | Notification count shown in the pill.                                        |
-| `ShortcutButton`       | `shortcut?: string`                  | Keyboard hint text. Defaults to `⌘K`.                                        |
+```bash
+npm install lucide-react
+```
 
-See the [shadcn/ui button documentation](https://ui.shadcn.com/docs/components/button)
-for more information.
+      <Step>Add the component</Step>
+
+Create `components/odiaui/download-button.tsx`:
+
+```tsx title="components/odiaui/download-button.tsx"
+"use client";
+
+import { CheckIcon, DownloadIcon, Loader2Icon } from "lucide-react";
+import * as React from "react";
+
+import { Button } from "./button";
+
+export type DownloadButtonProps = React.ComponentProps<typeof Button> & {
+  progress?: number;
+};
+
+export function DownloadButton({
+  progress,
+  children = "Download",
+  onClick,
+  disabled,
+  ...props
+}: DownloadButtonProps) {
+  const [downloading, setDownloading] = React.useState(false);
+  const [done, setDone] = React.useState(false);
+
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
+    onClick?.(e);
+    if (progress === undefined) {
+      setDownloading(true);
+      window.setTimeout(() => {
+        setDownloading(false);
+        setDone(true);
+        window.setTimeout(() => setDone(false), 2000);
+      }, 1200);
+    }
+  };
+
+  const isLoading = downloading || (progress !== undefined && progress < 100 && progress > 0);
+  const isDone = done || progress === 100;
+
+  return (
+    <Button
+      onClick={handleClick}
+      disabled={disabled || isLoading}
+      aria-busy={isLoading || undefined}
+      {...props}
+    >
+      {isDone ? (
+        <CheckIcon className="size-4" aria-hidden="true" />
+      ) : isLoading ? (
+        <Loader2Icon className="size-4 animate-spin" aria-hidden="true" />
+      ) : (
+        <DownloadIcon className="size-4" aria-hidden="true" />
+      )}
+      {isDone ? "Downloaded" : isLoading && progress !== undefined ? `Downloading ${Math.round(progress)}%` : children}
+    </Button>
+  );
+}
+```
+
+      <Step>Usage</Step>
+
+```tsx
+import { DownloadButton } from "@/components/odiaui/download-button";
+
+<DownloadButton onClick={() => {}} />
+```
+
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Delete confirm button
+
+Use for irreversible actions like delete or cancel order.
+
+<div className="flex items-center justify-center rounded-lg border p-8">
+  <DeleteConfirmButton>Delete order</DeleteConfirmButton>
+</div>
+
+<Tabs defaultValue="command">
+  <TabsList>
+    <TabsTrigger value="command">Command</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="command">
+    <CodeBlockCommand
+      __npm__="npx shadcn@latest add https://www.odiaui.xyz/r/delete-confirm-button.json"
+      __pnpm__="pnpm dlx shadcn@latest add https://www.odiaui.xyz/r/delete-confirm-button.json"
+      __yarn__="yarn dlx shadcn@latest add https://www.odiaui.xyz/r/delete-confirm-button.json"
+      __bun__="bunx --bun shadcn@latest add https://www.odiaui.xyz/r/delete-confirm-button.json"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+```bash
+npm install lucide-react
+```
+
+      <Step>Add the component</Step>
+
+Create `components/odiaui/delete-confirm-button.tsx`:
+
+```tsx title="components/odiaui/delete-confirm-button.tsx"
+"use client";
+
+import { CheckIcon, TrashIcon } from "lucide-react";
+import * as React from "react";
+
+import { Button } from "./button";
+
+export type DeleteConfirmButtonProps = React.ComponentProps<typeof Button> & {
+  onConfirm?: () => void;
+  onDelete?: () => void;
+};
+
+export function DeleteConfirmButton({
+  onConfirm,
+  onDelete,
+  children = "Delete",
+  ...props
+}: DeleteConfirmButtonProps) {
+  const [armed, setArmed] = React.useState(false);
+  const [done, setDone] = React.useState(false);
+
+  const handleClick = () => {
+    if (done) return;
+    if (armed) {
+      (onConfirm ?? onDelete)?.();
+      setArmed(false);
+      setDone(true);
+      window.setTimeout(() => setDone(false), 2000);
+    } else {
+      setArmed(true);
+      window.setTimeout(() => setArmed(false), 3000);
+    }
+  };
+
+  let label: React.ReactNode = children;
+  if (armed) label = "Are you sure?";
+  if (done) label = "Deleted";
+
+  return (
+    <Button
+      onClick={handleClick}
+      variant={armed || done ? "destructive" : "outline"}
+      {...props}
+    >
+      {done ? (
+        <CheckIcon className="size-4" aria-hidden="true" />
+      ) : (
+        <TrashIcon className="size-4" aria-hidden="true" />
+      )}
+      {label}
+    </Button>
+  );
+}
+```
+
+      <Step>Usage</Step>
+
+```tsx
+import { DeleteConfirmButton } from "@/components/odiaui/delete-confirm-button";
+
+<DeleteConfirmButton onConfirm={() => {}}>Delete order</DeleteConfirmButton>
+```
+
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Language toggle button
+
+Use to switch between Odia and English.
+
+<div className="flex items-center justify-center rounded-lg border p-8">
+  <LanguageToggleButton />
+</div>
+
+<Tabs defaultValue="command">
+  <TabsList>
+    <TabsTrigger value="command">Command</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="command">
+    <CodeBlockCommand
+      __npm__="npx shadcn@latest add https://www.odiaui.xyz/r/language-toggle-button.json"
+      __pnpm__="pnpm dlx shadcn@latest add https://www.odiaui.xyz/r/language-toggle-button.json"
+      __yarn__="yarn dlx shadcn@latest add https://www.odiaui.xyz/r/language-toggle-button.json"
+      __bun__="bunx --bun shadcn@latest add https://www.odiaui.xyz/r/language-toggle-button.json"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Add the component</Step>
+
+Create `components/odiaui/language-toggle-button.tsx`:
+
+```tsx title="components/odiaui/language-toggle-button.tsx"
+"use client";
+
+import * as React from "react";
+
+import { Button } from "./button";
+
+export type LanguageToggleButtonProps = React.ComponentProps<typeof Button> & {
+  value?: "or" | "en";
+  onChange?: (value: "or" | "en") => void;
+};
+
+export function LanguageToggleButton({
+  value,
+  onChange,
+  onClick,
+  children,
+  ...props
+}: LanguageToggleButtonProps) {
+  const [internal, setInternal] = React.useState<"or" | "en">(value ?? "or");
+  const current = value ?? internal;
+
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    onClick?.(e);
+    const next = current === "or" ? "en" : "or";
+    if (value === undefined) setInternal(next);
+    onChange?.(next);
+  };
+
+  return (
+    <Button
+      variant="outline"
+      aria-label="Toggle language"
+      onClick={handleClick}
+      {...props}
+    >
+      {children ?? (current === "or" ? "ଓଡ଼ିଆ / EN" : "EN / ଓଡ଼ିଆ")}
+    </Button>
+  );
+}
+```
+
+      <Step>Usage</Step>
+
+```tsx
+import { LanguageToggleButton } from "@/components/odiaui/language-toggle-button";
+
+<LanguageToggleButton value="or" onChange={() => {}} />
+```
+
+    </Steps>
+
+  </TabsContent>
+</Tabs>

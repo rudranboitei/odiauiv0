@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "language-toggle-button",
+  "title": "Language Toggle Button",
+  "description": "Toggle between Odia and English.",
+  "dependencies": [],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/language-toggle-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\n\nimport { Button } from \"./button\";\n\nexport type LanguageToggleButtonProps = React.ComponentProps<typeof Button> & {\n  value?: \"or\" | \"en\";\n  onChange?: (value: \"or\" | \"en\") => void;\n};\n\nexport function LanguageToggleButton({\n  value,\n  onChange,\n  onClick,\n  children,\n  ...props\n}: LanguageToggleButtonProps) {\n  const [internal, setInternal] = React.useState<\"or\" | \"en\">(value ?? \"or\");\n  const current = value ?? internal;\n\n  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {\n    onClick?.(e);\n    const next = current === \"or\" ? \"en\" : \"or\";\n    if (value === undefined) setInternal(next);\n    onChange?.(next);\n  };\n\n  return (\n    <Button\n      variant=\"outline\"\n      aria-label=\"Toggle language\"\n      onClick={handleClick}\n      {...props}\n    >\n      {children ?? (current === \"or\" ? \"ଓଡ଼ିଆ / EN\" : \"EN / ଓଡ଼ିଆ\")}\n    </Button>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/odiaui/language-toggle-button.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

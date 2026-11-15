@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-button",
+  "title": "Copy Button",
+  "description": "Copy to clipboard button with copied state.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/copy-button.tsx",
+      "content": "\"use client\";\n\nimport { CheckIcon, CopyIcon } from \"lucide-react\";\nimport * as React from \"react\";\n\nimport { Button } from \"./button\";\n\nexport type CopyButtonProps = React.ComponentProps<typeof Button> & {\n  value: string;\n  copiedLabel?: string;\n};\n\nexport function CopyButton({\n  value,\n  copiedLabel = \"Copied\",\n  children = \"Copy\",\n  onClick,\n  ...props\n}: CopyButtonProps) {\n  const [copied, setCopied] = React.useState(false);\n\n  const handleClick: React.MouseEventHandler<HTMLButtonElement> = async (e) => {\n    onClick?.(e);\n    try {\n      await navigator.clipboard.writeText(value);\n      setCopied(true);\n      window.setTimeout(() => setCopied(false), 2000);\n    } catch {\n      // ignore\n    }\n  };\n\n  return (\n    <Button variant=\"outline\" onClick={handleClick} {...props}>\n      {copied ? (\n        <CheckIcon className=\"size-4\" aria-hidden=\"true\" />\n      ) : (\n        <CopyIcon className=\"size-4\" aria-hidden=\"true\" />\n      )}\n      {copied ? copiedLabel : children}\n    </Button>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/odiaui/copy-button.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}
