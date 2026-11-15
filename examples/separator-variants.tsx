@@ -1,11 +1,11 @@
 import { Separator } from "@/components/ui/separator";
 
-export const SeparatorDemo = () => (
+export const SeparatorVariants = () => (
   <div className="flex w-full max-w-sm flex-col gap-8">
     <Separator variant="plain" />
-    <Separator />
+    <Separator variant="default" />
     <Separator variant="dashed" />
-    <Separator variant="double" />
-    <Separator variant="rekha" />
+    <Separator variant="muted" />
+    <Separator variant="frame" />
   </div>
 );

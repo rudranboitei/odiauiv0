@@ -7,6 +7,23 @@ import { XIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
+/* -------------------------------------------------------------------------- */
+/*  OdiaUI Sheet                                                              */
+/*  Same Base UI API as shadcn/ui Sheet. Colours come only from shadcn theme  */
+/*  tokens (primary, muted, popover, border...), so it follows your theme in  */
+/*  light and dark mode.                                                      */
+/*                                                                            */
+/*  Odia additions (all optional):                                            */
+/*   - SheetContent  ornament   Ikat diamond strip on the bottom edge         */
+/*   - SheetContent  watermark  "deula" | "chakra" faint Odisha artwork,      */
+/*                              on by default                                 */
+/*   - SheetContent  handle     grabber bar for bottom sheets (visual only)   */
+/*   - SheetHeader   icon       leading icon, e.g. <ChakraIcon /> or          */
+/*                              <PadmaIcon />                                 */
+/*   - SheetOrnament            the strip as a standalone divider             */
+/*   - Left sheets put the close button at the top-left, like the poster.     */
+/* -------------------------------------------------------------------------- */
+
 type SheetSide = "top" | "right" | "bottom" | "left"
 type SheetWatermark = "none" | "deula" | "chakra"
 
@@ -15,6 +32,7 @@ function steps(count: number) {
 }
 
 /* --------------------------------- Icons ----------------------------------- */
+/* Line icons on a 32x32 grid in currentColor, same set as OdiaUI Badge.       */
 
 const icon32 = {
   viewBox: "0 0 32 32",
@@ -29,32 +47,17 @@ const icon32 = {
 const SPOKES_8 = steps(8)
 const SPOKES_8_OFFSET = SPOKES_8.map((angle) => angle + 22.5)
 
+/** Konark wheel. Use in SheetHeader's icon slot. */
 function ChakraIcon(props: React.ComponentProps<"svg">) {
   return (
     <svg {...icon32} {...props}>
       <circle cx="16" cy="16" r="14.2" strokeWidth="2.2" />
       <circle cx="16" cy="16" r="11.6" strokeWidth="1" />
       {SPOKES_8.map((angle) => (
-        <line
-          key={angle}
-          x1="16"
-          y1="5.6"
-          x2="16"
-          y2="11.4"
-          strokeWidth="2.6"
-          transform={`rotate(${angle} 16 16)`}
-        />
+        <line key={angle} x1="16" y1="5.6" x2="16" y2="11.4" strokeWidth="2.6" transform={`rotate(${angle} 16 16)`} />
       ))}
       {SPOKES_8_OFFSET.map((angle) => (
-        <line
-          key={angle}
-          x1="16"
-          y1="5.6"
-          x2="16"
-          y2="11.4"
-          strokeWidth="1.1"
-          transform={`rotate(${angle} 16 16)`}
-        />
+        <line key={angle} x1="16" y1="5.6" x2="16" y2="11.4" strokeWidth="1.1" transform={`rotate(${angle} 16 16)`} />
       ))}
       <circle cx="16" cy="16" r="4.6" strokeWidth="1.8" />
       <circle cx="16" cy="16" r="1.5" fill="currentColor" stroke="none" />
@@ -62,6 +65,7 @@ function ChakraIcon(props: React.ComponentProps<"svg">) {
   )
 }
 
+/** Lotus. Use in SheetHeader's icon slot. */
 function PadmaIcon(props: React.ComponentProps<"svg">) {
   return (
     <svg {...icon32} {...props}>
@@ -76,6 +80,7 @@ function PadmaIcon(props: React.ComponentProps<"svg">) {
   )
 }
 
+/** Rekha deula with flag. Use in SheetHeader's icon slot. */
 function DeulaIcon(props: React.ComponentProps<"svg">) {
   return (
     <svg {...icon32} {...props}>
@@ -83,10 +88,7 @@ function DeulaIcon(props: React.ComponentProps<"svg">) {
       <path d="M10 27V21H22V27" />
       <path d="M14.5 27V24.6A1.5 1.5 0 0 1 17.5 24.6V27" />
       <path d="M10 21C10 15.5 12 11 14.5 8.6L15 6.8H17L17.5 8.6C20 11 22 15.5 22 21" />
-      <path
-        d="M16 21V8.6M10.7 17.6H21.3M11.8 14.2H20.2M13.2 11.2H18.8"
-        strokeWidth="1.1"
-      />
+      <path d="M16 21V8.6M10.7 17.6H21.3M11.8 14.2H20.2M13.2 11.2H18.8" strokeWidth="1.1" />
       <ellipse cx="16" cy="5.7" rx="3" ry="1.1" />
       <path d="M16 4.6V1.6" />
       <path d="M16.2 1.7L21.2 2.9L16.2 4.1Z" fill="currentColor" />
@@ -95,6 +97,7 @@ function DeulaIcon(props: React.ComponentProps<"svg">) {
 }
 
 /* ------------------------------- Watermarks -------------------------------- */
+/* Same drawings as DeulaIcon and ChakraIcon, scaled up and kept very faint.   */
 
 function SheetWatermarkArt({
   variant,
@@ -109,6 +112,7 @@ function SheetWatermarkArt({
       className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[inherit] text-foreground opacity-[0.07] dark:opacity-[0.1]"
     >
       {variant === "deula" ? (
+        /* Rekha deula with flag */
         <svg
           viewBox="0 0 32 32"
           fill="none"
@@ -127,15 +131,13 @@ function SheetWatermarkArt({
             fill="currentColor"
             fillOpacity="0.22"
           />
-          <path
-            d="M16 21V8.6M10.7 17.6H21.3M11.8 14.2H20.2M13.2 11.2H18.8"
-            strokeWidth="0.7"
-          />
+          <path d="M16 21V8.6M10.7 17.6H21.3M11.8 14.2H20.2M13.2 11.2H18.8" strokeWidth="0.7" />
           <ellipse cx="16" cy="5.7" rx="3" ry="1.1" />
           <path d="M16 4.6V1.6" />
           <path d="M16.2 1.7L21.2 2.9L16.2 4.1Z" fill="currentColor" />
         </svg>
       ) : (
+        /* Konark wheel, cropped by the sheet corner */
         <svg
           viewBox="0 0 32 32"
           fill="none"
@@ -148,26 +150,10 @@ function SheetWatermarkArt({
           <circle cx="16" cy="16" r="14.2" strokeWidth="2.2" />
           <circle cx="16" cy="16" r="11.6" strokeWidth="1" />
           {SPOKES_8.map((angle) => (
-            <line
-              key={angle}
-              x1="16"
-              y1="5.6"
-              x2="16"
-              y2="11.4"
-              strokeWidth="2.6"
-              transform={`rotate(${angle} 16 16)`}
-            />
+            <line key={angle} x1="16" y1="5.6" x2="16" y2="11.4" strokeWidth="2.6" transform={`rotate(${angle} 16 16)`} />
           ))}
           {SPOKES_8_OFFSET.map((angle) => (
-            <line
-              key={angle}
-              x1="16"
-              y1="5.6"
-              x2="16"
-              y2="11.4"
-              strokeWidth="1.1"
-              transform={`rotate(${angle} 16 16)`}
-            />
+            <line key={angle} x1="16" y1="5.6" x2="16" y2="11.4" strokeWidth="1.1" transform={`rotate(${angle} 16 16)`} />
           ))}
           <circle cx="16" cy="16" r="4.6" strokeWidth="1.8" />
           <circle cx="16" cy="16" r="1.5" fill="currentColor" stroke="none" />
@@ -214,14 +200,17 @@ function SheetContent({
   side = "right",
   showCloseButton = true,
   ornament = false,
-  watermark = "none",
+  watermark = "deula",
   handle = false,
   ...props
 }: SheetPrimitive.Popup.Props & {
   side?: SheetSide
   showCloseButton?: boolean
+  /** Ikat diamond strip on the bottom edge of the sheet. */
   ornament?: boolean
+  /** Optional faint Odisha artwork behind the content. On by default. */
   watermark?: SheetWatermark
+  /** Grabber bar at the top. Visual only, made for side="bottom". */
   handle?: boolean
 }) {
   return (
@@ -231,11 +220,11 @@ function SheetContent({
         data-slot="sheet-content"
         data-side={side}
         className={cn(
-          "group/sheet fixed z-50 isolate flex flex-col gap-4 border bg-popover bg-clip-padding text-sm text-popover-foreground shadow-[0_4px_12px_rgba(0,0,0,0.08),0_24px_64px_rgba(0,0,0,0.16)] outline-none transition duration-200 ease-in-out data-ending-style:opacity-0 data-starting-style:opacity-0",
-          "data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:border-l data-[side=right]:data-ending-style:translate-x-8 data-[side=right]:data-starting-style:translate-x-8 data-[side=right]:sm:max-w-md",
-          "data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:border-r data-[side=left]:data-ending-style:-translate-x-8 data-[side=left]:data-starting-style:-translate-x-8 data-[side=left]:sm:max-w-md",
-          "data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:h-auto data-[side=top]:max-h-[85vh] data-[side=top]:border-b data-[side=top]:data-ending-style:-translate-y-8 data-[side=top]:data-starting-style:-translate-y-8 data-[side=top]:rounded-b-2xl",
-          "data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:h-auto data-[side=bottom]:max-h-[85vh] data-[side=bottom]:border-t data-[side=bottom]:data-ending-style:translate-y-8 data-[side=bottom]:data-starting-style:translate-y-8 data-[side=bottom]:rounded-t-2xl",
+          "fixed z-50 flex flex-col gap-4 bg-popover bg-clip-padding text-sm text-popover-foreground shadow-[0_2px_6px_rgba(0,0,0,0.08),0_20px_60px_rgba(0,0,0,0.16)] transition duration-200 ease-in-out data-ending-style:opacity-0 data-starting-style:opacity-0 data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:h-auto data-[side=bottom]:border-t data-[side=bottom]:data-ending-style:translate-y-[2.5rem] data-[side=bottom]:data-starting-style:translate-y-[2.5rem] data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:border-r data-[side=left]:data-ending-style:translate-x-[-2.5rem] data-[side=left]:data-starting-style:translate-x-[-2.5rem] data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:border-l data-[side=right]:data-ending-style:translate-x-[2.5rem] data-[side=right]:data-starting-style:translate-x-[2.5rem] data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:h-auto data-[side=top]:border-b data-[side=top]:data-ending-style:translate-y-[-2.5rem] data-[side=top]:data-starting-style:translate-y-[-2.5rem] data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm",
+          /* Odia: rounded outer edge for top and bottom sheets */
+          "group/sheet isolate data-[side=bottom]:rounded-t-xl data-[side=top]:rounded-b-xl",
+          /* Odia: with the close button at the top-left, the header moves below it */
+          "data-[side=left]:has-data-[odia-close]:[&>[data-slot=sheet-header]]:pt-12",
           className
         )}
         {...props}
@@ -245,7 +234,7 @@ function SheetContent({
           <div
             data-slot="sheet-handle"
             aria-hidden="true"
-            className="mx-auto mt-2 -mb-2 h-1.5 w-10 shrink-0 rounded-full bg-muted-foreground/30"
+            className="mx-auto mt-2 -mb-2 h-1 w-10 shrink-0 rounded-full bg-muted-foreground/30"
           />
         ) : null}
         {children}
@@ -257,7 +246,7 @@ function SheetContent({
             render={
               <Button
                 variant="ghost"
-                className="absolute top-3 right-3"
+                className="absolute top-3 right-3 group-data-[side=left]/sheet:right-auto group-data-[side=left]/sheet:left-3"
                 size="icon-sm"
               >
                 <XIcon />
@@ -277,13 +266,14 @@ function SheetHeader({
   children,
   ...props
 }: React.ComponentProps<"div"> & {
+  /** Leading icon, for example <ChakraIcon />, <PadmaIcon /> or <DeulaIcon />. */
   icon?: React.ReactNode
 }) {
   if (!icon) {
     return (
       <div
         data-slot="sheet-header"
-        className={cn("flex flex-col gap-1 p-4 pr-12", className)}
+        className={cn("flex flex-col gap-0.5 p-4", className)}
         {...props}
       >
         {children}
@@ -313,7 +303,7 @@ function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sheet-footer"
-      className={cn("mt-auto flex flex-col gap-2 border-t bg-muted/30 p-4", className)}
+      className={cn("mt-auto flex flex-col gap-2 p-4", className)}
       {...props}
     />
   )
@@ -323,7 +313,10 @@ function SheetTitle({ className, ...props }: SheetPrimitive.Title.Props) {
   return (
     <SheetPrimitive.Title
       data-slot="sheet-title"
-      className={cn("text-base font-semibold text-foreground", className)}
+      className={cn(
+        "cn-font-heading text-base font-medium text-foreground",
+        className
+      )}
       {...props}
     />
   )
@@ -342,6 +335,12 @@ function SheetDescription({
   )
 }
 
+/* ------------------------------ Odia additions ----------------------------- */
+
+/**
+ * Sambalpuri Ikat diamond strip between two thin lines. SheetContent renders
+ * it on the bottom edge when `ornament` is set. You can also use it as a divider.
+ */
 function SheetOrnament({ className, ...props }: React.ComponentProps<"div">) {
   const patternId = `odia-sheet-strip-${React.useId().replace(/:/g, "")}`
 
@@ -350,12 +349,15 @@ function SheetOrnament({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="sheet-ornament"
       aria-hidden="true"
       className={cn(
-        "shrink-0 overflow-hidden bg-muted/40 group-data-[side=top]/sheet:rounded-b-2xl",
+        "shrink-0 overflow-hidden bg-muted/40 group-data-[side=top]/sheet:rounded-b-xl",
         className
       )}
       {...props}
     >
-      <svg focusable="false" className="block h-3 w-full text-primary/60">
+      <svg
+        focusable="false"
+        className="block h-3 w-full text-primary/60"
+      >
         <defs>
           <pattern
             id={patternId}
@@ -388,18 +390,16 @@ function SheetOrnament({ className, ...props }: React.ComponentProps<"div">) {
 
 export {
   Sheet,
+  SheetTrigger,
   SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
   SheetHeader,
-  SheetOrnament,
-  SheetOverlay,
-  SheetPortal,
+  SheetFooter,
   SheetTitle,
-  SheetTrigger,
+  SheetDescription,
+  SheetOrnament,
   ChakraIcon,
-  DeulaIcon,
   PadmaIcon,
+  DeulaIcon,
 }
 export type { SheetSide, SheetWatermark }
