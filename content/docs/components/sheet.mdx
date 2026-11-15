@@ -1,23 +1,19 @@
 ---
 title: Sheet
-description: A Base UI sheet with a faint rekha deula watermark on by default (opt-out-able), plus a chakra watermark, an Ikat ornament strip, a grabber handle, header icon slots, and rounded top and bottom edges.
+description: A Base UI sheet for side panels and bottom action flows, with token-based styling for common real-world use cases.
 ---
 
-import { SheetDemo } from "@/examples/sheet";
-import { SheetBottom } from "@/examples/sheet-bottom";
-import { SheetLeft } from "@/examples/sheet-left";
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { SheetBottomActions } from "@/examples/sheet-bottom-actions";
+import { SheetCart } from "@/examples/sheet-cart";
+import { SheetEditProfile } from "@/examples/sheet-edit-profile";
+import { SheetFilters } from "@/examples/sheet-filters";
+import { SheetMobileNav } from "@/examples/sheet-mobile-nav";
+import { SheetNotifications } from "@/examples/sheet-notifications";
+import { SheetQuickView } from "@/examples/sheet-quick-view";
+import { SheetUnsavedDialog } from "@/examples/sheet-unsaved-dialog";
 
-<ComponentPreview name="sheet">
-  <SheetDemo />
+<ComponentPreview name="sheet-cart">
+  <SheetCart />
 </ComponentPreview>
 
 ## Installation
@@ -26,16 +22,17 @@ import {
 npx shadcn@latest add https://odiaui.xyz/r/sheet.json
 ```
 
-Colours come only from shadcn theme tokens, so the sheet follows your
-theme automatically in light and dark mode.
+Colours come only from shadcn theme tokens, so the sheet follows your theme automatically in light and dark mode.
 
 ## Usage
 
 ```tsx
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -45,74 +42,104 @@ import {
 ```tsx
 <Sheet>
   <SheetTrigger render={<Button variant="outline" />}>Open</SheetTrigger>
-  <SheetContent>
+  <SheetContent side="right">
     <SheetHeader>
       <SheetTitle>Title</SheetTitle>
       <SheetDescription>Description</SheetDescription>
     </SheetHeader>
+    <div className="px-4">Content</div>
+    <SheetFooter>
+      <SheetClose render={<Button />}>Done</SheetClose>
+    </SheetFooter>
   </SheetContent>
 </Sheet>
 ```
 
-Heritage is on by default: every sheet carries a faint **rekha deula
-watermark** — the curving temple tower flying its flag — behind the
-content. Opt out with
-`watermark="none"`; the **Ikat ornament strip** is available with
-`ornament`.
-
-Base UI uses the `render` prop instead of `asChild` — pass the element
-you want the trigger to render as.
+Base UI uses the `render` prop instead of `asChild` for triggers, closes, and other composable actions.
 
 ## Examples
 
-### Bottom Sheet
+### Cart (list + pinned footer)
 
-`side="bottom"` rounds the top edge, and `handle` adds a grabber bar
-(visual only). The Ikat ornament strip can be added with `ornament`, and
-`watermark="chakra"` swaps the deula temple for a Konark wheel cropped
-into the corner behind the content.
+A cart sheet with a scrollable item list and a pinned footer for subtotal and checkout.
 
-<ComponentPreview name="sheet-bottom">
-  <SheetBottom />
+<ComponentPreview name="sheet-cart">
+  <SheetCart />
 </ComponentPreview>
 
-### Header Icons
+### Filters
 
-`SheetHeader` takes an `icon` — `ChakraIcon`, `PadmaIcon`, or
-`DeulaIcon` ship with
-the component, both drawn inline in `currentColor`.
+Filter controls using Slider, Radio Group, and Switch with reset/apply actions.
 
-### Left Sheet
+<ComponentPreview name="sheet-filters">
+  <SheetFilters />
+</ComponentPreview>
 
-`side="left"` moves the close button to the top-left, poster style,
-and nudges the header below it. The default deula watermark sits
-behind the content.
+### Notifications
 
-<ComponentPreview name="sheet-left">
-  <SheetLeft />
+A notifications panel with Avatar, Badge, and Separator.
+
+<ComponentPreview name="sheet-notifications">
+  <SheetNotifications />
+</ComponentPreview>
+
+### Mobile nav (left side)
+
+A left-side navigation sheet for mobile menus and account actions.
+
+<ComponentPreview name="sheet-mobile-nav">
+  <SheetMobileNav />
+</ComponentPreview>
+
+### Edit profile
+
+A form sheet using Input, Label, and Textarea.
+
+<ComponentPreview name="sheet-edit-profile">
+  <SheetEditProfile />
+</ComponentPreview>
+
+### Quick-view details
+
+Open a sheet from a table row to preview details without leaving the page.
+
+<ComponentPreview name="sheet-quick-view">
+  <SheetQuickView />
+</ComponentPreview>
+
+### Unsaved changes (Sheet + Dialog)
+
+Demonstrates component interaction by prompting with a Dialog before discarding unsaved sheet changes.
+
+<ComponentPreview name="sheet-unsaved-dialog">
+  <SheetUnsavedDialog />
+</ComponentPreview>
+
+### Bottom action sheet (mobile)
+
+A mobile-friendly bottom sheet with a grabber handle and quick actions.
+
+<ComponentPreview name="sheet-bottom-actions">
+  <SheetBottomActions />
 </ComponentPreview>
 
 ## API Reference
 
 ### Sheet / SheetTrigger / SheetClose / SheetOverlay / SheetPortal
 
-Thin wrappers around Base UI's dialog parts — all Base UI props are
-forwarded. Triggers take Base UI's `render` prop.
+Thin wrappers around Base UI dialog primitives used to build sheets. Triggers and closes accept Base UI's `render` prop.
 
 ### SheetContent
 
-| Prop              | Type                                     | Default   | Description                               |
-| ----------------- | ---------------------------------------- | --------- | ----------------------------------------- |
-| `side`            | `"top" \| "right" \| "bottom" \| "left"` | `"right"` | The edge the sheet slides in from.        |
-| `ornament`        | `boolean`                                | `false`   | Ikat diamond strip on the bottom edge.    |
-| `watermark`       | `"none" \| "deula" \| "chakra"`          | `"deula"` | Faint rekha deula behind the content.     |
-| `handle`          | `boolean`                                | `false`   | Grabber bar at the top; visual only.      |
-| `showCloseButton` | `boolean`                                | `true`    | Renders the built-in close button.        |
-| `className`       | `string`                                 | -         | Additional classes merged onto the popup. |
+| Prop              | Type                                     | Default   | Description                                       |
+| ----------------- | ---------------------------------------- | --------- | ------------------------------------------------- |
+| `side`            | `"top" \| "right" \| "bottom" \| "left"` | `"right"` | Edge the sheet slides in from.                    |
+| `showCloseButton` | `boolean`                                | `true`    | Renders the built-in close button.                |
+| `handle`          | `boolean`                                | `false`   | Visual grabber bar (typically for bottom sheets). |
+| `watermark`       | `"none" \| "deula" \| "chakra"`          | `"none"`  | Optional faint background artwork.                |
+| `ornament`        | `boolean`                                | `false`   | Optional decorative strip.                        |
+| `className`       | `string`                                 | -         | Additional classes merged onto the popup.         |
 
-### SheetHeader / SheetTitle / SheetDescription / SheetFooter / SheetOrnament
+### SheetHeader / SheetTitle / SheetDescription / SheetFooter
 
-| Component       | Notes                                                                  |
-| --------------- | ---------------------------------------------------------------------- |
-| `SheetHeader`   | `icon` prop renders a leading icon in the accent colour.               |
-| `SheetOrnament` | The Ikat strip as a standalone divider; `SheetContent` renders it too. |
+Layout helpers for sheet content. `SheetHeader` supports an optional `icon` prop, and `SheetFooter` is pinned to the bottom for actions.
