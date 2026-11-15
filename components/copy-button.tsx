@@ -56,6 +56,8 @@ export interface CopyButtonProps extends Omit<
   src?: string;
   event?: Event["name"];
   showTooltip?: boolean;
+  /** Swap the children with this label while the copy is in its success state. */
+  copiedLabel?: React.ReactNode;
 }
 
 export const CopyButton = ({
@@ -65,6 +67,7 @@ export const CopyButton = ({
   event,
   children,
   showTooltip = true,
+  copiedLabel,
   ...props
 }: CopyButtonProps) => {
   const getValue = useCallback(() => {
@@ -125,7 +128,7 @@ export const CopyButton = ({
           </motion.span>
         )}
       </AnimatePresence>
-      {children}
+      {isCopied && copiedLabel ? copiedLabel : children}
     </Button>
   );
 

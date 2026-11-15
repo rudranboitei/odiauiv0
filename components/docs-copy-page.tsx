@@ -184,6 +184,7 @@ export const DocsCopyPage = ({
           value={copyValue}
           showTooltip={false}
           variant="ghost"
+          copiedLabel="Copied"
           className="h-full rounded-none px-3 hover:bg-transparent active:bg-transparent md:px-2.5"
         >
           Copy Page
