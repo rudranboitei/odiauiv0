@@ -3,7 +3,7 @@
 import { CreditCardIcon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type BuyNowButtonProps = React.ComponentProps<typeof Button>;
 

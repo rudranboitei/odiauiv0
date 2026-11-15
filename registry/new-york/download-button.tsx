@@ -3,7 +3,7 @@
 import { CheckIcon, DownloadIcon, Loader2Icon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type DownloadButtonProps = React.ComponentProps<typeof Button> & {
   progress?: number;

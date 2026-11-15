@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/new-york/buy-now-button.tsx",
-      "content": "\"use client\";\n\nimport { CreditCardIcon } from \"lucide-react\";\nimport * as React from \"react\";\n\nimport { Button } from \"./button\";\n\nexport type BuyNowButtonProps = React.ComponentProps<typeof Button>;\n\nexport function BuyNowButton({\n  children = \"Buy Now\",\n  ...props\n}: BuyNowButtonProps) {\n  return (\n    <Button className=\"w-full sm:w-auto\" size=\"lg\" {...props}>\n      <CreditCardIcon className=\"size-4\" aria-hidden=\"true\" />\n      {children}\n    </Button>\n  );\n}\n",
+      "content": "\"use client\";\n\nimport { CreditCardIcon } from \"lucide-react\";\nimport * as React from \"react\";\n\nimport { Button } from \"@/components/ui/button\";\n\nexport type BuyNowButtonProps = React.ComponentProps<typeof Button>;\n\nexport function BuyNowButton({\n  children = \"Buy Now\",\n  ...props\n}: BuyNowButtonProps) {\n  return (\n    <Button className=\"w-full sm:w-auto\" size=\"lg\" {...props}>\n      <CreditCardIcon className=\"size-4\" aria-hidden=\"true\" />\n      {children}\n    </Button>\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/odiaui/buy-now-button.tsx"
     }

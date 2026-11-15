@@ -3,7 +3,7 @@
 import { CheckIcon, CopyIcon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type CopyButtonProps = React.ComponentProps<typeof Button> & {
   value: string;

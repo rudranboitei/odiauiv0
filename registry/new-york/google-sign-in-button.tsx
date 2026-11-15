@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 function GoogleMark({ className }: { className?: string }) {
   return (

@@ -3,7 +3,7 @@
 import { CheckIcon, ShoppingCartIcon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type AddToCartButtonProps = React.ComponentProps<typeof Button> & {
   onAdd?: () => void;

@@ -58,7 +58,7 @@ Create `components/odiaui/add-to-cart-button.tsx`:
 import { CheckIcon, ShoppingCartIcon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type AddToCartButtonProps = React.ComponentProps<typeof Button> & {
   onAdd?: () => void;
@@ -145,7 +145,7 @@ Create `components/odiaui/buy-now-button.tsx`:
 import { CreditCardIcon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type BuyNowButtonProps = React.ComponentProps<typeof Button>;
 
@@ -214,7 +214,7 @@ Create `components/odiaui/pay-with-upi-button.tsx`:
 import { SmartphoneIcon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type PayWithUpiButtonProps = React.ComponentProps<typeof Button>;
 
@@ -283,7 +283,7 @@ Create `components/odiaui/submit-button.tsx`:
 import { Loader2Icon, SendIcon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type SubmitButtonProps = React.ComponentProps<typeof Button> & {
   valid?: boolean;
@@ -360,7 +360,7 @@ Create `components/odiaui/google-sign-in-button.tsx`:
 
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 function GoogleMark({ className }: { className?: string }) {
   return (
@@ -445,7 +445,7 @@ Create `components/odiaui/send-otp-button.tsx`:
 import { CheckIcon, Loader2Icon, SendIcon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type SendOtpButtonProps = React.ComponentProps<typeof Button> & {
   duration?: number;
@@ -548,7 +548,7 @@ Create `components/odiaui/whatsapp-share-button.tsx`:
 import { Share2Icon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type WhatsappShareButtonProps = React.ComponentProps<typeof Button> & {
   text?: string;
@@ -642,7 +642,7 @@ import { motion } from "motion/react";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type WishlistButtonProps = React.ComponentProps<typeof Button> & {
   defaultLiked?: boolean;
@@ -743,7 +743,7 @@ Create `components/odiaui/copy-button.tsx`:
 import { CheckIcon, CopyIcon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type CopyButtonProps = React.ComponentProps<typeof Button> & {
   value: string;
@@ -835,7 +835,7 @@ Create `components/odiaui/download-button.tsx`:
 import { CheckIcon, DownloadIcon, Loader2Icon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type DownloadButtonProps = React.ComponentProps<typeof Button> & {
   progress?: number;
@@ -938,7 +938,7 @@ Create `components/odiaui/delete-confirm-button.tsx`:
 import { CheckIcon, TrashIcon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type DeleteConfirmButtonProps = React.ComponentProps<typeof Button> & {
   onConfirm?: () => void;
@@ -1033,7 +1033,7 @@ Create `components/odiaui/language-toggle-button.tsx`:
 
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type LanguageToggleButtonProps = React.ComponentProps<typeof Button> & {
   value?: "or" | "en";

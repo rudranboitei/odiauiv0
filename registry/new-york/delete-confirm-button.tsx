@@ -3,7 +3,7 @@
 import { CheckIcon, TrashIcon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 export type DeleteConfirmButtonProps = React.ComponentProps<typeof Button> & {
   onConfirm?: () => void;
