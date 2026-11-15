@@ -58,6 +58,8 @@ export interface CopyButtonProps extends Omit<
   showTooltip?: boolean;
   /** Swap the children with this label while the copy is in its success state. */
   copiedLabel?: React.ReactNode;
+  /** Colour applied to the success badge and label. Defaults to white (dark surfaces). */
+  copiedClassName?: string;
 }
 
 export const CopyButton = ({
@@ -68,6 +70,7 @@ export const CopyButton = ({
   children,
   showTooltip = true,
   copiedLabel,
+  copiedClassName,
   ...props
 }: CopyButtonProps) => {
   const getValue = useCallback(() => {
@@ -119,8 +122,11 @@ export const CopyButton = ({
       <span className="sr-only">Copy</span>
       <AnimatePresence mode="popLayout" initial={false}>
         {isCopied ? (
-          <motion.span key="done" {...motionIconProps}>
-            <VerifiedIcon className="size-4 text-white" />
+          <motion.span
+            {...motionIconProps}
+            className={cn("text-white", copiedClassName)}
+          >
+            <VerifiedIcon className="size-4" />
           </motion.span>
         ) : (
           <motion.span key="idle" {...motionIconProps}>
@@ -128,7 +134,11 @@ export const CopyButton = ({
           </motion.span>
         )}
       </AnimatePresence>
-      {isCopied && copiedLabel ? copiedLabel : children}
+      {isCopied && copiedLabel ? (
+        <span className={copiedClassName}>{copiedLabel}</span>
+      ) : (
+        children
+      )}
     </Button>
   );
 
