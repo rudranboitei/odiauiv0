@@ -23,7 +23,7 @@ const items = [
     value: "second",
   },
   {
-    content: "Works with any variant — here it is a bordered accordion.",
+    content: "Works with any variant — here it is the flush default.",
     trigger: "Third panel",
     value: "third",
   },
@@ -49,7 +49,6 @@ export const AccordionExpandAll = () => {
       <Accordion
         onValueChange={(next) => setValue(next as string[])}
         value={value}
-        variant="bordered"
       >
         {items.map((item) => (
           <AccordionItem key={item.value} value={item.value}>

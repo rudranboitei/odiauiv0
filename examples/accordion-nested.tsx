@@ -36,13 +36,13 @@ const outer = [
 ];
 
 export const AccordionNested = () => (
-  <Accordion defaultValue={["support"]} variant="bordered" className="max-w-xl">
+  <Accordion defaultValue={["support"]} className="max-w-xl">
     {outer.map((item) => (
       <AccordionItem key={item.value} value={item.value}>
         <AccordionTrigger>{item.trigger}</AccordionTrigger>
         <AccordionContent>
           {item.value === "support" ? (
-            <Accordion className="gap-0">
+            <Accordion className="mt-1 ml-4 gap-0">
               {inner.map((sub) => (
                 <AccordionItem key={sub.value} value={sub.value}>
                   <AccordionTrigger indicator="plus" className="text-[0.8rem]">

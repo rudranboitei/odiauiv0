@@ -108,6 +108,22 @@ Accordions compose — drop an inner (flush) accordion into any
   <AccordionNested />
 </ComponentPreview>
 
+```tsx
+<Accordion>
+  <AccordionItem value="support">
+    <AccordionTrigger>Support & policies</AccordionTrigger>
+    <AccordionContent>
+      <Accordion>
+        <AccordionItem value="returns">
+          <AccordionTrigger indicator="plus">Return policy</AccordionTrigger>
+          <AccordionContent>…</AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
 ### Expand all / Collapse all
 
 Control the accordion with `value` + `onValueChange` and set the array
