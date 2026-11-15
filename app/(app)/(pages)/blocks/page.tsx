@@ -158,10 +158,6 @@ const BlocksPage = () => (
         <div className="flex min-w-0 flex-1 flex-col">
           <div className="h-(--top-spacing) shrink-0" />
           <section className="relative overflow-hidden border-b border-grid">
-            <div
-              aria-hidden="true"
-              className="bg-grid-lines absolute inset-0 [mask-image:radial-gradient(ellipse_70%_65%_at_50%_0%,black_20%,transparent_75%)]"
-            />
             <div className="relative flex flex-col items-center gap-4 px-4 py-12 text-center md:py-16 lg:py-20 lg:px-8">
               <p className="text-muted-foreground text-[0.7rem] font-medium tracking-[0.18em] uppercase">
                 coming soon · ready-made sections

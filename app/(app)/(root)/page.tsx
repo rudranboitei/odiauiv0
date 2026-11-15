@@ -23,10 +23,6 @@ export default function IndexPage() {
           {/* Centered hairline frame — grid lines, no sidebar on the homepage */}
           <div className="min-h-min flex-1 lg:mx-auto lg:max-w-[1400px] lg:border-x lg:border-grid">
             <section className="relative overflow-hidden border-b border-grid">
-              <div
-                aria-hidden="true"
-                className="bg-grid-lines absolute inset-0 [mask-image:radial-gradient(ellipse_70%_65%_at_50%_0%,black_20%,transparent_75%)]"
-              />
               <div className="container relative flex flex-col items-center gap-4 py-16 text-center md:py-20 lg:py-24">
                 <p className="text-muted-foreground text-[0.7rem] font-medium tracking-[0.18em] uppercase">
                   shadcn/ui registry · from odisha
