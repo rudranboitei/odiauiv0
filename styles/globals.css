@@ -95,9 +95,9 @@
   --sidebar-ring: #3b82f6;
   --surface: #f4f4f5;
   --surface-foreground: var(--foreground);
-  --code: var(--surface);
+  --code: var(--card);
   --code-foreground: var(--surface-foreground);
-  --code-highlight: #e4e4e7;
+  --code-highlight: var(--accent);
   --code-number: #71717a;
   --selection: #3b82f6;
   --selection-foreground: #ffffff;

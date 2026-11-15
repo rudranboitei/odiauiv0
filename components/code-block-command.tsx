@@ -10,6 +10,83 @@ import { usePackageManager } from "@/hooks/use-package-manager";
 import type { Event } from "@/lib/events";
 import { cn } from "@/lib/utils";
 
+const BINARIES = new Set(["npm", "npx", "yarn", "pnpm", "bun", "bunx"]);
+
+const SUBCOMMANDS = new Set([
+  "install",
+  "add",
+  "create",
+  "run",
+  "dlx",
+  "exec",
+  "init",
+  "i",
+  "x",
+]);
+
+const HighlightedCommand = ({ value }: { value?: string }) => {
+  if (!value) {
+    return null;
+  }
+  const parts = value.split(/(\s+)/);
+
+  let binaryIndex = -1;
+  let subcommandIndex = -1;
+
+  for (const [i, part] of parts.entries()) {
+    if (/^\s+$/.test(part)) {
+      continue;
+    }
+    if (binaryIndex === -1 && BINARIES.has(part)) {
+      binaryIndex = i;
+      continue;
+    }
+    if (binaryIndex !== -1 && subcommandIndex === -1 && SUBCOMMANDS.has(part)) {
+      subcommandIndex = i;
+      break;
+    }
+    if (binaryIndex !== -1) {
+      break;
+    }
+  }
+
+  return (
+    <>
+      {parts.map((part, i) => {
+        if (/^\s+$/.test(part)) {
+          return <span key={i}>{part}</span>;
+        }
+
+        if (i === binaryIndex) {
+          return (
+            <span key={i} className="text-sky-600 dark:text-sky-400">
+              {part}
+            </span>
+          );
+        }
+
+        if (i === subcommandIndex) {
+          return (
+            <span key={i} className="text-violet-600 dark:text-violet-400">
+              {part}
+            </span>
+          );
+        }
+
+        if (part.startsWith("-")) {
+          return (
+            <span key={i} className="text-amber-600 dark:text-amber-400">
+              {part}
+            </span>
+          );
+        }
+
+        return <span key={i}>{part}</span>;
+      })}
+    </>
+  );
+};
+
 export const CodeBlockCommand = ({
   __npm__,
   __yarn__,
@@ -84,8 +161,8 @@ export const CodeBlockCommand = ({
                   data-language="bash"
                   className="font-mono text-sm/none"
                 >
-                  <span className="select-none">$ </span>
-                  {value}
+                  <span className="select-none text-code-number">$ </span>
+                  <HighlightedCommand value={value} />
                 </code>
               </pre>
             </TabsContent>
