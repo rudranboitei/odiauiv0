@@ -50,10 +50,10 @@ export const CardLogin = () => (
       </form>
     </CardContent>
     <CardFooter className="flex-col gap-2">
-      <Button type="submit" className="w-full" watermark="none">
+      <Button type="submit" className="w-full">
         Login
       </Button>
-      <Button variant="outline" className="w-full" watermark="none">
+      <Button variant="outline" className="w-full">
         Login with Google
       </Button>
     </CardFooter>

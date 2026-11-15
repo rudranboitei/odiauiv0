@@ -196,18 +196,17 @@ import {
 
 ### Button
 
-The `Button` component is a radix `Slot`-based button element with OdiaUI
-heritage styling, a variety of sizes and variants, and optional decorative
-temple artwork.
+The `Button` component is a radix `Slot`-based button element with a
+clean token-driven style, a variety of sizes and variants, and a built-in
+loading state.
 
-| Prop        | Type                                                                                     | Default     | Description                                                                                                   |
-| ----------- | ---------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------- |
-| `variant`   | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link" \| "frame"` | `"default"` | The visual style of the button.                                                                               |
-| `size`      | `"sm" \| "default" \| "lg" \| "icon" \| "icon-sm" \| "icon-full"`                        | `"default"` | The size of the button. Icon sizes render a square button.                                                    |
-| `loading`   | `boolean`                                                                                | `false`     | Shows a spinner, disables interaction and sets `aria-busy`.                                                   |
-| `watermark` | `"auto" \| "deula" \| "chakra" \| "none"`                                                | `"auto"`    | Temple and/or wheel artwork behind the label. Auto: on for filled styles, off for ghost, link and icon sizes. |
-| `asChild`   | `boolean`                                                                                | `false`     | Renders the styles on the single child element instead of a button.                                           |
-| `className` | `string`                                                                                 | -           | Additional classes merged onto the button.                                                                    |
+| Prop        | Type                                                                                     | Default     | Description                                                         |
+| ----------- | ---------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------- |
+| `variant`   | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link" \| "frame"` | `"default"` | The visual style of the button.                                     |
+| `size`      | `"sm" \| "default" \| "lg" \| "icon" \| "icon-sm" \| "icon-full"`                        | `"default"` | The size of the button. Icon sizes render a square button.          |
+| `loading`   | `boolean`                                                                                | `false`     | Shows a spinner, disables interaction and sets `aria-busy`.         |
+| `asChild`   | `boolean`                                                                                | `false`     | Renders the styles on the single child element instead of a button. |
+| `className` | `string`                                                                                 | -           | Additional classes merged onto the button.                          |
 
 ### Button Kit
 

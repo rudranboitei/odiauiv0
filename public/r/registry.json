@@ -6,9 +6,9 @@
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
-      "description": "A token-based Base UI accordion with cultural badge motifs, separated or card items, and rotating chakra, chevron, and plus indicators.",
+      "description": "A clean, token-based Base UI accordion with four style families (flush, bordered, card, timeline), chevron / plus-minus / numbered / icon indicators, nested layouts and expand-all control.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["badge"],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/new-york/accordion.tsx",
@@ -21,7 +21,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "A fully rounded, matte heritage button with soft layered shadows and a controllable Konark temple-and-wheel watermark (deula, chakra, or none), loading state, and a framed variant.",
+      "description": "A fully rounded, matte button with clean token-driven variants (solid, secondary, destructive, outline, ghost, link, frame), a built-in loading state, and six sizes.",
       "dependencies": ["class-variance-authority", "@radix-ui/react-slot"],
       "files": [
         {

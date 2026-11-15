@@ -1,17 +1,17 @@
 ---
 title: Accordion
-description: A vertically stacked set of interactive headings that each reveal a section of content, with rotating chakra, chevron, and plus indicators.
+description: A vertically stacked set of interactive headings that each reveal a section of content — four style families, four indicator modes, nested and timeline layouts.
 ---
 
-import { AccordionDemo } from "@/examples/accordion";
+import { AccordionModes } from "@/examples/accordion-modes";
 import { AccordionIndicators } from "@/examples/accordion-indicators";
-import { AccordionPlain } from "@/examples/accordion-plain";
-import { AccordionMultiple } from "@/examples/accordion-multiple";
-import { AccordionDisabled } from "@/examples/accordion-disabled";
-import { AccordionCard } from "@/examples/accordion-card";
+import { AccordionStyles } from "@/examples/accordion-styles";
+import { AccordionNested } from "@/examples/accordion-nested";
+import { AccordionExpandAll } from "@/examples/accordion-expand-all";
+import { AccordionTimeline } from "@/examples/accordion-timeline";
 
-<ComponentPreview name="accordion">
-  <AccordionDemo />
+<ComponentPreview name="accordion-modes">
+  <AccordionModes />
 </ComponentPreview>
 
 ## Installation
@@ -20,9 +20,8 @@ import { AccordionCard } from "@/examples/accordion-card";
 npx shadcn@latest add https://odiaui.xyz/r/accordion.json
 ```
 
-The install adds `components/ui/accordion.tsx` and pulls in the Badge
-component, whose cultural icons the triggers reuse. All colours come
-from your theme tokens and `currentColor`, so the accordion follows
+The install adds `components/ui/accordion.tsx` — self-contained, with all
+colours coming from your theme tokens and `currentColor`, so it follows
 light and dark mode automatically.
 
 ## Usage
@@ -51,112 +50,124 @@ export function Example() {
 
 ## Examples
 
+### Single / multiple open
+
+By default only one panel stays open — pass the `multiple` prop to let
+several expand at once.
+
+<ComponentPreview name="accordion-modes">
+  <AccordionModes />
+</ComponentPreview>
+
+```tsx
+<Accordion variant="bordered">…</Accordion>
+<Accordion multiple>…</Accordion>
+```
+
 ### Indicators
 
-The inline icon before the content flips over when the panel opens:
-`chevron` (the default), `chakra` (a Konark wheel), or `plus`. All are
-drawn inline in `currentColor`.
+Pick the trailing indicator with the `indicator` prop: `chevron` (the
+default, rotates 180°), a morphing `plus` that becomes a minus,
+`numbered` (leading step numbers via the item's `number` prop), or
+`none`. Pass any node to `icon` for a leading icon chip.
 
 <ComponentPreview name="accordion-indicators">
   <AccordionIndicators />
 </ComponentPreview>
 
-### Cultural Motifs
-
-The `motif` prop puts one of the Badge component's cultural icons in a
-coin medallion beside the heading — `chakra`, `deula`, `odissi`, `ikat`,
-`jagannath`, `pattachitra`, `padma`, or `bana`. The icons are drawn
-inline in `currentColor`, so they pick up your theme colours and light
-up when their row opens.
-
 ```tsx
-<AccordionTrigger motif="jagannath">
-  Pattachitra Art: Scrolls of Heritage
-</AccordionTrigger>
+<AccordionTrigger indicator="plus">…</AccordionTrigger>
+<AccordionTrigger indicator="numbered">…</AccordionTrigger>
+<AccordionItem number="01" …>
+<AccordionTrigger icon={<WalletIcon />}>…</AccordionTrigger>
 ```
 
-### Custom Icons
+### Bordered, flush, card
 
-Pass any React node to the `icon` prop to override the motif with your
-own artwork — an inline `<svg>`, a lucide icon, or an `<img>`.
+Four style families via the `variant` prop: `flush` (hairline dividers,
+the default), `bordered` (one rounded panel with internal dividers),
+`card` (each row is its own bordered card), and `timeline` (rail with
+dots — see below).
 
-### Without Icons
-
-Omit the `icon` prop for a compact trigger.
-
-<ComponentPreview name="accordion-plain">
-  <AccordionPlain />
+<ComponentPreview name="accordion-styles">
+  <AccordionStyles />
 </ComponentPreview>
 
-### Multiple
+```tsx
+<Accordion variant="flush">…</Accordion>
+<Accordion variant="bordered">…</Accordion>
+<Accordion variant="card">…</Accordion>
+```
 
-Use the `multiple` prop to allow multiple items to be open at the same
-time.
+### Nested accordion
 
-<ComponentPreview name="accordion-multiple">
-  <AccordionMultiple />
+Accordions compose — drop an inner (flush) accordion into any
+`AccordionContent`.
+
+<ComponentPreview name="accordion-nested">
+  <AccordionNested />
 </ComponentPreview>
 
-### Disabled
+### Expand all / Collapse all
 
-Use the `disabled` prop on `AccordionItem` to disable individual items.
+Control the accordion with `value` + `onValueChange` and set the array
+yourself — a button that sets every key expands all, an empty array
+collapses all.
 
-<ComponentPreview name="accordion-disabled">
-  <AccordionDisabled />
+<ComponentPreview name="accordion-expand-all">
+  <AccordionExpandAll />
 </ComponentPreview>
 
-### Card Items
+### Timeline accordion
 
-`variant="card"` turns each item into its own borderless, rounded card
-instead of hairline-divided rows. `size` is available in `sm`, `md`,
-and `lg` on the root.
+`variant="timeline"` puts a dot on each trigger and a rail down the left
+— pairs well with the `plus` indicator for changelogs and milestones.
 
-<ComponentPreview name="accordion-card">
-  <AccordionCard />
+<ComponentPreview name="accordion-timeline">
+  <AccordionTimeline />
 </ComponentPreview>
+
+```tsx
+<Accordion variant="timeline">
+  <AccordionItem value="2024">
+    <AccordionTrigger indicator="plus">Milestone</AccordionTrigger>
+    <AccordionContent>…</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
 
 ## API Reference
 
 ### Accordion
 
-Wraps Base UI's accordion root and provides the `variant` and `size` to
-every item, trigger, and panel through context.
+Wraps Base UI's accordion root. Every row inherits the `variant` and
+`size` through context.
 
-| Prop            | Type                                  | Default       | Description                                        |
-| --------------- | ------------------------------------- | ------------- | -------------------------------------------------- |
-| `variant`       | `"separated" \| "card"`               | `"separated"` | Hairline-divided rows or individual rounded cards. |
-| `size`          | `"sm" \| "md" \| "lg"`                | `"md"`        | Trigger height and panel density.                  |
-| `multiple`      | `boolean`                             | `false`       | Allow several items to stay open at once.          |
-| `defaultValue`  | `unknown[]`                           | -             | Initially open item values.                        |
-| `value`         | `unknown[]`                           | -             | Controlled open item values.                       |
-| `onValueChange` | `(value: unknown[], details) => void` | -             | Called when the open set changes.                  |
-| `disabled`      | `boolean`                             | `false`       | Disables every item.                               |
-| `className`     | `string`                              | -             | Additional classes merged onto the root.           |
+| Prop                      | Type                                            | Default   | Description                                                 |
+| ------------------------- | ----------------------------------------------- | --------- | ----------------------------------------------------------- |
+| `variant`                 | `"flush" \| "bordered" \| "card" \| "timeline"` | `"flush"` | Style family of the rows.                                   |
+| `size`                    | `"sm" \| "md" \| "lg"`                          | `"md"`    | Trigger and panel density.                                  |
+| `multiple`                | `boolean`                                       | `false`   | Allow several open panels at once.                          |
+| `value` / `onValueChange` | `string[]` / `(value: string[]) => void`        | -         | Controlled open panels — use for expand-all / collapse-all. |
+| `defaultValue`            | `string[]`                                      | -         | Initially open panels (uncontrolled).                       |
+| `className`               | `string`                                        | -         | Additional classes merged onto the container.               |
 
 ### AccordionItem
 
-| Prop        | Type      | Default | Description                     |
-| ----------- | --------- | ------- | ------------------------------- |
-| `value`     | `unknown` | auto    | The unique value of the item.   |
-| `disabled`  | `boolean` | `false` | Disables the item.              |
-| `className` | `string`  | -       | Additional classes on the item. |
+| Prop     | Type     | Default | Description                                                 |
+| -------- | -------- | ------- | ----------------------------------------------------------- |
+| `value`  | `string` | -       | Unique key for the row; used in `value` / `defaultValue`.   |
+| `number` | `string` | -       | Step label shown by the `numbered` indicator (e.g. `"01"`). |
 
 ### AccordionTrigger
 
-| Prop        | Type                                                                                             | Default     | Description                                       |
-| ----------- | ------------------------------------------------------------------------------------------------ | ----------- | ------------------------------------------------- |
-| `motif`     | `"chakra" \| "deula" \| "odissi" \| "ikat" \| "jagannath" \| "pattachitra" \| "padma" \| "bana"` | -           | Cultural icon from Badge in a coin medallion.     |
-| `icon`      | `ReactNode`                                                                                      | -           | Custom medallion artwork; overrides `motif`.      |
-| `indicator` | `"chevron" \| "chakra" \| "plus"`                                                                | `"chevron"` | Inline icon that flips over when the panel opens. |
-| `className` | `string`                                                                                         | -           | Additional classes on the trigger.                |
+| Prop        | Type                                          | Default     | Description                                                   |
+| ----------- | --------------------------------------------- | ----------- | ------------------------------------------------------------- |
+| `indicator` | `"chevron" \| "plus" \| "numbered" \| "none"` | `"chevron"` | Trailing indicator; `plus` morphs into a minus when open.     |
+| `icon`      | `React.ReactNode`                             | -           | Leading chip — inline icon, lucide icon or `<img>` thumbnail. |
+| `className` | `string`                                      | -           | Additional classes merged onto the trigger.                   |
 
 ### AccordionContent
 
-The panel animates its height with Base UI's panel transition and
-respects `prefers-reduced-motion`.
-
-| Prop        | Type     | Default | Description                      |
-| ----------- | -------- | ------- | -------------------------------- |
-| `className` | `string` | -       | Additional classes on the panel. |
-
-See the [Base UI documentation](https://base-ui.com/react/components/accordion) for more information.
+Animated panel (`height` + `opacity`, respects `prefers-reduced-motion`).
+Accepts any children — including a nested accordion or media.
