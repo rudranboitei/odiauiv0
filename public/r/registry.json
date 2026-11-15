@@ -37,6 +37,26 @@
       ]
     },
     {
+      "name": "button-kit",
+      "type": "registry:ui",
+      "title": "Button Kit",
+      "description": "45 ready-made button patterns on top of the Button \u2014 actions (add to cart, save, delete with confirm, refresh), states (loading, success, error shake, progress, countdown, hold to confirm), toggles (like, bookmark, follow, theme, mute), auth/social buttons, icon-only buttons and layout buttons (group, split, segmented control, pagination).",
+      "dependencies": ["lucide-react", "motion", "next-themes"],
+      "registryDependencies": [
+        "button",
+        "tooltip",
+        "dropdown-menu",
+        "toggle-group"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/button-kit.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button-kit.tsx"
+        }
+      ]
+    },
+    {
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
@@ -54,7 +74,7 @@
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "A soft tonal card — large radius, borderless, layered shadows — with size presets, a --card-spacing spacing variable, a sand-gradient media zone, an opt-in faint Odisha watermark (deula, chakra, or padma), and an Ikat ornament strip.",
+      "description": "A soft tonal card \u2014 large radius, borderless, layered shadows \u2014 with size presets, a --card-spacing spacing variable, a sand-gradient media zone, an opt-in faint Odisha watermark (deula, chakra, or padma), and an Ikat ornament strip.",
       "registryDependencies": ["badge"],
       "files": [
         {
@@ -96,7 +116,7 @@
       "name": "spinner",
       "type": "registry:ui",
       "title": "Spinner",
-      "description": "A loading spinner with cultural glyphs — turning Konark chakra, breathing deula, opening lotus — plus dots, ring, and pulse styles.",
+      "description": "A loading spinner with cultural glyphs \u2014 turning Konark chakra, breathing deula, opening lotus \u2014 plus dots, ring, and pulse styles.",
       "dependencies": ["class-variance-authority"],
       "files": [
         {
@@ -152,7 +172,7 @@
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
-      "description": "A callout with soft tonal depth — borderless, rounded-2xl, layered shadows — cultural badge motifs per variant, success, warning, and info colours, and an engraved ornament frame.",
+      "description": "A callout with soft tonal depth \u2014 borderless, rounded-2xl, layered shadows \u2014 cultural badge motifs per variant, success, warning, and info colours, and an engraved ornament frame.",
       "dependencies": ["class-variance-authority"],
       "registryDependencies": ["badge"],
       "files": [
@@ -167,7 +187,7 @@
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
-      "description": "A Base UI avatar with optional Odisha heritage frames — chakra, padma, deula, ikat, pattachitra — accent colours, heritage fallbacks, and status badges.",
+      "description": "A Base UI avatar with optional Odisha heritage frames \u2014 chakra, padma, deula, ikat, pattachitra \u2014 accent colours, heritage fallbacks, and status badges.",
       "dependencies": ["@base-ui/react"],
       "files": [
         {
@@ -255,7 +275,7 @@
       "name": "slider",
       "type": "registry:ui",
       "title": "Slider",
-      "description": "A Base UI slider whose thumbs carry cultural motifs from the Badge icon set — a mini Konark wheel by default — with optional Ikat-diamond tick markers along the track.",
+      "description": "A Base UI slider whose thumbs carry cultural motifs from the Badge icon set \u2014 a mini Konark wheel by default \u2014 with optional Ikat-diamond tick markers along the track.",
       "dependencies": ["@base-ui/react"],
       "registryDependencies": ["badge"],
       "files": [
@@ -270,7 +290,7 @@
       "name": "toast",
       "type": "registry:ui",
       "title": "Toast",
-      "description": "A Base UI toast system with a borderless soft-shadow surface, a faint deula watermark on every toast by default (chakra or none as options) and cultural type icons — success bana, info padma, warning ikat, error jagannath.",
+      "description": "A Base UI toast system with a borderless soft-shadow surface, a faint deula watermark on every toast by default (chakra or none as options) and cultural type icons \u2014 success bana, info padma, warning ikat, error jagannath.",
       "dependencies": ["@base-ui/react", "lucide-react"],
       "registryDependencies": ["button", "badge"],
       "files": [
