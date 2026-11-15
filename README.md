@@ -11,7 +11,6 @@
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/rudranboitei/odiaui?style=flat&label=License&labelColor=18181b&color=a1a1aa" alt="License" /></a>
 </p>
 
-
 ## Install
 
 ```bash

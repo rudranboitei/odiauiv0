@@ -14,9 +14,9 @@ export default function IndexPage() {
       <PageTransition>
         <div className="container-wrapper flex flex-1 flex-col px-2">
           {/* Centered hairline frame — grid lines, no sidebar on the homepage */}
-          <div className="min-h-min flex-1 lg:mx-auto lg:max-w-[1400px] lg:border-x lg:border-grid">
+          <div className="min-h-min flex-1 w-full lg:mx-auto lg:max-w-[1400px] lg:border-x lg:border-grid">
             <section className="relative overflow-hidden border-b border-grid">
-              <div className="container relative flex flex-col items-center gap-4 py-16 text-center md:py-20 lg:py-24">
+              <div className="relative flex flex-col items-center gap-4 px-4 py-16 text-center md:py-20 lg:py-24 lg:px-8">
                 <p className="text-muted-foreground text-[0.7rem] font-medium tracking-[0.18em] uppercase">
                   shadcn/ui registry · from odisha
                 </p>

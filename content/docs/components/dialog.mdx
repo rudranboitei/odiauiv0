@@ -3,9 +3,15 @@ title: Dialog
 description: A Base UI dialog with a borderless rounded-3xl surface and large soft shadow, size presets, faint deula and chakra watermarks, an Ikat-patterned banner header, media slots, and an Ikat ornament strip.
 ---
 
-import { DialogDemo } from "@/examples/dialog";
 import { DialogBannerDemo } from "@/examples/dialog-banner";
-import { DialogMediaDemo } from "@/examples/dialog-media";
+import { DialogEditProfile } from "@/examples/dialog-edit-profile";
+import { DialogInviteTeammates } from "@/examples/dialog-invite-teammates";
+import { DialogImageLightbox } from "@/examples/dialog-image-lightbox";
+import { DialogCommandPalette } from "@/examples/dialog-command-palette";
+import { DialogTermsScrollable } from "@/examples/dialog-terms-scrollable";
+import { DialogMultiStepOnboarding } from "@/examples/dialog-multi-step-onboarding";
+import { DialogFileUpload } from "@/examples/dialog-file-upload";
+import { DialogSuccess } from "@/examples/dialog-success";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -16,10 +22,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
-<ComponentPreview name="dialog">
-  <DialogDemo />
-</ComponentPreview>
 
 ## Installation
 
@@ -82,15 +84,6 @@ and stepped jagamohana porch — behind the content; `watermark="chakra"`
 crops a Konark wheel into the corner. Both sit at 6% opacity (9% in
 dark mode), behind the text.
 
-### Media
-
-`DialogMedia` places an image beside the text (`position="left"`,
-default) or above it (`position="top"`), bleeding into the dialog edge.
-
-<ComponentPreview name="dialog-media">
-  <DialogMediaDemo />
-</ComponentPreview>
-
 ### Ornament
 
 `DialogOrnament` is a thin Ikat diamond strip — use it as a divider
@@ -99,6 +92,70 @@ under a header or above the footer.
 ### Sizes
 
 `size` on `DialogContent`: `sm`, `default`, or `lg`.
+
+### Edit profile form
+
+Classic dialog structure — header, body with form fields, and footer with cancel/save.
+
+<ComponentPreview name="dialog-edit-profile">
+  <DialogEditProfile />
+</ComponentPreview>
+
+### Invite teammates
+
+Input + role select at the top, existing members list below — all inside one dialog.
+
+<ComponentPreview name="dialog-invite-teammates">
+  <DialogInviteTeammates />
+</ComponentPreview>
+
+### Image lightbox
+
+A media-first layout with prev/next controls and dot indicators — no standard header/footer.
+
+<ComponentPreview name="dialog-image-lightbox">
+  <DialogImageLightbox />
+</ComponentPreview>
+
+### Command palette (⌘K)
+
+Search input with a keyboard-navigable results list. Opens with ⌘K / Ctrl+K.
+
+<ComponentPreview name="dialog-command-palette">
+  <DialogCommandPalette />
+</ComponentPreview>
+
+### Terms — scrollable body
+
+A long-form scrolling body with a sticky footer for accept/decline actions.
+
+<ComponentPreview name="dialog-terms-scrollable">
+  <DialogTermsScrollable />
+</ComponentPreview>
+
+### Multi-step onboarding
+
+Progress dots, animated step indicator, and back/next navigation across four steps.
+
+<ComponentPreview name="dialog-multi-step-onboarding">
+  <DialogMultiStepOnboarding />
+</ComponentPreview>
+
+### File upload
+
+Drag-and-drop zone with per-file progress bars and a remove control.
+
+<ComponentPreview name="dialog-file-upload">
+  <DialogFileUpload />
+</ComponentPreview>
+
+### Success dialog
+
+Centered icon with a glow ring, a single primary action, and a quiet text link.
+
+<ComponentPreview name="dialog-success">
+  <DialogSuccess />
+</ComponentPreview>
 
 ## API Reference
 
