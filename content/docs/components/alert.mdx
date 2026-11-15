@@ -1,16 +1,19 @@
 ---
 title: Alert
-description: A callout with soft tonal depth — borderless, rounded-2xl, layered shadows — cultural badge motifs per variant, success, warning, and info colours, and an engraved ornament frame.
+description: A fully minimal alert — one soft tinted container with a hairline border and card shadow, an icon tile, a floating status pill on the top edge and inline actions.
 ---
 
-import { AlertVariants } from "@/examples/alert-variants";
-import { AlertOrnament } from "@/examples/alert-ornament";
-import { AlertMotifs } from "@/examples/alert-motifs";
-import { AlertActionDemo } from "@/examples/alert-action";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertForm } from "@/examples/alert-form";
+import { AlertActions } from "@/examples/alert-actions";
+import { AlertFeedback } from "@/examples/alert-feedback";
+import { AlertBilling } from "@/examples/alert-billing";
+import { AlertSecurity } from "@/examples/alert-security";
+import { AlertSystem } from "@/examples/alert-system";
+import { AlertCallouts } from "@/examples/alert-callouts";
+import { AlertBanner } from "@/examples/alert-banner";
 
-<ComponentPreview name="alert-variants">
-  <AlertVariants />
+<ComponentPreview name="alert-form">
+  <AlertForm />
 </ComponentPreview>
 
 ## Installation
@@ -19,73 +22,162 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 npx shadcn@latest add https://odiaui.xyz/r/alert.json
 ```
 
-Each variant shows a cultural motif from the Badge component's icon
-set, drawn inline in `currentColor` — installing the alert pulls in
-the Badge automatically.
+The install adds `components/ui/alert.tsx` — self-contained, with all
+colours coming from your theme tokens and the Tailwind scale, so it
+follows light and dark mode automatically.
 
 ## Usage
 
 ```tsx
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import {
+  Alert,
+  AlertAction,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert";
 ```
 
 ```tsx
-<Alert>
-  <AlertTitle>Heads up!</AlertTitle>
-  <AlertDescription>You can add components to your app.</AlertDescription>
+<Alert variant="info" icon={<HourglassIcon />} status="Pending">
+  <AlertTitle>Processing Request</AlertTitle>
+  <AlertDescription>Your data is being processed.</AlertDescription>
 </Alert>
 ```
 
 ## Examples
 
-### Variants
+### Form submit failed
 
-Five variants on theme tokens. Each carries its own cultural motif by
-default — `chakra` for default, `padma` for info, `bana` for success,
-`ikat` for warning, and `jagannath` for destructive — coloured by the
-variant.
+A destructive alert with a status pill summarising everything that
+went wrong, sitting at the top of a form.
 
-<ComponentPreview name="alert-variants">
-  <AlertVariants />
+<ComponentPreview name="alert-form">
+  <AlertForm />
 </ComponentPreview>
-
-### Ornament
-
-The `ornament` prop adds an engraved inner hairline frame, like the
-border of a pattachitra panel.
-
-<ComponentPreview name="alert-ornament">
-  <AlertOrnament />
-</ComponentPreview>
-
-### Motifs
-
-Pass `motif` to choose any of the eight cultural icons — `chakra`,
-`deula`, `odissi`, `ikat`, `jagannath`, `pattachitra`, `padma`, or
-`bana` — regardless of variant.
-
-<ComponentPreview name="alert-motifs">
-  <AlertMotifs />
-</ComponentPreview>
-
-### With an Action
-
-`AlertAction` positions a button in the top-right corner, with the
-description wrapping around it.
-
-<ComponentPreview name="alert-action">
-  <AlertActionDemo />
-</ComponentPreview>
-
-### Custom Icon
-
-Pass an `<svg>` as a direct child to bring your own artwork — the
-automatic motif steps aside.
 
 ```tsx
-<Alert>
-  <SomeIcon />
-  <AlertTitle>Custom artwork</AlertTitle>
+<Alert variant="destructive" icon={<AlertCircleIcon />} status="3 errors">
+  <AlertTitle>Please fix the errors and try again</AlertTitle>
+  <AlertDescription>Email is not valid · …</AlertDescription>
+</Alert>
+```
+
+### With actions
+
+`AlertAction` renders a row below the text — a primary button plus a
+plain dismiss, payment failures, expiring sessions and unverified
+emails each carry their own next step.
+
+<ComponentPreview name="alert-actions">
+  <AlertActions />
+</ComponentPreview>
+
+```tsx
+<Alert variant="destructive" icon={<CreditCardIcon />} status="Failed">
+  <AlertTitle>Your card was declined</AlertTitle>
+  <AlertDescription>Try another payment method.</AlertDescription>
+  <AlertAction>
+    <Button className="h-7 px-3" size="sm">
+      Update card
+    </Button>
+    <Button size="sm" variant="ghost">
+      Dismiss
+    </Button>
+  </AlertAction>
+</Alert>
+```
+
+### Feedback and status
+
+Success confirmations, a new version prompt, and an offline state that
+turns into "Back online" when the connection returns.
+
+<ComponentPreview name="alert-feedback">
+  <AlertFeedback />
+</ComponentPreview>
+
+```tsx
+<Alert variant="success" icon={<WifiIcon />}>
+  <AlertTitle>Back online</AlertTitle>
+  <AlertDescription>You're reconnected.</AlertDescription>
+</Alert>
+```
+
+### Account and billing
+
+Trial countdowns, usage limits (with an inline progress bar) and
+plan restrictions.
+
+<ComponentPreview name="alert-billing">
+  <AlertBilling />
+</ComponentPreview>
+
+### Security
+
+Security notices for password changes and new sign-ins — pair a
+destructive or info tone with a recovery action.
+
+<ComponentPreview name="alert-security">
+  <AlertSecurity />
+</ComponentPreview>
+
+### System and dev tools
+
+Maintenance windows, outages, API errors with a copy button, failed
+deployments and deprecation notices for docs.
+
+<ComponentPreview name="alert-system">
+  <AlertSystem />
+</ComponentPreview>
+
+```tsx
+<Alert variant="destructive" icon={<TerminalIcon />} status="429">
+  <AlertTitle>API error</AlertTitle>
+  <AlertDescription>
+    <code className="…">ERR_RATE_LIMIT_429</code>
+    <CopyButton value="ERR_RATE_LIMIT_429" … />
+  </AlertDescription>
+</Alert>
+```
+
+### Docs callouts
+
+Note, tip, important, warning and caution — the GitHub / Docusaurus
+set, in the same minimal container with semantic variant colours.
+
+<ComponentPreview name="alert-callouts">
+  <AlertCallouts />
+</ComponentPreview>
+
+```tsx
+<Alert variant="success" icon={<LightbulbIcon />}>
+  <AlertTitle>Tip</AlertTitle>
+  <AlertDescription>…</AlertDescription>
+</Alert>
+```
+
+### Banner and beta
+
+Stretch an alert across the top of a page as an announcement banner,
+or flag a beta feature.
+
+<ComponentPreview name="alert-banner">
+  <AlertBanner />
+</ComponentPreview>
+
+```tsx
+<Alert
+  icon={<SparklesIcon />}
+  status="Diwali Sale"
+  variant="warning"
+  className="rounded-none border-x-0 border-t-0"
+>
+  <AlertTitle>30% off sitewide</AlertTitle>
+  <AlertAction>
+    <Button className="h-7 px-3" size="sm">
+      Shop now
+    </Button>
+  </AlertAction>
 </Alert>
 ```
 
@@ -93,21 +185,33 @@ automatic motif steps aside.
 
 ### Alert
 
-Renders a `div` with `role="alert"`. The motif icons are the Badge
-component's cultural icons, reused unmodified, so they stay in theme
-via `currentColor`.
+| Prop        | Type                                                                            | Default     | Description                                                        |
+| ----------- | ------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------ |
+| `variant`   | `"default" \| "info" \| "success" \| "important" \| "warning" \| "destructive"` | `"default"` | Semantic colour of the container, icon tile and status pill.       |
+| `icon`      | `React.ReactNode`                                                               | -           | Leading icon — lucide icon, inline `<svg>` or any node, in a tile. |
+| `status`    | `React.ReactNode`                                                               | -           | Small pill floating on the top edge (text or any node).            |
+| `className` | `string`                                                                        | -           | Additional classes merged onto the container.                      |
 
-| Prop        | Type                                                                                             | Default         | Description                               |
-| ----------- | ------------------------------------------------------------------------------------------------ | --------------- | ----------------------------------------- |
-| `variant`   | `"default" \| "info" \| "destructive" \| "success" \| "warning"`                                 | `"default"`     | The colour style and default motif.       |
-| `motif`     | `"chakra" \| "deula" \| "odissi" \| "ikat" \| "jagannath" \| "pattachitra" \| "padma" \| "bana"` | variant default | Cultural icon shown beside the content.   |
-| `ornament`  | `boolean`                                                                                        | `false`         | Engraved inner hairline frame.            |
-| `className` | `string`                                                                                         | -               | Additional classes merged onto the alert. |
+A raw `<svg>` child also works as the icon. `role="alert"` is set for
+screen readers.
 
-### AlertTitle / AlertDescription / AlertAction
+### AlertTitle
 
-| Component          | Element | Notes                                                         |
-| ------------------ | ------- | ------------------------------------------------------------- |
-| `AlertTitle`       | `div`   | Bold heading; shifts right when an icon is present.           |
-| `AlertDescription` | `div`   | Muted supporting text; destructive tints it.                  |
-| `AlertAction`      | `div`   | Absolutely positioned top-right; reserves space with `pr-18`. |
+| Prop        | Type     | Default | Description                               |
+| ----------- | -------- | ------- | ----------------------------------------- |
+| `className` | `string` | -       | Additional classes merged onto the title. |
+
+### AlertDescription
+
+| Prop        | Type     | Default | Description                                     |
+| ----------- | -------- | ------- | ----------------------------------------------- |
+| `className` | `string` | -       | Additional classes merged onto the description. |
+
+### AlertAction
+
+A row below the title and description — drop one or more `Button`s in
+(primary + ghost dismiss is the common pattern).
+
+| Prop        | Type     | Default | Description                                |
+| ----------- | -------- | ------- | ------------------------------------------ |
+| `className` | `string` | -       | Additional classes merged onto the action. |
