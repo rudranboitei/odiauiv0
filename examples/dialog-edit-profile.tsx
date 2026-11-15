@@ -1,7 +1,5 @@
 "use client";
 
-import * as React from "react";
-
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -16,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 export const DialogEditProfile = () => (
   <Dialog>
@@ -30,27 +29,25 @@ export const DialogEditProfile = () => (
         </DialogDescription>
       </DialogHeader>
       <DialogOrnament />
-      {/* Body */}
       <div className="flex flex-col gap-4">
         <div className="grid gap-1.5">
           <Label htmlFor="dp-name">Display name</Label>
-          <Input id="dp-name" defaultValue="Subhashree Nayak" />
+          <Input id="dp-name" defaultValue="Aarav Sharma" />
         </div>
         <div className="grid gap-1.5">
           <Label htmlFor="dp-username">Username</Label>
-          <Input id="dp-username" addonStart="@" defaultValue="subha_odia" />
+          <Input id="dp-username" addonStart="@" defaultValue="aarav" />
         </div>
         <div className="grid gap-1.5">
           <Label htmlFor="dp-bio">Bio</Label>
-          <textarea
+          <Textarea
             id="dp-bio"
             rows={3}
-            defaultValue="Passionate about Odisha's art, culture, and temple architecture."
-            className="w-full rounded-xl border border-input bg-transparent px-3 py-2 text-sm shadow-xs outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 resize-none dark:bg-input/30"
+            resize="none"
+            defaultValue="Designing accessible interfaces and component systems."
           />
         </div>
       </div>
-      {/* Footer */}
       <DialogFooter>
         <DialogClose render={<Button variant="outline" />}>Cancel</DialogClose>
         <DialogClose render={<Button />}>Save changes</DialogClose>

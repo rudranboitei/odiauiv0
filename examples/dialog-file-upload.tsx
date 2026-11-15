@@ -108,7 +108,7 @@ export const DialogFileUpload = () => {
                     </span>
                   </div>
                   {f.progress === 100 && (
-                    <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium shrink-0">
+                    <span className="shrink-0 text-xs font-medium text-primary">
                       Done
                     </span>
                   )}
@@ -123,7 +123,7 @@ export const DialogFileUpload = () => {
                 {/* Progress bar */}
                 <div className="h-1 w-full overflow-hidden rounded-full bg-border">
                   <div
-                    className={`h-full rounded-full transition-all duration-500 ${f.progress === 100 ? "bg-emerald-500" : "bg-primary"}`}
+                    className="h-full rounded-full bg-primary transition-all duration-500"
                     style={{ width: `${f.progress}%` }}
                   />
                 </div>

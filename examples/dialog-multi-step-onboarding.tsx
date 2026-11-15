@@ -4,20 +4,27 @@ import { CheckIcon } from "lucide-react";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 
 const STEPS = ["Account", "Workspace", "Preferences", "Done"];
 
 const getStepDotClass = (i: number, currentStep: number) => {
   if (i < currentStep) {
-    return "bg-primary w-2 h-2 opacity-60";
+    return "h-2 w-2 bg-primary opacity-60";
   }
   if (i === currentStep) {
-    return "bg-primary w-6 h-2";
+    return "h-2 w-6 bg-primary";
   }
-  return "bg-muted-foreground/25 w-2 h-2";
+  return "h-2 w-2 bg-muted-foreground/25";
 };
 
 export const DialogMultiStepOnboarding = () => {
@@ -42,7 +49,6 @@ export const DialogMultiStepOnboarding = () => {
         showCloseButton={false}
         className="overflow-hidden"
       >
-        {/* Step dots */}
         <div className="flex items-center justify-center gap-2 pt-1">
           {STEPS.map((_, i) => (
             <div
@@ -52,32 +58,32 @@ export const DialogMultiStepOnboarding = () => {
           ))}
         </div>
 
-        {/* Step label */}
-        <p className="text-xs text-center text-muted-foreground">
+        <p className="text-center text-xs text-muted-foreground">
           Step {step + 1} of {STEPS.length} — {STEPS[step]}
         </p>
 
-        {/* Step content */}
-        <div className="min-h-[160px] flex flex-col gap-4">
+        <div className="flex min-h-[160px] flex-col gap-4">
           {step === 0 && (
             <>
               <div>
-                <h2 className="text-base font-semibold">Create your account</h2>
-                <p className="text-sm text-muted-foreground">
-                  Start your OdiaUI journey.
-                </p>
+                <DialogTitle className="text-base font-semibold">
+                  Create your account
+                </DialogTitle>
+                <DialogDescription className="text-sm text-muted-foreground">
+                  Set up your account to get started.
+                </DialogDescription>
               </div>
               <div className="grid gap-3">
                 <div className="grid gap-1.5">
                   <Label htmlFor="ob-name">Full name</Label>
-                  <Input id="ob-name" placeholder="Rabi Narayan Das" />
+                  <Input id="ob-name" placeholder="Aarav Sharma" />
                 </div>
                 <div className="grid gap-1.5">
                   <Label htmlFor="ob-email">Email</Label>
                   <Input
                     id="ob-email"
                     variant="email"
-                    placeholder="rabi@example.com"
+                    placeholder="aarav@example.com"
                   />
                 </div>
               </div>
@@ -86,25 +92,24 @@ export const DialogMultiStepOnboarding = () => {
           {step === 1 && (
             <>
               <div>
-                <h2 className="text-base font-semibold">Name your workspace</h2>
-                <p className="text-sm text-muted-foreground">
+                <DialogTitle className="text-base font-semibold">
+                  Name your workspace
+                </DialogTitle>
+                <DialogDescription className="text-sm text-muted-foreground">
                   Your team will see this everywhere.
-                </p>
+                </DialogDescription>
               </div>
               <div className="grid gap-3">
                 <div className="grid gap-1.5">
                   <Label htmlFor="ob-workspace">Workspace name</Label>
-                  <Input
-                    id="ob-workspace"
-                    placeholder="Kalinga Design Studio"
-                  />
+                  <Input id="ob-workspace" placeholder="Design Studio" />
                 </div>
                 <div className="grid gap-1.5">
                   <Label htmlFor="ob-slug">URL slug</Label>
                   <Input
                     id="ob-slug"
-                    addonStart="odiaui.xyz/"
-                    placeholder="kalinga-ds"
+                    addonStart="app.example/"
+                    placeholder="design-studio"
                   />
                 </div>
               </div>
@@ -113,30 +118,32 @@ export const DialogMultiStepOnboarding = () => {
           {step === 2 && (
             <>
               <div>
-                <h2 className="text-base font-semibold">
+                <DialogTitle className="text-base font-semibold">
                   Set your preferences
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  Customize how OdiaUI works for you.
-                </p>
+                </DialogTitle>
+                <DialogDescription className="text-sm text-muted-foreground">
+                  Customize how things work for you.
+                </DialogDescription>
               </div>
               <div className="flex flex-col gap-2">
                 {[
-                  "Dark mode by default",
-                  "Weekly digest emails",
-                  "Show heritage watermarks",
+                  { id: "pref-dark", label: "Dark mode by default" },
+                  { id: "pref-digest", label: "Weekly digest emails" },
+                  { id: "pref-watermarks", label: "Show optional watermarks" },
                 ].map((pref) => (
-                  <label
-                    key={pref}
-                    className="flex items-center gap-3 rounded-xl border border-input px-3 py-2.5 cursor-pointer hover:bg-muted/50 transition-colors"
+                  <div
+                    key={pref.id}
+                    className="flex items-center justify-between gap-3 rounded-xl border border-input px-3 py-2.5"
                   >
-                    <input
-                      type="checkbox"
+                    <Label htmlFor={pref.id} className="cursor-pointer text-sm">
+                      {pref.label}
+                    </Label>
+                    <Switch
+                      id={pref.id}
                       defaultChecked
-                      className="accent-primary"
+                      aria-label={pref.label}
                     />
-                    <span className="text-sm">{pref}</span>
-                  </label>
+                  </div>
                 ))}
               </div>
             </>
@@ -147,16 +154,17 @@ export const DialogMultiStepOnboarding = () => {
                 <CheckIcon className="size-7 text-primary" />
               </div>
               <div className="text-center">
-                <h2 className="text-base font-semibold">You're all set!</h2>
-                <p className="text-sm text-muted-foreground">
-                  Your workspace is ready. Welcome to OdiaUI.
-                </p>
+                <DialogTitle className="text-base font-semibold">
+                  You&apos;re all set!
+                </DialogTitle>
+                <DialogDescription className="text-sm text-muted-foreground">
+                  Your workspace is ready.
+                </DialogDescription>
               </div>
             </div>
           )}
         </div>
 
-        {/* Footer */}
         <div className="flex items-center justify-between pt-1">
           <Button
             variant="ghost"

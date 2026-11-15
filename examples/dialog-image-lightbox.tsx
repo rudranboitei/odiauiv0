@@ -7,6 +7,7 @@ import {
   ImageIcon,
   XIcon,
 } from "lucide-react";
+import Image from "next/image";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -22,30 +23,25 @@ import {
 const items = [
   {
     caption:
-      "A 13th-century CE sun temple chariot carved out of sandstone, featuring 24 intricately sculpted wheels.",
-    color: "from-amber-800 to-amber-950",
-    gradient: "from-amber-900/80 via-stone-900/60 to-black/80",
+      "A sandstone monument with carved details and a strong architectural silhouette.",
     image: "/images/konark-temple.webp",
-    subtitle: "Puri District, Odisha",
-    title: "Konark Sun Temple",
+    placeholder: "bg-primary/10 text-primary",
+    subtitle: "Featured image",
+    title: "Gallery image",
   },
   {
-    caption:
-      "Blue Flag certified beach along the eastern coastline, renowned for its golden sands and sacred sunrises.",
-    color: "from-sky-800 to-blue-950",
-    gradient: "from-sky-900/80 via-blue-900/60 to-stone-900/80",
+    caption: "A calm shoreline scene with open sky and soft natural light.",
     image: null,
-    subtitle: "Bay of Bengal",
-    title: "Puri Golden Beach",
+    placeholder: "bg-secondary text-secondary-foreground",
+    subtitle: "Placeholder slide",
+    title: "Coastal view",
   },
   {
-    caption:
-      "Winter home to over 160 bird species and the rare Irrawaddy dolphin, nestled along the Odisha coast.",
-    color: "from-teal-800 to-emerald-950",
-    gradient: "from-emerald-900/80 via-teal-900/60 to-stone-900/80",
+    caption: "A quiet landscape with water, greenery, and distant horizons.",
     image: null,
-    subtitle: "Asia's Largest Brackish Water Lagoon",
-    title: "Chilika Lagoon",
+    placeholder: "bg-accent text-accent-foreground",
+    subtitle: "Placeholder slide",
+    title: "Lakeside view",
   },
 ];
 
@@ -82,7 +78,6 @@ export const DialogImageLightbox = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <div className="flex w-full max-w-sm flex-col items-center gap-3.5">
-        {/* Interactive 3-card thumbnail grid */}
         <div className="grid w-full grid-cols-3 gap-2.5">
           {items.map((item, idx) => (
             <button
@@ -95,31 +90,30 @@ export const DialogImageLightbox = () => {
               className="group relative aspect-square w-full overflow-hidden rounded-2xl border border-border/60 bg-muted text-left shadow-xs transition-all hover:scale-[1.03] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {item.image ? (
-                <img
+                <Image
                   src={item.image}
                   alt={item.title}
-                  className="size-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  fill
+                  sizes="(max-width: 640px) 33vw, 120px"
+                  className="object-cover transition-transform duration-300 group-hover:scale-110"
                 />
               ) : (
                 <div
-                  className={`size-full bg-gradient-to-br ${item.color} flex items-center justify-center p-2 text-white/90`}
+                  className={`flex size-full items-center justify-center bg-gradient-to-br from-muted to-muted-foreground/20 p-2 ${item.placeholder}`}
                 >
-                  <ImageIcon className="size-6 opacity-60" />
+                  <ImageIcon className="size-6 opacity-70" />
                 </div>
               )}
-              {/* Overlay on hover */}
-              <div className="absolute inset-0 bg-black/30 opacity-0 backdrop-blur-[1px] transition-opacity group-hover:opacity-100 flex items-center justify-center">
-                <ExpandIcon className="size-5 text-white drop-shadow-md" />
+              <div className="absolute inset-0 flex items-center justify-center bg-background/30 opacity-0 backdrop-blur-[1px] transition-opacity group-hover:opacity-100">
+                <ExpandIcon className="size-5 text-foreground drop-shadow-sm" />
               </div>
-              {/* Bottom label */}
-              <span className="absolute inset-x-1.5 bottom-1.5 truncate rounded-lg bg-black/60 px-1.5 py-0.5 text-[10px] font-medium text-white backdrop-blur-xs">
-                {item.title.split(" ")[0]}
+              <span className="absolute inset-x-1.5 bottom-1.5 truncate rounded-lg bg-background/80 px-1.5 py-0.5 text-[10px] font-medium text-foreground backdrop-blur-sm">
+                {item.title}
               </span>
             </button>
           ))}
         </div>
 
-        {/* Text trigger button */}
         <DialogTrigger
           render={<Button variant="outline" size="sm" className="gap-2" />}
         >
@@ -128,7 +122,6 @@ export const DialogImageLightbox = () => {
         </DialogTrigger>
       </div>
 
-      {/* Lightbox Dialog Content */}
       <DialogContent
         size="lg"
         showCloseButton={false}
@@ -139,74 +132,72 @@ export const DialogImageLightbox = () => {
           {current.caption}
         </DialogDescription>
 
-        {/* Media display area */}
-        <div className="relative aspect-video w-full overflow-hidden bg-black select-none">
+        <div className="relative aspect-video w-full select-none overflow-hidden bg-muted">
           {current.image ? (
-            <img
+            <Image
               src={current.image}
               alt={current.title}
-              className="size-full object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 672px"
+              className="object-cover"
             />
           ) : (
             <div
-              className={`size-full bg-gradient-to-br ${current.color} flex flex-col items-center justify-center gap-2 text-white`}
+              className={`flex size-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-muted to-muted-foreground/20 ${current.placeholder}`}
             >
-              <div className="flex size-14 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm">
+              <div className="flex size-14 items-center justify-center rounded-2xl bg-background/70 backdrop-blur-sm">
                 <ImageIcon className="size-7" />
               </div>
-              <p className="font-heading text-lg font-medium">
+              <p className="font-heading text-lg font-medium text-foreground">
                 {current.title}
               </p>
-              <p className="text-xs text-white/70">{current.subtitle}</p>
+              <p className="text-xs text-muted-foreground">
+                {current.subtitle}
+              </p>
             </div>
           )}
 
-          {/* Close button */}
           <DialogClose
             render={
               <button
                 type="button"
                 aria-label="Close lightbox"
-                className="absolute top-3 right-3 z-20 flex size-8 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm transition-colors hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className="absolute top-3 right-3 z-20 flex size-8 items-center justify-center rounded-full bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             }
           >
             <XIcon className="size-4" />
           </DialogClose>
 
-          {/* Previous arrow */}
           <button
             type="button"
             onClick={prev}
             aria-label="Previous image"
-            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 flex size-9 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm transition-colors hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute left-3 top-1/2 z-20 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <ChevronLeftIcon className="size-5" />
           </button>
 
-          {/* Next arrow */}
           <button
             type="button"
             onClick={next}
             aria-label="Next image"
-            className="absolute right-3 top-1/2 -translate-y-1/2 z-20 flex size-9 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm transition-colors hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute right-3 top-1/2 z-20 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <ChevronRightIcon className="size-5" />
           </button>
 
-          {/* Counter pill */}
-          <div className="absolute bottom-3 right-3 z-10 rounded-full bg-black/60 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm">
+          <div className="absolute bottom-3 right-3 z-10 rounded-full bg-background/80 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-sm">
             {currentIndex + 1} / {items.length}
           </div>
         </div>
 
-        {/* Footer info & dot pagination */}
         <div className="flex items-center justify-between gap-4 p-4 sm:p-5">
           <div className="flex min-w-0 flex-col gap-0.5">
-            <h4 className="font-heading text-sm font-semibold text-foreground truncate">
+            <h4 className="truncate font-heading text-sm font-semibold text-foreground">
               {current.title}
             </h4>
-            <p className="text-xs text-muted-foreground line-clamp-2">
+            <p className="line-clamp-2 text-xs text-muted-foreground">
               {current.caption}
             </p>
           </div>

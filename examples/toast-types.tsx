@@ -14,8 +14,8 @@ export const ToastTypes = () => (
         size="sm"
         onClick={() =>
           manager.add({
-            description: "Your chhena poda order is confirmed.",
-            title: "Kunda served",
+            data: { watermark: "none" },
+            title: "Saved successfully",
             type: "success",
           })
         }
@@ -27,8 +27,8 @@ export const ToastTypes = () => (
         size="sm"
         onClick={() =>
           manager.add({
-            description: "Bada Danda closes at 5 pm today.",
-            title: "Rath Yatra route",
+            data: { watermark: "none" },
+            title: "New update available",
             type: "info",
           })
         }
@@ -40,8 +40,8 @@ export const ToastTypes = () => (
         size="sm"
         onClick={() =>
           manager.add({
-            description: "Chandrabhaga beach entry paused till 6 pm.",
-            title: "High tide",
+            data: { watermark: "none" },
+            title: "Storage almost full",
             type: "warning",
           })
         }
@@ -53,25 +53,13 @@ export const ToastTypes = () => (
         size="sm"
         onClick={() =>
           manager.add({
-            description: "No seats left for the evening aarti.",
-            title: "Booking failed",
+            data: { watermark: "none" },
+            title: "Something went wrong",
             type: "error",
           })
         }
       >
         Error
-      </Button>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() =>
-          manager.add({
-            title: "Checking passes...",
-            type: "loading",
-          })
-        }
-      >
-        Loading
       </Button>
     </div>
   </>

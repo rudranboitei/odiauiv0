@@ -1,42 +1,96 @@
 ---
 title: Dialog
-description: A Base UI dialog with a borderless rounded-3xl surface and large soft shadow, size presets, faint deula and chakra watermarks, an Ikat-patterned banner header, media slots, and an Ikat ornament strip.
+description: A Base UI dialog with a borderless rounded surface and soft shadow, built for common real-world dialog flows.
 ---
 
 import { DialogBannerDemo } from "@/examples/dialog-banner";
 import { DialogEditProfile } from "@/examples/dialog-edit-profile";
-import { DialogInviteTeammates } from "@/examples/dialog-invite-teammates";
-import { DialogImageLightbox } from "@/examples/dialog-image-lightbox";
-import { DialogCommandPalette } from "@/examples/dialog-command-palette";
-import { DialogTermsScrollable } from "@/examples/dialog-terms-scrollable";
-import { DialogMultiStepOnboarding } from "@/examples/dialog-multi-step-onboarding";
 import { DialogFileUpload } from "@/examples/dialog-file-upload";
+import { DialogImageLightbox } from "@/examples/dialog-image-lightbox";
+import { DialogInviteTeammates } from "@/examples/dialog-invite-teammates";
+import { DialogMediaExamples } from "@/examples/dialog-media";
+import { DialogMultiStepOnboarding } from "@/examples/dialog-multi-step-onboarding";
 import { DialogSuccess } from "@/examples/dialog-success";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { DialogTermsScrollable } from "@/examples/dialog-terms-scrollable";
+
+<ComponentPreview name="dialog-edit-profile">
+  <DialogEditProfile />
+</ComponentPreview>
 
 ## Installation
+
+<Tabs defaultValue="cli">
+  <TabsList>
+    <TabsTrigger value="cli">CLI</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="cli">
+    <Tabs defaultValue="npm">
+      <TabsList>
+        <TabsTrigger value="bun">bun</TabsTrigger>
+        <TabsTrigger value="npm">npm</TabsTrigger>
+        <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+        <TabsTrigger value="yarn">yarn</TabsTrigger>
+      </TabsList>
+      <TabsContent value="bun">
+
+```bash
+bunx --bun shadcn@latest add https://odiaui.xyz/r/dialog.json
+```
+
+      </TabsContent>
+      <TabsContent value="npm">
 
 ```bash
 npx shadcn@latest add https://odiaui.xyz/r/dialog.json
 ```
 
-Colours come only from shadcn theme tokens, so the dialog follows your
-theme automatically in light and dark mode.
+      </TabsContent>
+      <TabsContent value="pnpm">
+
+```bash
+pnpm dlx shadcn@latest add https://odiaui.xyz/r/dialog.json
+```
+
+      </TabsContent>
+      <TabsContent value="yarn">
+
+```bash
+yarn dlx shadcn@latest add https://odiaui.xyz/r/dialog.json
+```
+
+      </TabsContent>
+    </Tabs>
+
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install the Base UI dependency</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+      <Step>Copy the component source</Step>
+
+      Copy the Dialog component source into `components/ui/dialog.tsx`.
+
+      <Step>Update import paths</Step>
+
+      Update imports (for example `@/lib/utils` and `@/components/ui/button`) to match your project.
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+Colours come only from shadcn theme tokens, so the dialog follows your theme automatically in light and dark mode.
 
 ## Usage
 
 ```tsx
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -61,87 +115,21 @@ import {
 </Dialog>
 ```
 
-Base UI uses the `render` prop instead of `asChild` — pass the element
-you want the trigger or close button to render as.
+Base UI uses the `render` prop instead of `asChild` — pass the element you want the trigger or close button to render as.
 
 ## Examples
 
-### Banner Header
+### Forms
 
-`DialogBanner` is a primary-colour heritage header with a faint
-Sambalpuri Ikat pattern and an optional icon in a round badge — use
-`JagannathIcon` or any node. Place it as the first child of
-`DialogContent`; the close button restyles itself automatically.
+#### Invite teammates
 
-<ComponentPreview name="dialog-banner">
-  <DialogBannerDemo />
-</ComponentPreview>
-
-### Watermarks
-
-`watermark="deula"` draws a faint Kalinga temple — rekha deula tower
-and stepped jagamohana porch — behind the content; `watermark="chakra"`
-crops a Konark wheel into the corner. Both sit at 6% opacity (9% in
-dark mode), behind the text.
-
-### Ornament
-
-`DialogOrnament` is a thin Ikat diamond strip — use it as a divider
-under a header or above the footer.
-
-### Sizes
-
-`size` on `DialogContent`: `sm`, `default`, or `lg`.
-
-### Edit profile form
-
-Classic dialog structure — header, body with form fields, and footer with cancel/save.
-
-<ComponentPreview name="dialog-edit-profile">
-  <DialogEditProfile />
-</ComponentPreview>
-
-### Invite teammates
-
-Input + role select at the top, existing members list below — all inside one dialog.
+Input and role selection at the top, with a current members list below.
 
 <ComponentPreview name="dialog-invite-teammates">
   <DialogInviteTeammates />
 </ComponentPreview>
 
-### Image lightbox
-
-A media-first layout with prev/next controls and dot indicators — no standard header/footer.
-
-<ComponentPreview name="dialog-image-lightbox">
-  <DialogImageLightbox />
-</ComponentPreview>
-
-### Command palette (⌘K)
-
-Search input with a keyboard-navigable results list. Opens with ⌘K / Ctrl+K.
-
-<ComponentPreview name="dialog-command-palette">
-  <DialogCommandPalette />
-</ComponentPreview>
-
-### Terms — scrollable body
-
-A long-form scrolling body with a sticky footer for accept/decline actions.
-
-<ComponentPreview name="dialog-terms-scrollable">
-  <DialogTermsScrollable />
-</ComponentPreview>
-
-### Multi-step onboarding
-
-Progress dots, animated step indicator, and back/next navigation across four steps.
-
-<ComponentPreview name="dialog-multi-step-onboarding">
-  <DialogMultiStepOnboarding />
-</ComponentPreview>
-
-### File upload
+#### File upload
 
 Drag-and-drop zone with per-file progress bars and a remove control.
 
@@ -149,20 +137,61 @@ Drag-and-drop zone with per-file progress bars and a remove control.
   <DialogFileUpload />
 </ComponentPreview>
 
-### Success dialog
+### Patterns
 
-Centered icon with a glow ring, a single primary action, and a quiet text link.
+#### Banner header (Rath Yatra notice)
+
+A heritage banner header with optional icon, pattern, and ornament inside a dialog.
+
+<ComponentPreview name="dialog-banner">
+  <DialogBannerDemo />
+</ComponentPreview>
+
+#### Terms (scrollable)
+
+A long-form scrolling body with a sticky footer for accept/decline actions.
+
+<ComponentPreview name="dialog-terms-scrollable">
+  <DialogTermsScrollable />
+</ComponentPreview>
+
+#### Multi-step onboarding
+
+Progress dots, animated step indicator, and back/next navigation across steps.
+
+<ComponentPreview name="dialog-multi-step-onboarding">
+  <DialogMultiStepOnboarding />
+</ComponentPreview>
+
+#### Image lightbox
+
+A media-first layout with prev/next controls, dot indicators, and keyboard navigation.
+
+<ComponentPreview name="dialog-image-lightbox">
+  <DialogImageLightbox />
+</ComponentPreview>
+
+#### Success
+
+Centered icon with a subtle ring, a primary action, and a quiet secondary link.
 
 <ComponentPreview name="dialog-success">
   <DialogSuccess />
+</ComponentPreview>
+
+#### Media layout
+
+`DialogMedia` supports `position="left"` and `position="top"` for image-plus-text layouts.
+
+<ComponentPreview name="dialog-media">
+  <DialogMediaExamples />
 </ComponentPreview>
 
 ## API Reference
 
 ### Dialog / DialogTrigger / DialogClose / DialogOverlay / DialogPortal
 
-Thin wrappers around Base UI's dialog parts — all Base UI props are
-forwarded. Triggers and close buttons take Base UI's `render` prop.
+Thin wrappers around Base UI's dialog parts — all Base UI props are forwarded. Triggers and close buttons take Base UI's `render` prop.
 
 ### DialogContent
 
@@ -183,5 +212,4 @@ forwarded. Triggers and close buttons take Base UI's `render` prop.
 
 ### DialogHeader / DialogTitle / DialogDescription / DialogFooter
 
-Standard header, title, description, and footer parts. `DialogFooter`
-supports `showCloseButton` to append a built-in close button.
+Standard header, title, description, and footer parts. `DialogFooter` supports `showCloseButton` to append a built-in close button.

@@ -1,16 +1,21 @@
 ---
 title: Toast
-description: A Base UI toast system with a borderless soft-shadow surface, a faint deula watermark on every toast by default (chakra or none as options) and cultural type icons — success bana, info padma, warning ikat, error jagannath.
+description: Toast notifications for real product flows — undo actions, promise states, progress, updates, and rich content.
 ---
 
-import { ToastDemo } from "@/examples/toast";
+import { ToastCart } from "@/examples/toast-cart";
+import { ToastCopy } from "@/examples/toast-copy";
+import { ToastNotification } from "@/examples/toast-notification";
+import { ToastOffline } from "@/examples/toast-offline";
+import { ToastPositionPicker } from "@/examples/toast-position";
+import { ToastPromise } from "@/examples/toast-promise";
+import { ToastStacked } from "@/examples/toast-stacked";
 import { ToastTypes } from "@/examples/toast-types";
-import { ToastWatermark } from "@/examples/toast-watermark";
-import { Button } from "@/components/ui/button";
-import { Toaster, createToastManager, toast } from "@/components/ui/toast";
+import { ToastUndo } from "@/examples/toast-undo";
+import { ToastUpload } from "@/examples/toast-upload";
 
-<ComponentPreview name="toast">
-  <ToastDemo />
+<ComponentPreview name="toast-undo">
+  <ToastUndo />
 </ComponentPreview>
 
 ## Installation
@@ -19,13 +24,11 @@ import { Toaster, createToastManager, toast } from "@/components/ui/toast";
 npx shadcn@latest add https://odiaui.xyz/r/toast.json
 ```
 
-Colours come only from shadcn theme tokens, so toasts follow your theme
-automatically in light and dark mode.
+Colours come only from shadcn theme tokens, so toasts follow your theme automatically in light and dark mode.
 
 ## Setup
 
-Mount `<Toaster />` once in your root layout, then fire toasts from the
-module-level manager:
+Mount `<Toaster />` once in your root layout, then fire toasts from a manager:
 
 ```tsx
 import { Toaster } from "@/components/ui/toast";
@@ -38,83 +41,127 @@ import { Toaster } from "@/components/ui/toast";
 import { toast } from "@/components/ui/toast";
 
 toast.add({
-  title: "Prasad added",
-  description: "Your offering is queued for the morning darshan.",
+  title: "Saved",
+  description: "Your changes have been saved.",
+  type: "success",
 });
 ```
 
-Heritage is on by default: every toast carries a faint **deula
-watermark** cropped into its corner. Opt out with `none`, or swap in
-the Konark wheel with `chakra` — per toast, via the manager's `data`
-field:
-
-```tsx
-toast.add({
-  title: "Konark wheel",
-  data: { watermark: "chakra" },
-});
-```
+For isolated demos or local managers, use `createToastManager()` and pass it to `<Toaster toastManager={manager} />`.
 
 ## Examples
 
-### Types
+### Undo delete
 
-Toast types map to cultural icons from the Badge component's set —
-**success** `bana`, **info** `padma`, **warning** `ikat`, **error**
-`jagannath` in the destructive colour, and **loading** keeps a plain
-spinner. Untyped toasts show no icon.
+“Item deleted” with an Undo action and a countdown bar showing the time left.
+
+<ComponentPreview name="toast-undo">
+  <ToastUndo />
+</ComponentPreview>
+
+### Promise toast (save)
+
+Saving… → Saved / Failed, showing the loading-to-result flow with `type="loading"` and `manager.update(...)`.
+
+<ComponentPreview name="toast-promise">
+  <ToastPromise />
+</ComponentPreview>
+
+### Upload progress
+
+A file name, live progress bar, and Cancel action that transitions to “Upload complete” with a View action.
+
+<ComponentPreview name="toast-upload">
+  <ToastUpload />
+</ComponentPreview>
+
+### Notification with avatar
+
+A chat/social-style notification with avatar, sender, message preview, and Reply action.
+
+<ComponentPreview name="toast-notification">
+  <ToastNotification />
+</ComponentPreview>
+
+### Copy to clipboard
+
+Compact “Copied!” feedback with a check icon that auto-dismisses quickly.
+
+<ComponentPreview name="toast-copy">
+  <ToastCopy />
+</ComponentPreview>
+
+### Offline / back online
+
+A persistent “You’re offline” toast with Retry, updated by ID to “Back online” before auto-dismissing.
+
+<ComponentPreview name="toast-offline">
+  <ToastOffline />
+</ComponentPreview>
+
+### Add to cart
+
+A rich commerce toast with product thumbnail, confirmation text, and a View cart action.
+
+<ComponentPreview name="toast-cart">
+  <ToastCart />
+</ComponentPreview>
+
+### Stacked toasts
+
+Fire multiple toasts at once to preview stacking and expand-on-hover behavior.
+
+<ComponentPreview name="toast-stacked">
+  <ToastStacked />
+</ComponentPreview>
+
+### Types row
+
+Compact success, error, warning, and info toasts in one row.
 
 <ComponentPreview name="toast-types">
   <ToastTypes />
 </ComponentPreview>
 
-### Watermarks
+### Position picker
 
-`deula` (default) hides a faint rekha deula behind the content,
-`chakra` crops a Konark wheel into the corner, and `none` gives the
-plain stock toast. The docs demos each mount their own manager so
-toasts don't leak between previews.
+Preview the available toast positions.
 
-<ComponentPreview name="toast-watermark">
-  <ToastWatermark />
+<ComponentPreview name="toast-position">
+  <ToastPositionPicker />
 </ComponentPreview>
+
+## Tips
+
+- Use theme tokens only (no hardcoded status colors) so toasts work in light and dark mode.
+- Keep a visible close button or rely on swipe-to-dismiss for every toast.
+- Toast content is announced with `role="status"` for screen readers.
+- Use stable IDs with `manager.update(id, ...)` / `manager.close(id)` for persistent or evolving toasts (progress, offline/online, promise flows).
 
 ## API Reference
 
-### Toaster / ToastProvider / ToastPortal / ToastViewport
+### Toaster
 
-Mount `Toaster` once near your app root. It wires the provider, portal,
-viewport, and renders the toast list for its manager — pass your own
-with `toastManager` (the demos do, so each preview is isolated), or
-omit it to use the shared module-level manager.
+Mount once to render the toast viewport and list.
+
+| Prop           | Type                                                                                              | Default          | Description                            |
+| -------------- | ------------------------------------------------------------------------------------------------- | ---------------- | -------------------------------------- |
+| `toastManager` | `ToastManager`                                                                                    | shared manager   | Manager instance used by this toaster. |
+| `position`     | `"top-left" \| "top-center" \| "top-right" \| "bottom-left" \| "bottom-center" \| "bottom-right"` | `"bottom-right"` | Viewport position.                     |
 
 ### toast / createToastManager / useToastManager
 
-`toast` is the shared manager. `createToastManager()` makes an
-isolated one. Both expose `add`, `close`, `update`, and `promise`;
-`useToastManager()` reads the active list inside a React tree.
+`toast` is the shared manager. `createToastManager()` creates an isolated manager. Common methods: `add`, `update`, `close`, and `promise`. `useToastManager()` reads active toasts inside the provider.
 
-### Toast
+### Toast data options
 
-Renders one toast card with the swipe and stack animations from Base
-UI.
+Per-toast overrides can be passed via `data`:
 
-| Prop        | Type                            | Default   | Description                                     |
-| ----------- | ------------------------------- | --------- | ----------------------------------------------- |
-| `watermark` | `"none" \| "deula" \| "chakra"` | `"deula"` | Faint Odisha artwork in the corner of the card. |
-| `className` | `string`                        | -         | Additional classes merged onto the card.        |
+- `watermark`: `"none" | "deula" | "chakra"` (default behavior depends on toast; demos often use `"none"` for clean product patterns)
+- `content`: custom React content for fully custom toast layouts
+- `contentClassName`: extra classes for the content wrapper when using custom content
+- `hideClose`: hide the default close button in the standard layout
 
-Per-toast overrides travel through the manager's `data` field
-(`toast.add({ data: { watermark: "chakra" } })`) and are picked up
-automatically.
+### Toast parts
 
-### ToastContent / ToastTitle / ToastDescription
-
-Content, title, and description parts. In `Toaster`'s built-in list
-they render straight from the manager's `title` / `description`.
-
-### ToastAction / ToastClose
-
-`ToastAction` renders as an outline `Button` by default, `ToastClose`
-as a ghost icon button — both accept Base UI's `render` prop to swap
-the element.
+`Toast`, `ToastContent`, `ToastTitle`, `ToastDescription`, `ToastAction`, and `ToastClose` are exported for composing custom toast UIs. Triggers/actions use Base UI’s `render` prop pattern where applicable.
