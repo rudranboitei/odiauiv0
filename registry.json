@@ -172,9 +172,9 @@
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
-      "description": "A callout with soft tonal depth \u2014 borderless, rounded-2xl, layered shadows \u2014 cultural badge motifs per variant, success, warning, and info colours, and an engraved ornament frame.",
+      "description": "A clean, token-based alert with six semantic colours (default, info, success, important, warning, destructive), soft / outline / solid looks, inline actions and GitHub-style docs callouts.",
       "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["badge"],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/new-york/alert.tsx",

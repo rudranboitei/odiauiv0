@@ -2,91 +2,102 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
-import { BadgeIcon, type BadgeIconName } from "@/components/ui/badge"
 
 /* ───────────────────────────────────────────────────────────
- * OdiaUI Alert
+ * OdiaUI Alert — fully minimal.
  *
- * White rounded shell + tinted inset panel, same family as Card
- * and Accordion. Uses shadcn tokens plus the OdiaUI panel/chip
- * tokens (--panel-*, --chip-*). success and warning have no shadcn
- * token, so they use the Tailwind emerald / amber scale with
- * dark-mode pairs (same as Badge).
- *
- * The icon sits in a soft chip tile. Each variant shows a cultural
- * motif from the Badge set by default — pass `motif` to choose
- * another, `icon` for any node, or an <svg> child. `ornament` adds
- * an engraved inner hairline frame.
+ * One style: a soft tinted rounded container with a hairline
+ * border and the library's soft card shadow, a small icon tile,
+ * a floating status pill on the top edge (`status` prop) and
+ * inline actions below the text (AlertAction).
+ * Six semantic variants colour the container, tile and pill;
+ * text stays neutral. Success, important and warning have no
+ * shadcn token, so they use the Tailwind emerald / violet /
+ * amber scale with dark-mode pairs.
  * ─────────────────────────────────────────────────────────── */
 
-const SHELL =
-  "group/alert relative w-full rounded-3xl bg-card p-1.5 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_32px_rgba(0,0,0,0.07)]"
+type AlertVariant =
+  | "default"
+  | "info"
+  | "success"
+  | "important"
+  | "warning"
+  | "destructive"
 
-const CHIP_LOOK =
-  "bg-[linear-gradient(180deg,var(--chip-from)_0%,var(--chip-to)_100%)] shadow-[0_6px_14px_rgba(120,90,40,0.18),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_6px_14px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.08)]"
-
-/** The inset panel. Each variant sets its tint, text colour and icon accent. */
 const alertVariants = cva(
   [
-    "relative isolate grid items-center gap-x-3 gap-y-0.5 rounded-2xl p-3.5 text-left text-sm",
-    "shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]",
-    "has-data-[slot=alert-action]:pr-20",
+    "relative flex w-full items-start gap-2.5 rounded-xl border px-3.5 py-3 text-sm",
+    "shadow-[0_1px_2px_rgba(0,0,0,0.04)]",
+    "dark:shadow-[0_1px_2px_rgba(0,0,0,0.2)]",
   ],
   {
     variants: {
       variant: {
-        default:
-          "bg-[radial-gradient(120%_90%_at_0%_0%,var(--panel-glow),transparent_60%),linear-gradient(150deg,var(--panel-from)_0%,var(--panel-mid)_55%,var(--panel-to)_100%)] text-panel-title [--alert-accent:var(--panel-title)]",
-        // Glossy dark panel, like the reference "+" button
-        info: "bg-linear-to-b from-foreground/85 to-foreground text-background shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] [--alert-accent:var(--foreground)]",
-        destructive:
-          "bg-[linear-gradient(150deg,color-mix(in_oklab,var(--destructive)_4%,var(--card))_0%,color-mix(in_oklab,var(--destructive)_13%,var(--card))_100%)] text-destructive [--alert-accent:var(--destructive)]",
-        success:
-          "bg-linear-to-br from-emerald-50 to-emerald-100 text-emerald-800 dark:from-emerald-500/10 dark:to-emerald-500/20 dark:text-emerald-300 [--alert-accent:var(--color-emerald-600)] dark:[--alert-accent:var(--color-emerald-400)]",
-        warning:
-          "bg-linear-to-br from-amber-50 to-amber-100 text-amber-800 dark:from-amber-500/10 dark:to-amber-500/20 dark:text-amber-300 [--alert-accent:var(--color-amber-600)] dark:[--alert-accent:var(--color-amber-400)]",
-      },
-      /** Engraved inner hairline frame, like a pattachitra medallion */
-      ornament: {
-        true: "before:pointer-events-none before:absolute before:inset-[3px] before:rounded-[calc(var(--radius-2xl)-3px)] before:border before:border-current/15 before:content-['']",
-        false: "",
+        default: "",
+        info: "",
+        success: "",
+        important: "",
+        warning: "",
+        destructive: "",
       },
     },
-    defaultVariants: {
-      variant: "default",
-      ornament: false,
-    },
+    defaultVariants: { variant: "default" },
   }
 )
 
-/** Cultural motif shown when the caller passes no icon of their own */
-const DEFAULT_MOTIFS: Record<
-  NonNullable<VariantProps<typeof alertVariants>["variant"]>,
-  BadgeIconName
-> = {
-  default: "chakra",
-  info: "padma",
-  destructive: "jagannath",
-  success: "bana",
-  warning: "ikat",
+/** Container surface, per variant */
+const CONTAINER: Record<AlertVariant, string> = {
+  default: "border-border bg-muted text-foreground",
+  info: "border-blue-100 bg-blue-50 text-foreground dark:border-blue-500/20 dark:bg-blue-500/10",
+  success:
+    "border-emerald-100 bg-emerald-50 text-foreground dark:border-emerald-500/20 dark:bg-emerald-500/10",
+  important:
+    "border-violet-100 bg-violet-50 text-foreground dark:border-violet-500/20 dark:bg-violet-500/10",
+  warning:
+    "border-amber-100 bg-amber-50 text-foreground dark:border-amber-500/20 dark:bg-amber-500/10",
+  destructive:
+    "border-red-100 bg-red-50 text-foreground dark:border-red-500/20 dark:bg-red-500/10",
 }
 
-type AlertProps = React.ComponentProps<"div"> &
-  VariantProps<typeof alertVariants> & {
-    /** Cultural motif from Badge — overrides the variant's default. */
-    motif?: BadgeIconName
-    /** Custom icon (lucide, inline <svg>, <img>). Overrides `motif`. */
-    icon?: React.ReactNode
-    /** Engraved inner hairline frame. */
-    ornament?: boolean
-  }
+/** Icon tile, per variant */
+const TILE: Record<AlertVariant, string> = {
+  default: "bg-background text-foreground/80",
+  info: "bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-300",
+  success:
+    "bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-300",
+  important:
+    "bg-violet-100 text-violet-600 dark:bg-violet-500/20 dark:text-violet-300",
+  warning:
+    "bg-amber-100 text-amber-600 dark:bg-amber-500/20 dark:text-amber-300",
+  destructive:
+    "bg-red-100 text-red-600 dark:bg-red-500/20 dark:text-red-300",
+}
+
+/** Floating status pill, per variant */
+const STATUS: Record<AlertVariant, string> = {
+  default: "bg-foreground text-background",
+  info: "bg-blue-600 text-white",
+  success: "bg-emerald-600 text-white",
+  important: "bg-violet-600 text-white",
+  warning: "bg-amber-500 text-white",
+  destructive: "bg-red-600 text-white",
+}
+
+export interface AlertProps extends React.ComponentProps<"div">,
+  VariantProps<typeof alertVariants> {
+  /** Semantic colour: default, info, success, important, warning or destructive. */
+  variant?: AlertVariant
+  /** Leading icon — lucide icon, inline <svg> or any node, shown in a tile. */
+  icon?: React.ReactNode
+  /** Small pill floating on the top edge — text or any node. */
+  status?: React.ReactNode
+}
 
 function Alert({
   className,
-  variant,
-  motif,
+  variant = "default",
   icon,
-  ornament,
+  status,
   children,
   ...props
 }: AlertProps) {
@@ -95,39 +106,42 @@ function Alert({
   const svgChild = items.find(
     (child) => React.isValidElement(child) && child.type === "svg"
   )
-  const rest = svgChild ? items.filter((child) => child !== svgChild) : items
-
-  const iconNode =
-    icon ??
-    svgChild ??
-    <BadgeIcon name={motif ?? DEFAULT_MOTIFS[variant ?? "default"]} aria-hidden />
+  const content = svgChild ? items.filter((child) => child !== svgChild) : items
+  const iconNode = icon ?? svgChild
 
   return (
     <div
       data-slot="alert"
-      data-variant={variant ?? "default"}
+      data-variant={variant}
       role="alert"
-      className={cn(SHELL, className)}
+      className={cn(alertVariants({ variant }), CONTAINER[variant], className)}
       {...props}
     >
-      <div
-        data-slot="alert-panel"
-        className={cn(
-          alertVariants({ variant, ornament }),
-          "grid-cols-[auto_1fr]"
-        )}
-      >
+      {status && (
+        <span
+          data-slot="alert-status"
+          className={cn(
+            "absolute -top-2.5 left-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-full px-2 py-0.5 text-[11px] leading-none font-medium whitespace-nowrap [&_svg]:size-3",
+            STATUS[variant]
+          )}
+        >
+          {status}
+        </span>
+      )}
+      {iconNode && (
         <span
           data-slot="alert-icon"
           aria-hidden
           className={cn(
-            "row-span-2 grid size-9 shrink-0 place-items-center self-center rounded-xl text-(--alert-accent) [&_img]:size-full [&_svg]:size-4.5",
-            CHIP_LOOK
+            "grid size-8 shrink-0 place-items-center self-start rounded-lg [&_img]:size-4 [&_svg]:size-4",
+            TILE[variant]
           )}
         >
           {iconNode}
         </span>
-        {rest}
+      )}
+      <div className="flex min-w-0 flex-1 flex-col gap-0.5 pt-0.5">
+        {content}
       </div>
     </div>
   )
@@ -138,7 +152,7 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="alert-title"
       className={cn(
-        "col-start-2 font-medium tracking-tight [&_a]:underline [&_a]:underline-offset-3",
+        "font-medium tracking-tight text-foreground [&_a]:underline [&_a]:underline-offset-3",
         className
       )}
       {...props}
@@ -154,7 +168,7 @@ function AlertDescription({
     <div
       data-slot="alert-description"
       className={cn(
-        "col-start-2 text-sm leading-relaxed text-balance text-current/70 md:text-pretty [&_a]:underline [&_a]:underline-offset-3 [&_p:not(:last-child)]:mb-4",
+        "text-[0.8rem] text-balance text-foreground/60 md:text-pretty [&_a]:underline [&_a]:underline-offset-3 [&_p:not(:last-child)]:mb-4",
         className
       )}
       {...props}
@@ -162,35 +176,17 @@ function AlertDescription({
   )
 }
 
-function AlertAction({ className, ...props }: React.ComponentProps<"div">) {
+function AlertAction({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-action"
-      className={cn("absolute top-1/2 right-3 -translate-y-1/2", className)}
+      className={cn("flex items-center gap-1.5 pt-2", className)}
       {...props}
-    />
+    >
+      {children}
+    </div>
   )
 }
 
 export { Alert, AlertTitle, AlertDescription, AlertAction }
-export type { AlertProps }
-
-/* ── Usage ──────────────────────────────────────────────────
-<Alert>
-  <AlertTitle>Heads up!</AlertTitle>
-  <AlertDescription>The Konark wheel motif shows by default.</AlertDescription>
-</Alert>
-
-<Alert variant="info" />
-<Alert variant="success" />
-<Alert variant="warning" />
-<Alert variant="destructive" />
-<Alert motif="jagannath" ornament>Rath Yatra begins tomorrow.</Alert>
-<Alert icon={<Bell />}>Bring your own icon.</Alert>
-
-<Alert>
-  <AlertTitle>Update available</AlertTitle>
-  <AlertDescription>Version 2.0 is ready.</AlertDescription>
-  <AlertAction><Button size="sm">Update</Button></AlertAction>
-</Alert>
-*/
+export type { AlertVariant }

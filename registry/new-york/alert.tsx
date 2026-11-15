@@ -2,89 +2,147 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
-import { BadgeIcon, type BadgeIconName } from "@/components/ui/badge"
 
 /* ───────────────────────────────────────────────────────────
- * OdiaUI Alert
+ * OdiaUI Alert — fully minimal.
  *
- * shadcn tokens only; success and warning have no shadcn token,
- * so they use the Tailwind emerald / amber scale with dark-mode
- * pairs (same as Badge). Each variant shows a cultural motif from
- * the Badge icon set, drawn inline in currentColor — pass `icon`
- * as a child to bring your own artwork, or `motif` to choose one.
- * `ornament` adds an engraved inner hairline frame.
+ * One style: a soft tinted rounded container with a hairline
+ * border and the library's soft card shadow, a small icon tile,
+ * a floating status pill on the top edge (`status` prop) and
+ * inline actions below the text (AlertAction).
+ * Six semantic variants colour the container, tile and pill;
+ * text stays neutral. Success, important and warning have no
+ * shadcn token, so they use the Tailwind emerald / violet /
+ * amber scale with dark-mode pairs.
  * ─────────────────────────────────────────────────────────── */
 
+type AlertVariant =
+  | "default"
+  | "info"
+  | "success"
+  | "important"
+  | "warning"
+  | "destructive"
+
 const alertVariants = cva(
-  "group/alert relative grid w-full gap-0.5 rounded-2xl border-0 px-2.5 py-2 text-left text-sm shadow-[0_1px_2px_rgba(0,0,0,0.04),0_6px_20px_rgba(0,0,0,0.06)] has-data-[slot=alert-action]:relative has-data-[slot=alert-action]:pr-18 has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-2 *:[svg]:row-span-2 *:[svg]:translate-y-0.5 *:[svg]:text-current *:[svg:not([class*='size-'])]:size-4",
+  [
+    "relative flex w-full items-start gap-2.5 rounded-xl border px-3.5 py-3 text-sm",
+    "shadow-[0_1px_2px_rgba(0,0,0,0.04)]",
+    "dark:shadow-[0_1px_2px_rgba(0,0,0,0.2)]",
+  ],
   {
     variants: {
       variant: {
-        default: "bg-card text-card-foreground",
-        info: "bg-primary/5 text-primary",
-        destructive:
-          "bg-card text-destructive *:data-[slot=alert-description]:text-destructive/90 *:[svg]:text-current",
-        success:
-          "bg-emerald-500/10 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400",
-        warning:
-          "bg-amber-500/10 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400",
-      },
-      /** Engraved inner hairline frame, like a pattachitra medallion */
-      ornament: {
-        true: "before:pointer-events-none before:absolute before:inset-[3px] before:rounded-[calc(1rem-3px)] before:border before:border-border/60 before:content-['']",
-        false: "",
+        default: "",
+        info: "",
+        success: "",
+        important: "",
+        warning: "",
+        destructive: "",
       },
     },
-    defaultVariants: {
-      variant: "default",
-      ornament: false,
-    },
+    defaultVariants: { variant: "default" },
   }
 )
 
-/** Cultural motif shown when the caller passes no icon of their own */
-const DEFAULT_MOTIFS: Record<
-  NonNullable<VariantProps<typeof alertVariants>["variant"]>,
-  BadgeIconName
-> = {
-  default: "chakra",
-  info: "padma",
-  destructive: "jagannath",
-  success: "bana",
-  warning: "ikat",
+/** Container surface, per variant */
+const CONTAINER: Record<AlertVariant, string> = {
+  default: "border-border bg-muted text-foreground",
+  info: "border-blue-100 bg-blue-50 text-foreground dark:border-blue-500/20 dark:bg-blue-500/10",
+  success:
+    "border-emerald-100 bg-emerald-50 text-foreground dark:border-emerald-500/20 dark:bg-emerald-500/10",
+  important:
+    "border-violet-100 bg-violet-50 text-foreground dark:border-violet-500/20 dark:bg-violet-500/10",
+  warning:
+    "border-amber-100 bg-amber-50 text-foreground dark:border-amber-500/20 dark:bg-amber-500/10",
+  destructive:
+    "border-red-100 bg-red-50 text-foreground dark:border-red-500/20 dark:bg-red-500/10",
 }
 
-type AlertProps = React.ComponentProps<"div"> &
-  VariantProps<typeof alertVariants> & {
-    /** Cultural motif from Badge — overrides the variant's default. */
-    motif?: BadgeIconName
-    /** Engraved inner hairline frame. */
-    ornament?: boolean
-  }
+/** Icon tile, per variant */
+const TILE: Record<AlertVariant, string> = {
+  default: "bg-background text-foreground/80",
+  info: "bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-300",
+  success:
+    "bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-300",
+  important:
+    "bg-violet-100 text-violet-600 dark:bg-violet-500/20 dark:text-violet-300",
+  warning:
+    "bg-amber-100 text-amber-600 dark:bg-amber-500/20 dark:text-amber-300",
+  destructive:
+    "bg-red-100 text-red-600 dark:bg-red-500/20 dark:text-red-300",
+}
+
+/** Floating status pill, per variant */
+const STATUS: Record<AlertVariant, string> = {
+  default: "bg-foreground text-background",
+  info: "bg-blue-600 text-white",
+  success: "bg-emerald-600 text-white",
+  important: "bg-violet-600 text-white",
+  warning: "bg-amber-500 text-white",
+  destructive: "bg-red-600 text-white",
+}
+
+export interface AlertProps extends React.ComponentProps<"div">,
+  VariantProps<typeof alertVariants> {
+  /** Semantic colour: default, info, success, important, warning or destructive. */
+  variant?: AlertVariant
+  /** Leading icon — lucide icon, inline <svg> or any node, shown in a tile. */
+  icon?: React.ReactNode
+  /** Small pill floating on the top edge — text or any node. */
+  status?: React.ReactNode
+}
 
 function Alert({
   className,
-  variant,
-  motif,
-  ornament,
+  variant = "default",
+  icon,
+  status,
   children,
   ...props
 }: AlertProps) {
-  const hasOwnIcon = React.Children.toArray(children).some(
+  // A raw <svg> child still works as the icon, as before.
+  const items = React.Children.toArray(children)
+  const svgChild = items.find(
     (child) => React.isValidElement(child) && child.type === "svg"
   )
-  const shownMotif =
-    motif ?? (hasOwnIcon ? undefined : DEFAULT_MOTIFS[variant ?? "default"])
+  const content = svgChild ? items.filter((child) => child !== svgChild) : items
+  const iconNode = icon ?? svgChild
 
   return (
     <div
       data-slot="alert"
+      data-variant={variant}
       role="alert"
-      className={cn(alertVariants({ variant, ornament }), className)}
+      className={cn(alertVariants({ variant }), CONTAINER[variant], className)}
       {...props}
     >
-      {shownMotif && <BadgeIcon name={shownMotif} aria-hidden />}
-      {children}
+      {status && (
+        <span
+          data-slot="alert-status"
+          className={cn(
+            "absolute -top-2.5 left-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-full px-2 py-0.5 text-[11px] leading-none font-medium whitespace-nowrap [&_svg]:size-3",
+            STATUS[variant]
+          )}
+        >
+          {status}
+        </span>
+      )}
+      {iconNode && (
+        <span
+          data-slot="alert-icon"
+          aria-hidden
+          className={cn(
+            "grid size-8 shrink-0 place-items-center self-start rounded-lg [&_img]:size-4 [&_svg]:size-4",
+            TILE[variant]
+          )}
+        >
+          {iconNode}
+        </span>
+      )}
+      <div className="flex min-w-0 flex-1 flex-col gap-0.5 pt-0.5">
+        {content}
+      </div>
     </div>
   )
 }
@@ -94,7 +152,7 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="alert-title"
       className={cn(
-        "font-medium group-has-[>svg]/alert:col-start-2 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground",
+        "font-medium tracking-tight text-foreground [&_a]:underline [&_a]:underline-offset-3",
         className
       )}
       {...props}
@@ -110,7 +168,7 @@ function AlertDescription({
     <div
       data-slot="alert-description"
       className={cn(
-        "text-sm text-balance text-muted-foreground md:text-pretty [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
+        "text-[0.8rem] text-balance text-foreground/60 md:text-pretty [&_a]:underline [&_a]:underline-offset-3 [&_p:not(:last-child)]:mb-4",
         className
       )}
       {...props}
@@ -118,29 +176,17 @@ function AlertDescription({
   )
 }
 
-function AlertAction({ className, ...props }: React.ComponentProps<"div">) {
+function AlertAction({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-action"
-      className={cn("absolute top-2 right-2", className)}
+      className={cn("flex items-center gap-1.5 pt-2", className)}
       {...props}
-    />
+    >
+      {children}
+    </div>
   )
 }
 
 export { Alert, AlertTitle, AlertDescription, AlertAction }
-export type { AlertProps }
-
-/* ── Usage ──────────────────────────────────────────────────
-<Alert>
-  <AlertTitle>Heads up!</AlertTitle>
-  <AlertDescription>The Konark wheel motif shows by default.</AlertDescription>
-</Alert>
-
-<Alert variant="info" />
-<Alert variant="success" />
-<Alert variant="warning" />
-<Alert variant="destructive" />
-<Alert motif="jagannath" ornament>Rath Yatra begins tomorrow.</Alert>
-<Alert ornament>Engraved frame.</Alert>
-*/
+export type { AlertVariant }
