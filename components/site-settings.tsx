@@ -1,6 +1,5 @@
 "use client";
 
-import { SettingsIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
@@ -8,6 +7,7 @@ import type { VibrateIconHandle } from "@/components/animated-icons/vibrate";
 import { VibrateIcon } from "@/components/animated-icons/vibrate";
 import type { Volume2IconHandle } from "@/components/animated-icons/volume-2";
 import { Volume2Icon } from "@/components/animated-icons/volume-2";
+import { SettingsIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,

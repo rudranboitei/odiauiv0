@@ -2,7 +2,6 @@
 
 import type { Root as PageTreeRoot } from "fumadocs-core/page-tree";
 import {
-  ArrowRightIcon,
   CornerDownLeftIcon,
   CircleDashedIcon,
   SearchIcon,
@@ -11,6 +10,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { ArrowRightIcon } from "@/components/icons";
 import {
   Command,
   CommandEmpty,

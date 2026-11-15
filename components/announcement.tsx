@@ -1,6 +1,6 @@
-import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 
+import { ArrowRightIcon } from "@/components/icons";
 import { Badge } from "@/components/ui/badge";
 
 export const Announcement = () => (

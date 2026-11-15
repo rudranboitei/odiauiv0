@@ -1,8 +1,6 @@
 "use client";
 
-import { MessageCircleIcon, SquarePenIcon } from "lucide-react";
-
-import { XIcon } from "@/components/icons";
+import { DiscussionIcon, EditPageIcon, XIcon } from "@/components/icons";
 import { GITHUB, LINK } from "@/constants/links";
 import { DOCS_DIR } from "@/lib/docs";
 import { trackEvent } from "@/lib/events";
@@ -38,7 +36,7 @@ export const DocsTocFooter = ({
             })
           }
         >
-          <SquarePenIcon />
+          <EditPageIcon />
           Edit this page
         </a>
       )}
@@ -57,7 +55,7 @@ export const DocsTocFooter = ({
         rel="noopener noreferrer"
         className="transition-colors text-[0.8rem] hover:text-foreground text-muted-foreground [&_svg]:size-3 flex gap-1.5 items-center"
       >
-        <MessageCircleIcon />
+        <DiscussionIcon />
         Join the discussion
       </a>
     </div>

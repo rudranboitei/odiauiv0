@@ -10,16 +10,14 @@ export const ThemeIcon = ({
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
+    fill="currentColor"
     className={cn("size-4", className)}
     {...props}
   >
-    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-    <path d="M12 3l0 18" />
-    <path d="M12 9l4.65 -4.65" />
-    <path d="M12 14.3l7.37 -7.37" />
-    <path d="M12 19.6l8.85 -8.85" />
+    <path
+      fillRule="evenodd"
+      d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 2.5a7.5 7.5 0 1 1 0 15 7.5 7.5 0 0 1 0-15zM12 6.5a5.5 5.5 0 0 1 0 11z"
+    />
   </svg>
 );
 
@@ -46,7 +44,268 @@ export const XIcon = ({ className, ...props }: React.ComponentProps<"svg">) => (
     className={cn("size-4", className)}
     {...props}
   >
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    <mask id="odiaui-x-mask">
+      <rect width="24" height="24" fill="#fff" />
+      <path
+        d="M6.5 6.5h3.2l7.8 11h-3.2z"
+        fill="#000"
+        stroke="#000"
+        strokeWidth="1"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.7 17.3l4-4.4M17.3 6.7l-4 4.4"
+        stroke="#000"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </mask>
+    <rect
+      x="2"
+      y="2"
+      width="20"
+      height="20"
+      rx="6"
+      mask="url(#odiaui-x-mask)"
+    />
+  </svg>
+);
+
+export const ArrowLeftIcon = ({
+  className,
+  ...props
+}: React.ComponentProps<"svg">) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={cn("size-4", className)}
+    {...props}
+  >
+    <mask id="odiaui-arrow-left-mask">
+      <rect width="24" height="24" fill="#fff" />
+      <path
+        d="M17 12H7M11.5 7.5L7 12l4.5 4.5"
+        stroke="#000"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </mask>
+    <rect
+      x="2"
+      y="2"
+      width="20"
+      height="20"
+      rx="6"
+      mask="url(#odiaui-arrow-left-mask)"
+    />
+  </svg>
+);
+
+export const ArrowRightIcon = ({
+  className,
+  ...props
+}: React.ComponentProps<"svg">) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={cn("size-4", className)}
+    {...props}
+  >
+    <mask id="odiaui-arrow-right-mask">
+      <rect width="24" height="24" fill="#fff" />
+      <path
+        d="M7 12h10M12.5 7.5L17 12l-4.5 4.5"
+        stroke="#000"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </mask>
+    <rect
+      x="2"
+      y="2"
+      width="20"
+      height="20"
+      rx="6"
+      mask="url(#odiaui-arrow-right-mask)"
+    />
+  </svg>
+);
+
+export const CopyPageIcon = ({
+  className,
+  ...props
+}: React.ComponentProps<"svg">) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={cn("size-4", className)}
+    {...props}
+  >
+    <mask id="odiaui-copy-page-mask">
+      <rect width="24" height="24" fill="#fff" />
+      <rect x="8" y="8" width="15" height="15" rx="5" fill="#000" />
+    </mask>
+    <rect
+      x="2"
+      y="2"
+      width="14"
+      height="14"
+      rx="4.5"
+      mask="url(#odiaui-copy-page-mask)"
+    />
+    <rect x="9" y="9" width="13" height="13" rx="4" />
+  </svg>
+);
+
+export const DiscussionIcon = ({
+  className,
+  ...props
+}: React.ComponentProps<"svg">) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={cn("size-4", className)}
+    {...props}
+  >
+    <mask id="odiaui-discussion-mask">
+      <rect width="24" height="24" fill="#fff" />
+      <path
+        d="M7.5 9h9M7.5 13h5.5"
+        stroke="#000"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </mask>
+    <path
+      mask="url(#odiaui-discussion-mask)"
+      d="M7 3h10a5 5 0 0 1 5 5v6a5 5 0 0 1-5 5h-5.5L6 22.5V19.3A5 5 0 0 1 2 14V8a5 5 0 0 1 5-5z"
+    />
+  </svg>
+);
+
+export const EditPageIcon = ({
+  className,
+  ...props
+}: React.ComponentProps<"svg">) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={cn("size-4", className)}
+    {...props}
+  >
+    <mask id="odiaui-edit-page-mask">
+      <rect width="24" height="24" fill="#fff" />
+      <path
+        d="M8.2 15.8l.6-2.8 6.4-6.4a1.4 1.4 0 0 1 2 0l.2.2a1.4 1.4 0 0 1 0 2l-6.4 6.4z"
+        fill="#000"
+        stroke="#000"
+        strokeWidth="1"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8.5 18.5h7"
+        stroke="#000"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </mask>
+    <rect
+      x="2"
+      y="2"
+      width="20"
+      height="20"
+      rx="6"
+      mask="url(#odiaui-edit-page-mask)"
+    />
+  </svg>
+);
+
+export const GithubSponsorsIcon = ({
+  className,
+  ...props
+}: React.ComponentProps<"svg">) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={cn("size-4", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+      d="M12 21.5C5.5 17 2.5 13.5 2.5 9.2A5.2 5.2 0 0 1 12 6.6a5.2 5.2 0 0 1 9.5 2.6c0 4.3-3 7.8-9.5 12.3z"
+    />
+  </svg>
+);
+
+export const SettingsIcon = ({
+  className,
+  ...props
+}: React.ComponentProps<"svg">) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={cn("size-4", className)}
+    {...props}
+  >
+    <path
+      fillRule="evenodd"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinejoin="round"
+      d="M12 2.5l8.2 4.75v9.5L12 21.5l-8.2-4.75v-9.5zM12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"
+    />
+  </svg>
+);
+
+export const ShareIcon = ({
+  className,
+  ...props
+}: React.ComponentProps<"svg">) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={cn("size-4", className)}
+    {...props}
+  >
+    <mask id="odiaui-share-mask">
+      <rect width="24" height="24" fill="#fff" />
+      <path
+        d="M9 15l7-7M10.5 8H16v5.5"
+        stroke="#000"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </mask>
+    <rect
+      x="2"
+      y="2"
+      width="20"
+      height="20"
+      rx="6"
+      mask="url(#odiaui-share-mask)"
+    />
   </svg>
 );
 

@@ -1,10 +1,10 @@
 "use client";
 
-import { EllipsisIcon, LinkIcon, Share2Icon } from "lucide-react";
+import { EllipsisIcon, LinkIcon } from "lucide-react";
 import { useMemo } from "react";
 import { toast } from "sonner";
 
-import { XIcon, LinkedInIcon } from "@/components/icons";
+import { ShareIcon, XIcon, LinkedInIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -43,7 +43,7 @@ export const DocsShareMenu = ({
           variant="ghost"
           size="icon-sm"
         >
-          <Share2Icon className="size-4" />
+          <ShareIcon className="size-4" />
           <span className="sr-only">Share</span>
         </Button>
       </DropdownMenuTrigger>

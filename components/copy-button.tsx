@@ -1,10 +1,10 @@
 "use client";
 
-import { CopyIcon } from "lucide-react";
 import type { HTMLMotionProps, Variants } from "motion/react";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback } from "react";
 
+import { CopyPageIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -12,6 +12,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { useFeedback } from "@/hooks/use-feedback";
 import type { Event } from "@/lib/events";
 import { trackEvent } from "@/lib/events";
 import { cn } from "@/lib/utils";
@@ -78,19 +79,25 @@ export const CopyButton = ({
     timeout: 1000,
   });
 
+  const playCopyFeedback = useFeedback({ sound: "copy" });
+
   const handleCopy = useCallback(async () => {
     const text = await getValue();
     const hasCopied = await copyToClipboard(text);
 
-    if (hasCopied && event) {
-      trackEvent({
-        name: event,
-        properties: {
-          code: text,
-        },
-      });
+    if (hasCopied) {
+      playCopyFeedback();
+
+      if (event) {
+        trackEvent({
+          name: event,
+          properties: {
+            code: text,
+          },
+        });
+      }
     }
-  }, [copyToClipboard, event, getValue]);
+  }, [copyToClipboard, event, getValue, playCopyFeedback]);
 
   const copyButton = (
     <Button
@@ -110,11 +117,11 @@ export const CopyButton = ({
       <AnimatePresence mode="popLayout" initial={false}>
         {isCopied ? (
           <motion.span key="done" {...motionIconProps}>
-            <VerifiedIcon className="size-4 text-emerald-600 dark:text-emerald-400" />
+            <VerifiedIcon className="size-4 text-white" />
           </motion.span>
         ) : (
           <motion.span key="idle" {...motionIconProps}>
-            <CopyIcon size={16} />
+            <CopyPageIcon className="size-4" />
           </motion.span>
         )}
       </AnimatePresence>
