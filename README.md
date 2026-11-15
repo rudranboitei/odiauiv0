@@ -3,15 +3,14 @@
 </p>
 
 <h1 align="center">odiaui</h1>
-
 <p align="center">
-  A shadcn/ui component library for Odisha. Open source, accessible, and built to copy straight into your project.
-  <br />
-  <br />
-  <a href="https://github.com/rudranboitei/odiaui/stargazers"><img src="https://img.shields.io/github/stars/rudranboitei/odiaui?style=flat&logo=github&label=Stars&labelColor=%2318181b&color=%23a1a1aa" alt="GitHub Stars" /></a>
-  <a href="https://github.com/rudranboitei/odiaui/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/rudranboitei/odiaui/ci.yml?style=flat&logo=github&label=CI&labelColor=%2318181b&color=%23a1a1aa" alt="CI" /></a>
-  <a href="https://x.com/rudranboitei"><img src="https://img.shields.io/x/follow/rudranboitei?style=flat&logo=x&label=Follow&labelColor=%2318181b&color=%23a1a1aa" alt="X Follow" /></a>
+  <a href="https://github.com/rudranboitei/odiaui/stargazers"><img src="https://img.shields.io/github/stars/rudranboitei/odiaui?style=flat&logo=github&label=Stars&labelColor=18181b&color=a1a1aa" alt="GitHub Stars" /></a>
+  <a href="https://github.com/rudranboitei/odiaui/network/members"><img src="https://img.shields.io/github/forks/rudranboitei/odiaui?style=flat&logo=github&label=Forks&labelColor=18181b&color=a1a1aa" alt="GitHub Forks" /></a>
+  <a href="https://github.com/rudranboitei/odiaui/issues"><img src="https://img.shields.io/github/issues/rudranboitei/odiaui?style=flat&logo=github&label=Issues&labelColor=18181b&color=a1a1aa" alt="Open Issues" /></a>
+  <a href="https://github.com/rudranboitei/odiaui/commits"><img src="https://img.shields.io/github/last-commit/rudranboitei/odiaui?style=flat&logo=github&label=Last%20Commit&labelColor=18181b&color=a1a1aa" alt="Last Commit" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/github/license/rudranboitei/odiaui?style=flat&label=License&labelColor=18181b&color=a1a1aa" alt="License" /></a>
 </p>
+
 
 ## Install
 
