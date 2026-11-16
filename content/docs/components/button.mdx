@@ -5,6 +5,10 @@ description: A fully rounded, matte button with clean token-driven variants, a b
 
 import { Button } from "@/components/odia/odia-button";
 import { PlusIcon } from "lucide-react";
+import { DemoGrid } from "@/components/demo-grid";
+import { AddToCartButtonDemo } from "@/examples/button-add-to-cart";
+import { WishlistButtonDemo } from "@/examples/button-wishlist";
+import { GoogleSignInButtonDemo } from "@/examples/button-google-sign-in";
 
 <Button>Namaskar</Button>
 
@@ -110,6 +114,36 @@ export function Example() {
 ## Loading state
 
 <Button loading>Loading</Button>
+
+## Ready-made buttons
+
+Purpose-built buttons on top of the Odia Button. Click a card to see it live with its source code and install command.
+
+<DemoGrid
+  items={[
+    {
+      name: "button-add-to-cart",
+      title: "Add to cart",
+      description: "Add-to-cart button with quantity feedback and a confirmed state.",
+      install: "npx shadcn@latest add https://odiaui.xyz/r/odia-add-to-cart-button.json",
+      demo: <AddToCartButtonDemo />,
+    },
+    {
+      name: "button-wishlist",
+      title: "Wishlist",
+      description: "Heart toggle with a spring animation and a saved state.",
+      install: "npx shadcn@latest add https://odiaui.xyz/r/odia-wishlist-button.json",
+      demo: <WishlistButtonDemo />,
+    },
+    {
+      name: "button-google-sign-in",
+      title: "Google sign in",
+      description: "Continue with Google button with an inline Google mark.",
+      install: "npx shadcn@latest add https://odiaui.xyz/r/odia-google-sign-in-button.json",
+      demo: <GoogleSignInButtonDemo />,
+    },
+  ]}
+/>
 
 ## Props
 

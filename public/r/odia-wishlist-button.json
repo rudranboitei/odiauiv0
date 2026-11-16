@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "odia-wishlist-button",
+  "title": "Odia Wishlist Button",
+  "description": "Wishlist heart toggle button with a spring animation, built on the Odia Button.",
+  "dependencies": [
+    "lucide-react",
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://odiaui.xyz/r/odia-button.json"
+  ],
+  "files": [
+    {
+      "path": "components/odia/odia-wishlist-button.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { HeartIcon } from \"lucide-react\"\nimport { motion } from \"motion/react\"\n\nimport { Button } from \"@/components/odia/odia-button\"\nimport { cn } from \"@/lib/utils\"\n\nexport type OdiaWishlistButtonProps = React.ComponentProps<typeof Button> & {\n  defaultLiked?: boolean\n  liked?: boolean\n  onLikedChange?: (liked: boolean) => void\n}\n\n/** Wishlist heart toggle button. */\nexport const OdiaWishlistButton = ({\n  className,\n  defaultLiked = false,\n  liked: likedProp,\n  onLikedChange,\n  ...props\n}: OdiaWishlistButtonProps) => {\n  const [uncontrolled, setUncontrolled] = React.useState(defaultLiked)\n  const liked = likedProp ?? uncontrolled\n\n  const toggle = () => {\n    const next = !liked\n    if (likedProp === undefined) setUncontrolled(next)\n    onLikedChange?.(next)\n  }\n\n  return (\n    <Button\n      aria-pressed={liked}\n      aria-label={liked ? \"Remove from wishlist\" : \"Add to wishlist\"}\n      className={cn(\"gap-1.5\", className)}\n      onClick={toggle}\n      variant={liked ? \"secondary\" : \"outline\"}\n      {...props}\n    >\n      <motion.span\n        animate={{ scale: liked ? [1, 1.35, 1] : 1 }}\n        className=\"inline-flex\"\n        transition={{ duration: 0.3 }}\n      >\n        <HeartIcon\n          aria-hidden=\"true\"\n          className={cn(\"size-4\", liked && \"fill-current text-red-500\")}\n        />\n      </motion.span>\n      {liked ? \"Saved\" : \"Wishlist\"}\n    </Button>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/odia/odia-wishlist-button.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

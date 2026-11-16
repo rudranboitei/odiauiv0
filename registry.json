@@ -44,6 +44,62 @@
           "target": "components/odia/odia-dialog.tsx"
         }
       ]
+    },
+    {
+      "name": "odia-add-to-cart-button",
+      "type": "registry:ui",
+      "title": "Odia Add to Cart Button",
+      "description": "Add to cart button with quantity feedback, built on the Odia Button.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://odiaui.xyz/r/odia-button.json"
+      ],
+      "files": [
+        {
+          "path": "components/odia/odia-add-to-cart-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odia/odia-add-to-cart-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "odia-wishlist-button",
+      "type": "registry:ui",
+      "title": "Odia Wishlist Button",
+      "description": "Wishlist heart toggle button with a spring animation, built on the Odia Button.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://odiaui.xyz/r/odia-button.json"
+      ],
+      "files": [
+        {
+          "path": "components/odia/odia-wishlist-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odia/odia-wishlist-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "odia-google-sign-in-button",
+      "type": "registry:ui",
+      "title": "Odia Google Sign In Button",
+      "description": "Continue with Google button with an inline Google mark, built on the Odia Button.",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://odiaui.xyz/r/odia-button.json"
+      ],
+      "files": [
+        {
+          "path": "components/odia/odia-google-sign-in-button.tsx",
+          "type": "registry:ui",
+          "target": "components/odia/odia-google-sign-in-button.tsx"
+        }
+      ]
     }
   ]
 }

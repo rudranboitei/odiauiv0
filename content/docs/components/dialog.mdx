@@ -12,6 +12,7 @@ import { DialogMediaExamples } from "@/examples/dialog-media";
 import { DialogMultiStepOnboarding } from "@/examples/dialog-multi-step-onboarding";
 import { DialogSuccess } from "@/examples/dialog-success";
 import { DialogTermsScrollable } from "@/examples/dialog-terms-scrollable";
+import { DemoGrid } from "@/components/demo-grid";
 
 <ComponentPreview name="dialog-edit-profile">
   <DialogEditProfile />
@@ -127,73 +128,60 @@ Base UI uses the `render` prop instead of `asChild` — pass the element you wan
 
 ## Examples
 
-### Forms
+Pick a demo — click any card to see it live with its full source code.
 
-#### Invite teammates
-
-Input and role selection at the top, with a current members list below.
-
-<ComponentPreview name="dialog-invite-teammates">
-  <DialogInviteTeammates />
-</ComponentPreview>
-
-#### File upload
-
-Drag-and-drop zone with per-file progress bars and a remove control.
-
-<ComponentPreview name="dialog-file-upload">
-  <DialogFileUpload />
-</ComponentPreview>
-
-### Patterns
-
-#### Banner header (Rath Yatra notice)
-
-A heritage banner header with optional icon, pattern, and ornament inside a dialog.
-
-<ComponentPreview name="dialog-banner">
-  <DialogBannerDemo />
-</ComponentPreview>
-
-#### Terms (scrollable)
-
-A long-form scrolling body with a sticky footer for accept/decline actions.
-
-<ComponentPreview name="dialog-terms-scrollable">
-  <DialogTermsScrollable />
-</ComponentPreview>
-
-#### Multi-step onboarding
-
-Progress dots, animated step indicator, and back/next navigation across steps.
-
-<ComponentPreview name="dialog-multi-step-onboarding">
-  <DialogMultiStepOnboarding />
-</ComponentPreview>
-
-#### Image lightbox
-
-A media-first layout with prev/next controls, dot indicators, and keyboard navigation.
-
-<ComponentPreview name="dialog-image-lightbox">
-  <DialogImageLightbox />
-</ComponentPreview>
-
-#### Success
-
-Centered icon with a subtle ring, a primary action, and a quiet secondary link.
-
-<ComponentPreview name="dialog-success">
-  <DialogSuccess />
-</ComponentPreview>
-
-#### Media layout
-
-`DialogMedia` supports `position="left"` and `position="top"` for image-plus-text layouts.
-
-<ComponentPreview name="dialog-media">
-  <DialogMediaExamples />
-</ComponentPreview>
+<DemoGrid
+  items={[
+    {
+      name: "dialog-invite-teammates",
+      title: "Invite teammates",
+      description: "Input and role selection at the top, with a current members list below.",
+      demo: <DialogInviteTeammates />,
+    },
+    {
+      name: "dialog-file-upload",
+      title: "File upload",
+      description: "Drag-and-drop zone with per-file progress bars and a remove control.",
+      demo: <DialogFileUpload />,
+    },
+    {
+      name: "dialog-banner",
+      title: "Banner header (Rath Yatra notice)",
+      description: "Heritage banner header with optional icon, pattern, and ornament inside a dialog.",
+      demo: <DialogBannerDemo />,
+    },
+    {
+      name: "dialog-terms-scrollable",
+      title: "Terms (scrollable)",
+      description: "A long-form scrolling body with a sticky footer for accept/decline actions.",
+      demo: <DialogTermsScrollable />,
+    },
+    {
+      name: "dialog-multi-step-onboarding",
+      title: "Multi-step onboarding",
+      description: "Progress dots, animated step indicator, and back/next navigation across steps.",
+      demo: <DialogMultiStepOnboarding />,
+    },
+    {
+      name: "dialog-image-lightbox",
+      title: "Image lightbox",
+      description: "A media-first layout with prev/next controls, dot indicators, and keyboard navigation.",
+      demo: <DialogImageLightbox />,
+    },
+    {
+      name: "dialog-success",
+      title: "Success",
+      description: "Centered icon with a subtle ring, a primary action, and a quiet secondary link.",
+      demo: <DialogSuccess />,
+    },
+    {
+      name: "dialog-media",
+      title: "Media layout",
+      description: "DialogMedia supports position left and top for image-plus-text layouts.",
+      demo: <DialogMediaExamples />,
+    },
+  ]}
+/>
 
 ## API Reference
 
