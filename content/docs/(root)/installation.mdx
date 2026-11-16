@@ -18,15 +18,15 @@ If your project is not set up for shadcn yet, follow the [shadcn installation gu
 Run the shadcn CLI with the component URL:
 
 ```bash
-npx shadcn@latest add https://odiaui.xyz/r/button.json
+npx shadcn@latest add https://odiaui.xyz/r/odia-button.json
 ```
 
-The CLI downloads the component source into `components/ui/button.tsx` and installs any dependencies it needs.
+The CLI downloads the component source into `components/odia/odia-button.tsx` and installs any dependencies it needs.
 
 Then import it:
 
 ```tsx
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/odia/odia-button";
 
 export function Example() {
   return <Button>Namaskar</Button>;
@@ -37,7 +37,7 @@ If you install from this registry often, add it once and use the namespace:
 
 ```bash
 npx shadcn@latest registry add "@odiaui=https://odiaui.xyz/r/{name}.json"
-npx shadcn@latest add @odiaui/button
+npx shadcn@latest add @odiaui/odia-button
 ```
 
 ## Browse Components
@@ -45,9 +45,7 @@ npx shadcn@latest add @odiaui/button
 Every component has its own documentation page with a preview, install command, usage examples, and props.
 
 - [Button](/docs/components/button)
-- [Accordion](/docs/components/accordion)
-- [Badge](/docs/components/badge)
-- [Card](/docs/components/card)
+- [Dialog](/docs/components/dialog)
 
 ## Local Development
 

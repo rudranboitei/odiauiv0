@@ -14,50 +14,34 @@
 ## Install
 
 ```bash
-npx shadcn@latest add https://odiaui.xyz/r/button.json
+npx shadcn@latest add https://odiaui.xyz/r/odia-button.json
 ```
 
 Then import the component:
 
 ```tsx
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/odia/odia-button";
 
 export function Example() {
   return <Button>Namaskar</Button>;
 }
 ```
 
+Components install under unique `odia-*` names into `components/odia/`, so they never overwrite your base shadcn components.
+
 Or add the registry once and install by namespace:
 
 ```bash
 npx shadcn@latest registry add "@odiaui=https://odiaui.xyz/r/{name}.json"
-npx shadcn@latest add @odiaui/button
+npx shadcn@latest add @odiaui/odia-button
 ```
 
 ## Components
 
-18 components, each carrying an Odisha touch — a faint Konark watermark, a chakra motif, an Ikat ornament — that you can turn off per instance.
-
-| Component   | Install                                                       |
-| ----------- | ------------------------------------------------------------- |
-| Accordion   | `npx shadcn@latest add https://odiaui.xyz/r/accordion.json`   |
-| Button      | `npx shadcn@latest add https://odiaui.xyz/r/button.json`      |
-| Badge       | `npx shadcn@latest add https://odiaui.xyz/r/badge.json`       |
-| Card        | `npx shadcn@latest add https://odiaui.xyz/r/card.json`        |
-| Separator   | `npx shadcn@latest add https://odiaui.xyz/r/separator.json`   |
-| Skeleton    | `npx shadcn@latest add https://odiaui.xyz/r/skeleton.json`    |
-| Spinner     | `npx shadcn@latest add https://odiaui.xyz/r/spinner.json`     |
-| Label       | `npx shadcn@latest add https://odiaui.xyz/r/label.json`       |
-| Input       | `npx shadcn@latest add https://odiaui.xyz/r/input.json`       |
-| Textarea    | `npx shadcn@latest add https://odiaui.xyz/r/textarea.json`    |
-| Alert       | `npx shadcn@latest add https://odiaui.xyz/r/alert.json`       |
-| Avatar      | `npx shadcn@latest add https://odiaui.xyz/r/avatar.json`      |
-| Switch      | `npx shadcn@latest add https://odiaui.xyz/r/switch.json`      |
-| Radio Group | `npx shadcn@latest add https://odiaui.xyz/r/radio-group.json` |
-| Dialog      | `npx shadcn@latest add https://odiaui.xyz/r/dialog.json`      |
-| Sheet       | `npx shadcn@latest add https://odiaui.xyz/r/sheet.json`       |
-| Slider      | `npx shadcn@latest add https://odiaui.xyz/r/slider.json`      |
-| Toast       | `npx shadcn@latest add https://odiaui.xyz/r/toast.json`       |
+| Component   | Install                                                                       |
+| ----------- | ----------------------------------------------------------------------------- |
+| Odia Button | `npx shadcn@latest add https://odiaui.xyz/r/odia-button.json`                 |
+| Odia Dialog | `npx shadcn@latest add https://odiaui.xyz/r/odia-dialog.json`                 |
 
 ## Features
 
@@ -108,13 +92,15 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full component workflow.
 ## Project Structure
 
 ```
-├── registry/
-│   └── new-york/           # Component source files
-│       └── button.tsx
+├── components/
+│   └── odia/               # Component source files (single source of truth)
+│       ├── odia-button.tsx
+│       ├── odia-dialog.tsx
+│       └── odia-icons.tsx
 ├── registry.json           # Component registry manifest
 ├── examples/               # Live demos rendered in the docs
 ├── content/docs/           # Documentation (MDX)
-├── components/             # Site components + installed UI at components/ui
+├── components/ui/          # Site-only re-exports + shadcn primitives
 ├── app/                    # Next.js app
 └── public/r/               # Built registry files (auto-generated)
 ```

@@ -35,28 +35,28 @@ import { DialogTermsScrollable } from "@/examples/dialog-terms-scrollable";
       <TabsContent value="bun">
 
 ```bash
-bunx --bun shadcn@latest add https://odiaui.xyz/r/dialog.json
+bunx --bun shadcn@latest add https://odiaui.xyz/r/odia-dialog.json
 ```
 
       </TabsContent>
       <TabsContent value="npm">
 
 ```bash
-npx shadcn@latest add https://odiaui.xyz/r/dialog.json
+npx shadcn@latest add https://odiaui.xyz/r/odia-dialog.json
 ```
 
       </TabsContent>
       <TabsContent value="pnpm">
 
 ```bash
-pnpm dlx shadcn@latest add https://odiaui.xyz/r/dialog.json
+pnpm dlx shadcn@latest add https://odiaui.xyz/r/odia-dialog.json
 ```
 
       </TabsContent>
       <TabsContent value="yarn">
 
 ```bash
-yarn dlx shadcn@latest add https://odiaui.xyz/r/dialog.json
+yarn dlx shadcn@latest add https://odiaui.xyz/r/odia-dialog.json
 ```
 
       </TabsContent>
@@ -73,11 +73,19 @@ npm install @base-ui/react
 
       <Step>Copy the component source</Step>
 
-      Copy the Dialog component source into `components/ui/dialog.tsx`.
+      Copy the Dialog component source into `components/odia/odia-dialog.tsx`.
+
+      <Step>Install the Odia Button</Step>
+
+      The dialog uses our own button (never your base shadcn one). Install it too:
+
+```bash
+npx shadcn@latest add https://odiaui.xyz/r/odia-button.json
+```
 
       <Step>Update import paths</Step>
 
-      Update imports (for example `@/lib/utils` and `@/components/ui/button`) to match your project.
+      Update imports (for example `@/lib/utils`) to match your project.
     </Steps>
 
   </TabsContent>
@@ -97,7 +105,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/components/odia/odia-dialog";
 ```
 
 ```tsx

@@ -3,14 +3,14 @@
 import { CheckIcon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/odia/odia-button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/components/odia/odia-dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";

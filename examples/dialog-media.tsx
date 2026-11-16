@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/odia/odia-button";
 import {
   Dialog,
   DialogClose,
@@ -13,7 +13,7 @@ import {
   DialogMedia,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/components/odia/odia-dialog";
 
 export const DialogMediaExamples = () => (
   <div className="flex flex-wrap gap-2">

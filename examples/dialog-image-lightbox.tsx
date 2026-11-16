@@ -10,7 +10,7 @@ import {
 import Image from "next/image";
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/odia/odia-button";
 import {
   Dialog,
   DialogClose,
@@ -18,7 +18,7 @@ import {
   DialogDescription,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/components/odia/odia-dialog";
 
 const items = [
   {

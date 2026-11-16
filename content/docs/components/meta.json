@@ -1,25 +1,4 @@
 {
   "title": "Components",
-  "pages": [
-    "index",
-    "button",
-    "accordion",
-    "alert",
-    "avatar",
-    "badge",
-    "card",
-    "dialog",
-    "label",
-    "input",
-    "radio-group",
-    "separator",
-    "sheet",
-    "skeleton",
-    "slider",
-    "spinner",
-    "switch",
-    "toggle-group",
-    "textarea",
-    "toast"
-  ]
+  "pages": ["index", "button", "dialog"]
 }

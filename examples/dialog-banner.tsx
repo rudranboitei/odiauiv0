@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/odia/odia-button";
 import {
   Dialog,
   DialogBanner,
@@ -12,7 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
   JagannathIcon,
-} from "@/components/ui/dialog";
+} from "@/components/odia/odia-dialog";
 
 export const DialogBannerDemo = () => (
   <Dialog>

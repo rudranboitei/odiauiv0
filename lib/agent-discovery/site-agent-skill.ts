@@ -22,7 +22,7 @@ This site is a shadcn-compatible registry. For MCP workflows, use the maintained
 ## Install
 
 \`\`\`bash
-npx shadcn@latest add ${SITE.URL}/r/button.json
+npx shadcn@latest add ${SITE.URL}/r/odia-button.json
 \`\`\`
 
 Prefer following the on-site installation guide: ${ROUTES.DOCS_INSTALLATION}
